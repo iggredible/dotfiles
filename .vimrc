@@ -10,10 +10,10 @@
 " Iggy's vimrc file
 "
 
-" http://vim.wikia.com/wiki/Accessing_the_system_clipboard
 set clipboard=unnamed
 set nocompatible
 set number 
+syntax on
 
 " vim native fuzzy search
 " i.e.:
@@ -38,7 +38,7 @@ Plugin 'bling/vim-airline'
 Plugin 'slashmili/alchemist.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'wikitopian/hardmode'
-Plugin 'craigemery/vim-autotag'
+Plugin 'rking/ag.vim' "preq: https://github.com/ggreer/the_silver_searcher
 
 call vundle#end()            
 
@@ -48,14 +48,13 @@ call vundle#end()
 
 " setup for fzf 
 set rtp+=/usr/local/opt/fzf
-" this maps \t to :Files command
-nmap <Leader>f :Files<CR>
-nmap <Leader>b :Buffer<CR>
-nmap <Leader>l :Lines<CR>
+" this maps nonrecursively
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>b :Buffer<CR>
+nnoremap <Leader>l :Lines<CR>
+nnoremap <Leader>A :Ag<Space>
 
 " autoloads
 autocmd VimEnter * NERDTree
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
-" syntax highlight
-syntax on
