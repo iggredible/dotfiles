@@ -12,12 +12,12 @@
 
 set clipboard=unnamed
 set nocompatible
-set number 
+set number
 syntax on
 
 " vim native fuzzy search
 " i.e.:
-" type ':find *.ex' then press <TAB>, it will search recursively, 
+" type ':find *.ex' then press <TAB>, it will search recursively,
 " up to 2 folders deep, anything with *.ex* pattern
 set path+=**
 set wildmenu
@@ -40,21 +40,22 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'wikitopian/hardmode'
 Plugin 'rking/ag.vim' "preq: https://github.com/ggreer/the_silver_searcher
 
-call vundle#end()            
+call vundle#end()
 
 " ------------------------------
-" end vundle 
+" end vundle
 " ------------------------------
 
-" setup for fzf 
+" setup for fzf
 set rtp+=/usr/local/opt/fzf
 " this maps nonrecursively
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>b :Buffer<CR>
 nnoremap <Leader>l :Lines<CR>
 nnoremap <Leader>A :Ag<Space>
+nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <Leader>sv :source $MYVIMRC<CR>
 
 " autoloads
 autocmd VimEnter * NERDTree
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-
