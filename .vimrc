@@ -37,8 +37,9 @@ Plugin 'slim-template/vim-slim.git'
 Plugin 'bling/vim-airline'
 Plugin 'slashmili/alchemist.vim'
 Plugin 'junegunn/fzf.vim'
-Plugin 'wikitopian/hardmode'
 Plugin 'rking/ag.vim' "preq: https://github.com/ggreer/the_silver_searcher
+Plugin 'tpope/vim-surround'
+Plugin 'takac/vim-hardtime'
 
 call vundle#end()
 
@@ -55,7 +56,10 @@ nnoremap <Leader>l :Lines<CR>
 nnoremap <Leader>A :Ag<Space>
 nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <Leader>sv :source $MYVIMRC<CR>
+inoremap <c-k> <esc>ki
+inoremap jk <esc>
+
 
 " autoloads
 autocmd VimEnter * NERDTree
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+let g:hardtime_default_on = 1
