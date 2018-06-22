@@ -8,7 +8,7 @@
 " ------------------------------
 "
 " Iggy's vimrc file
-"
+" (To view folded files press za in normal mode)
 
 set clipboard=unnamed
 set nocompatible
@@ -68,6 +68,7 @@ syntax enable
 " ------------------------------
 autocmd VimEnter * NERDTree
 
+" NerdTree file extension highlights ---------- {{{
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
@@ -86,3 +87,4 @@ call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+" ---------- }}}
