@@ -13,8 +13,9 @@
 set clipboard=unnamed
 set nocompatible
 set number
+set paste
+set hlsearch incsearch
 set tabstop=2 shiftwidth=2 expandtab
-set cursorline
 
 " colorscheme desert
 colorscheme industry
@@ -48,15 +49,17 @@ call vundle#end()
 " setup for fzf
 set rtp+=/usr/local/opt/fzf
 
-" this maps nonrecursively
+"no maps nonrecursively
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>b :Buffer<CR>
 nnoremap <Leader>l :Lines<CR>
 nnoremap <Leader>A :Ag<Space>
 nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <Leader>sv :source $MYVIMRC<CR>
-inoremap <c-k> <esc>ki
 inoremap jk <esc>
+
+autocmd FileType elixir inoremap <buffer> do1 do<CR><CR><Space><Space>end<esc>ki<Space><Space><Space><Space>
+autocmd FileType elixir inoremap <buffer> do0 do<CR><CR>end<esc>ki<Space><Space>
 
 
 " autoloads
