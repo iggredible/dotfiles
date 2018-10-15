@@ -12,13 +12,12 @@
 
 set clipboard=unnamed
 set nocompatible
-set number
+set number 
 set paste
 set hlsearch incsearch
 set tabstop=2 shiftwidth=2 expandtab
 
-" colorscheme desert
-colorscheme industry
+colorscheme gruvbox
 
 " ------------------------------
 " setup vundle
@@ -39,14 +38,15 @@ Plugin 'rking/ag.vim' "preq: https://github.com/ggreer/the_silver_searcher
 Plugin 'tpope/vim-surround'
 Plugin 'takac/vim-hardtime'
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'morhetz/gruvbox'
 
-call vundle#end()
+call vundle#end()            
 
 " ------------------------------
-" end vundle
+" end vundle 
 " ------------------------------
 
-" setup for fzf
+" setup for fzf 
 set rtp+=/usr/local/opt/fzf
 
 "no maps nonrecursively
@@ -69,7 +69,12 @@ syntax enable
 " ------------------------------
 " NERDTree setup
 " ------------------------------
-autocmd VimEnter * NERDTree
+" autocmd VimEnter * NERDTree
+
+" Turn on NERDTree by pressing \N
+" To turn it off, just type :q on NERDTree window
+" To swap easily, do Ctrl + ww
+nnoremap <Leader>N :NERDTree<CR>
 
 " NerdTree file extension highlights ---------- {{{
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
@@ -91,3 +96,5 @@ call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 " ---------- }}}
+
+set t_ut=
