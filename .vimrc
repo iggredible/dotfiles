@@ -74,7 +74,7 @@ syntax enable
 " Turn on NERDTree by pressing \N
 " To turn it off, just type :q on NERDTree window
 " To swap easily, do Ctrl + ww
-nnoremap <Leader>N :NERDTree<CR>
+nnoremap n :NERDTree<CR>
 
 " NerdTree file extension highlights ---------- {{{
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
