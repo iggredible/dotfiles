@@ -18,6 +18,7 @@ set hlsearch incsearch
 set tabstop=2 shiftwidth=2 expandtab
 
 colorscheme gruvbox
+set background=dark
 
 " ------------------------------
 " setup vundle
@@ -27,18 +28,16 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " list of vundle plugins
-
+" Run :PluginInstall to install new ones
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'slim-template/vim-slim.git'
 Plugin 'bling/vim-airline'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'junegunn/fzf.vim'
 Plugin 'rking/ag.vim' "preq: https://github.com/ggreer/the_silver_searcher
 Plugin 'tpope/vim-surround'
-Plugin 'takac/vim-hardtime'
-Plugin 'elixir-lang/vim-elixir'
 Plugin 'morhetz/gruvbox'
+Plugin 'mattn/emmet-vim'
 
 call vundle#end()            
 
@@ -50,12 +49,15 @@ call vundle#end()
 set rtp+=/usr/local/opt/fzf
 
 "no maps nonrecursively
-nnoremap <Leader>f :Files<CR>
+" nnoremap <Leader>f :Files<CR>
+" GFiles is better search than Files because GFiles follows gitignore (Files would search node_modules too)
+nnoremap <Leader>f :GFiles<CR>
 nnoremap <Leader>b :Buffer<CR>
 nnoremap <Leader>l :Lines<CR>
 nnoremap <Leader>A :Ag<Space>
 nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <Leader>sv :source $MYVIMRC<CR>
+nnoremap <F5> :buffers<CR>:buffer<Space>
 inoremap jk <esc>
 
 autocmd FileType elixir inoremap <buffer> do1 do<CR><CR><Space><Space>end<esc>ki<Space><Space><Space><Space>
@@ -63,7 +65,6 @@ autocmd FileType elixir inoremap <buffer> do0 do<CR><CR>end<esc>ki<Space><Space>
 
 
 " autoloads
-let g:hardtime_default_on = 1
 syntax enable
 
 " ------------------------------
@@ -74,7 +75,7 @@ syntax enable
 " Turn on NERDTree by pressing \N
 " To turn it off, just type :q on NERDTree window
 " To swap easily, do Ctrl + ww
-nnoremap n :NERDTree<CR>
+nnoremap NT :NERDTree<CR>
 
 " NerdTree file extension highlights ---------- {{{
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
@@ -97,4 +98,4 @@ call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 " ---------- }}}
 
-set t_ut=
+" let g:netrw_lifestyle = 3
