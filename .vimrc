@@ -14,7 +14,7 @@ set clipboard=unnamed
 set nocompatible
 set number 
 set paste
-set hlsearch incsearch
+" set hlsearch incsearch
 set tabstop=2 shiftwidth=2 expandtab
 
 colorscheme gruvbox
@@ -33,11 +33,13 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'rking/ag.vim' "preq: https://github.com/ggreer/the_silver_searcher
 Plugin 'tpope/vim-surround'
 Plugin 'morhetz/gruvbox'
 Plugin 'mattn/emmet-vim'
+Plugin 'shime/vim-livedown'
 
 call vundle#end()            
 
@@ -58,6 +60,7 @@ nnoremap <Leader>A :Ag<Space>
 nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <Leader>sv :source $MYVIMRC<CR>
 nnoremap <F5> :buffers<CR>:buffer<Space>
+nnoremap gm :LivedownToggle<CR>
 inoremap jk <esc>
 
 autocmd FileType elixir inoremap <buffer> do1 do<CR><CR><Space><Space>end<esc>ki<Space><Space><Space><Space>
@@ -79,8 +82,8 @@ nnoremap NT :NERDTree<CR>
 
 " NerdTree file extension highlights ---------- {{{
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+" exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+" exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
 call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
@@ -98,4 +101,9 @@ call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 " ---------- }}}
 
+" Livedown setup (https://github.com/shime/vim-livedown)
+let g:livedown_autorun = 0
+let g:livedown_open = 1
+let g:livedown_port = 1337
 " let g:netrw_lifestyle = 3
+
