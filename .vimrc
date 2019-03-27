@@ -11,42 +11,86 @@
 " (To view folded files press za in normal mode)
 
 set clipboard=unnamed
-set nocompatible
 set number 
-set paste
 " set hlsearch incsearch
 set tabstop=2 shiftwidth=2 expandtab
+
+" for vim-devicons plugin
+set encoding=UTF-8
 
 colorscheme gruvbox
 set background=dark
 
-" ------------------------------
-" setup vundle
-" ------------------------------
-
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
-" list of vundle plugins
-" Run :PluginInstall to install new ones
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'bling/vim-airline'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'junegunn/goyo.vim'
-Plugin 'junegunn/fzf.vim'
-Plugin 'rking/ag.vim' "preq: https://github.com/ggreer/the_silver_searcher
-Plugin 'tpope/vim-surround'
-Plugin 'morhetz/gruvbox'
-Plugin 'mattn/emmet-vim'
-Plugin 'shime/vim-livedown'
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
 
-call vundle#end()            
+set runtimepath+=/Users/iggy/.config/nvim/bundle/dein/repos/github.com/Shougo/dein.vim
+" Required:
+if dein#load_state('/Users/iggy/.cache/dein')
+  call dein#begin('/Users/iggy/.config/nvim/bundle/dein')
 
-" ------------------------------
-" end vundle 
-" ------------------------------
+  " Let dein manage dein
+  " Required:
+  call dein#add('/Users/iggy/.config/nvim/bundle/dein/repos/github.com/Shougo/dein.vim')
 
+  " visuals
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('bling/vim-airline')
+  call dein#add('gko/vim-coloresque')
+
+  " searches
+	call dein#add('junegunn/fzf.vim')
+  " call dein#add('pelodelfuego/vim-swoop')
+
+  " syntax and navigation
+  call dein#add('Raimondi/delimitMate')
+  call dein#add('Yggdroot/indentLine')
+  call dein#add('tpope/vim-surround')
+  call dein#add('terryma/vim-multiple-cursors') " Just type ctrl+n while highlighting the word
+
+  " Git stuff
+ call dein#add('tpope/vim-fugitive')
+"  call dein#add('airblade/vim-gitgutter')
+  call dein#add('Xuyuanp/nerdtree-git-plugin')
+
+  " icons
+  call dein#add('ryanoasis/vim-devicons')
+
+  " completion
+  call dein#add('tomtom/tcomment_vim') " gc{motion}{c}
+	call dein#add('mattn/emmet-vim')
+	call dein#add('Shougo/deoplete.nvim')
+	if !has('nvim')
+	  call dein#add('roxma/nvim-yarp')
+		call dein#add('roxma/vim-hug-neovim-rpc')
+	endif
+  call dein#add('carlitux/deoplete-ternjs')
+  call dein#add('Shougo/neosnippet')
+  call dein#add('Shougo/neosnippet-snippets')
+
+  call dein#end()
+  call dein#save_state()
+endif
+
+filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete
+syntax enable
+
+"End dein Scripts-------------------------
+
+" deoplete setup
+let g:deoplete#enable_at_startup=1
+
+" Python deps for deoplete
+let g:python_host_prog='/usr/bin/python'
+let g:python3_host_prog='/usr/local/Cellar/python3/3.7.2_2/bin/python3'
+
+" neosnippet
+let g:neosnippet#enable_completed_snippet = 1
 " setup for fzf 
 set rtp+=/usr/local/opt/fzf
 
@@ -54,36 +98,29 @@ set rtp+=/usr/local/opt/fzf
 " nnoremap <Leader>f :Files<CR>
 " GFiles is better search than Files because GFiles follows gitignore (Files would search node_modules too)
 nnoremap <Leader>f :GFiles<CR>
-nnoremap <Leader>b :Buffer<CR>
-nnoremap <Leader>l :Lines<CR>
 nnoremap <Leader>A :Ag<Space>
-nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
-nnoremap <Leader>sv :source $MYVIMRC<CR>
+nnoremap <esc><esc> :noh<return><esc>
+nnoremap J 5j
+nnoremap K 5k
+
+if !has('nvim')
+  nnoremap <Leader>sv :source $MYVIMRC<CR>
+  nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
+elseif has('nvim')
+  nnoremap <Leader>sv :source ~/.vimrc<CR>
+  nnoremap <Leader>ev :vsplit ~/.vimrc<CR>
+endif
+ 
 nnoremap <F5> :buffers<CR>:buffer<Space>
-nnoremap gm :LivedownToggle<CR>
-inoremap jk <esc>
 
-autocmd FileType elixir inoremap <buffer> do1 do<CR><CR><Space><Space>end<esc>ki<Space><Space><Space><Space>
-autocmd FileType elixir inoremap <buffer> do0 do<CR><CR>end<esc>ki<Space><Space>
+" let g:swoopIgnoreCase = 1
+" nmap <Leader>l :call Swoop()<CR> 
+" vmap <Leader>l :call SwoopSelection()<CR>
 
-
-" autoloads
-syntax enable
-
-" ------------------------------
-" NERDTree setup
-" ------------------------------
-" autocmd VimEnter * NERDTree
-
-" Turn on NERDTree by pressing \N
-" To turn it off, just type :q on NERDTree window
-" To swap easily, do Ctrl + ww
-nnoremap NT :NERDTree<CR>
-
-" NerdTree file extension highlights ---------- {{{
+" ion highlights ---------- {{{
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-" exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-" exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
 call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
@@ -101,9 +138,6 @@ call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 " ---------- }}}
 
-" Livedown setup (https://github.com/shime/vim-livedown)
-let g:livedown_autorun = 0
-let g:livedown_open = 1
-let g:livedown_port = 1337
-" let g:netrw_lifestyle = 3
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
