@@ -51,6 +51,10 @@ if dein#load_state('/Users/iggy/.cache/dein')
   call dein#add('Yggdroot/indentLine')
   call dein#add('tpope/vim-surround')
   call dein#add('terryma/vim-multiple-cursors') " Just type ctrl+n while highlighting the word
+  call dein#add('ludovicchabant/vim-gutentags')
+  
+  " linting
+  " call dein#add('w0rp/ale')
 
   " Git stuff
  call dein#add('tpope/vim-fugitive')
@@ -68,6 +72,7 @@ if dein#load_state('/Users/iggy/.cache/dein')
 	  call dein#add('roxma/nvim-yarp')
 		call dein#add('roxma/vim-hug-neovim-rpc')
 	endif
+  call dein#add('moll/vim-node')
   call dein#add('carlitux/deoplete-ternjs')
   call dein#add('Shougo/neosnippet')
   call dein#add('Shougo/neosnippet-snippets')
@@ -84,6 +89,7 @@ syntax enable
 
 " deoplete setup
 let g:deoplete#enable_at_startup=1
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Python deps for deoplete
 let g:python_host_prog='/usr/bin/python'
@@ -117,6 +123,8 @@ nnoremap <F5> :buffers<CR>:buffer<Space>
 " nmap <Leader>l :call Swoop()<CR> 
 " vmap <Leader>l :call SwoopSelection()<CR>
 
+nnoremap <Leader>NT :NERDTreeToggle<CR>
+nnoremap <Leader>nt :NERDTreeToggle<CR>
 " ion highlights ---------- {{{
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -141,3 +149,12 @@ call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+" let g:ale_fixers = {
+"  \ 'javascript': ['eslint']
+"  \ }
+
+"let g:ale_fix_on_save = 1
+
+" gutentags
+set statusline+=%{gutentags#statusline()}
+set tags=tags;/
