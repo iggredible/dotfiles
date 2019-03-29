@@ -1,40 +1,25 @@
-"
+"  __   _______  ___________    ____ __    _______.      ___  ____    __    ____ _______     _______.__    __ .___  ___.  ____    ____ __ .___  ___..______       ______ 
+" |  | /  _____|/  _____\   \  /   /(_ )  /       |     /   \ \   \  /  \  /   /|   ____|   /       |  |  |  ||   \/   |  \   \  /   /|  ||   \/   ||   _  \     /      |
+" |  ||  |  __ |  |  __  \   \/   /  |/  |   (----`    /  ^  \ \   \/    \/   / |  |__     |   (----|  |  |  ||  \  /  |   \   \/   / |  ||  \  /  ||  |_)  |   |  ,----'
+" |  ||  | |_ ||  | |_ |  \_    _/        \   \       /  /_\  \ \            /  |   __|     \   \   |  |  |  ||  |\/|  |    \      /  |  ||  |\/|  ||      /    |  |     
+" |  ||  |__| ||  |__| |    |  |      .----)   |     /  _____  \ \    /\    /   |  |____.----)   |  |  `--'  ||  |  |  |     \    /   |  ||  |  |  ||  |\  \----|  `----.
+" |__| \______| \______|    |__|      |_______/     /__/     \__\ \__/  \__/    |_______|_______/    \______/ |__|  |__|      \__/    |__||__|  |__|| _| `._____|\______|
+"                                                                                                                                                                        
 
-" __   _(_)_ __ ___  _ __ ___
-" \ \ / / | '_ ` _ \| '__/ __|
-"  \ V /| | | | | | | | | (__
-"   \_/ |_|_| |_| |_|_|  \___|
-"
 " ------------------------------
 "
 " Iggy's vimrc file
-" (To view folded files press za in normal mode)
 
-set clipboard=unnamed
-set number 
-" set hlsearch incsearch
-set tabstop=2 shiftwidth=2 expandtab
-
-" for vim-devicons plugin
-set encoding=UTF-8
-
-colorscheme gruvbox
-set background=dark
-
-set rtp+=~/.vim/bundle/Vundle.vim
-
-"dein Scripts-----------------------------
+"dein 
 if &compatible
-  set nocompatible               " Be iMproved
+  set nocompatible
 endif
 
 set runtimepath+=/Users/iggy/.config/nvim/bundle/dein/repos/github.com/Shougo/dein.vim
-" Required:
+
 if dein#load_state('/Users/iggy/.cache/dein')
   call dein#begin('/Users/iggy/.config/nvim/bundle/dein')
 
-  " Let dein manage dein
-  " Required:
   call dein#add('/Users/iggy/.config/nvim/bundle/dein/repos/github.com/Shougo/dein.vim')
 
   " visuals
@@ -54,11 +39,11 @@ if dein#load_state('/Users/iggy/.cache/dein')
   call dein#add('ludovicchabant/vim-gutentags')
   
   " linting
-  " call dein#add('w0rp/ale')
+  call dein#add('w0rp/ale')
 
   " Git stuff
  call dein#add('tpope/vim-fugitive')
-"  call dein#add('airblade/vim-gitgutter')
+ call dein#add('airblade/vim-gitgutter')
   call dein#add('Xuyuanp/nerdtree-git-plugin')
 
   " icons
@@ -77,37 +62,30 @@ if dein#load_state('/Users/iggy/.cache/dein')
   call dein#add('Shougo/neosnippet')
   call dein#add('Shougo/neosnippet-snippets')
 
+  call dein#add('pangloss/vim-javascript')
+  call dein#add('mxw/vim-jsx')
+
   call dein#end()
   call dein#save_state()
 endif
 
 filetype plugin indent on
-set omnifunc=syntaxcomplete#Complete
 syntax enable
 
-"End dein Scripts-------------------------
+" basic
+colorscheme gruvbox
+set background=dark
+set clipboard=unnamed
+set number 
+set tabstop=2 shiftwidth=2 expandtab
+set encoding=UTF-8
 
-" deoplete setup
-let g:deoplete#enable_at_startup=1
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" Python deps for deoplete
-let g:python_host_prog='/usr/bin/python'
-let g:python3_host_prog='/usr/local/Cellar/python3/3.7.2_2/bin/python3'
-
-" neosnippet
-let g:neosnippet#enable_completed_snippet = 1
-" setup for fzf 
-set rtp+=/usr/local/opt/fzf
-
-"no maps nonrecursively
-" nnoremap <Leader>f :Files<CR>
-" GFiles is better search than Files because GFiles follows gitignore (Files would search node_modules too)
 nnoremap <Leader>f :GFiles<CR>
 nnoremap <Leader>A :Ag<Space>
 nnoremap <esc><esc> :noh<return><esc>
 nnoremap J 5j
 nnoremap K 5k
+nnoremap <F5> :buffers<CR>:buffer<Space>
 
 if !has('nvim')
   nnoremap <Leader>sv :source $MYVIMRC<CR>
@@ -116,16 +94,39 @@ elseif has('nvim')
   nnoremap <Leader>sv :source ~/.vimrc<CR>
   nnoremap <Leader>ev :vsplit ~/.vimrc<CR>
 endif
- 
-nnoremap <F5> :buffers<CR>:buffer<Space>
 
-" let g:swoopIgnoreCase = 1
-" nmap <Leader>l :call Swoop()<CR> 
-" vmap <Leader>l :call SwoopSelection()<CR>
+let g:python_host_prog='/usr/bin/python'
+let g:python3_host_prog='/usr/local/Cellar/python3/3.7.2_2/bin/python3'
 
+" gutentags
+set statusline+=%{gutentags#statusline()}
+set tags=tags;/
+
+" deoplete
+let g:deoplete#enable_at_startup=1
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+set omnifunc=syntaxcomplete#Complete
+
+" neosnippet
+let g:neosnippet#enable_completed_snippet = 1
+
+" setup for fzf 
+set rtp+=/usr/local/opt/fzf
+
+" ale
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+
+" NERDTree
 nnoremap <Leader>NT :NERDTreeToggle<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
-" ion highlights ---------- {{{
+
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
   exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
@@ -144,17 +145,3 @@ call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-" ---------- }}}
-
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
-" let g:ale_fixers = {
-"  \ 'javascript': ['eslint']
-"  \ }
-
-"let g:ale_fix_on_save = 1
-
-" gutentags
-set statusline+=%{gutentags#statusline()}
-set tags=tags;/
