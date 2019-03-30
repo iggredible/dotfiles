@@ -79,15 +79,13 @@ syntax enable
 colorscheme gruvbox
 set background=dark
 set clipboard=unnamed
-set number 
+set relativenumber 
 set tabstop=2 shiftwidth=2 expandtab
 set encoding=UTF-8
 
 nnoremap <Leader>f :GFiles<CR>
 nnoremap <Leader>A :Ag<Space>
 nnoremap <esc><esc> :noh<return><esc>
-nnoremap J 5j
-nnoremap K 5k
 nnoremap <F5> :buffers<CR>:buffer<Space>
 inoremap jj <Esc>
 
