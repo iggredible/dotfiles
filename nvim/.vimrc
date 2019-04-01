@@ -79,14 +79,17 @@ syntax enable
 colorscheme gruvbox
 set background=dark
 set clipboard=unnamed
-set relativenumber 
+set relativenumber number
 set tabstop=2 shiftwidth=2 expandtab
 set encoding=UTF-8
+set ignorecase
+set smartcase
 
 nnoremap <Leader>f :GFiles<CR>
 nnoremap <Leader>A :Ag<Space>
 nnoremap <esc><esc> :noh<return><esc>
 nnoremap <F5> :buffers<CR>:buffer<Space>
+noremap <silent> <F4> :let @+=expand("%:p")<CR>
 inoremap jj <Esc>
 
 if !has('nvim')
