@@ -57,6 +57,7 @@ if dein#load_state('/Users/iggy/.cache/dein')
   call dein#add('tomtom/tcomment_vim') " gc{motion}{c}
 	call dein#add('mattn/emmet-vim')
 	call dein#add('Shougo/deoplete.nvim')
+  call dein#add('shime/vim-livedown')
 	if !has('nvim')
 	  call dein#add('roxma/nvim-yarp')
 		call dein#add('roxma/vim-hug-neovim-rpc')
@@ -73,7 +74,9 @@ if dein#load_state('/Users/iggy/.cache/dein')
 endif
 
 filetype plugin indent on
-syntax enable
+if !exists("g:syntax_on")
+    syntax enable
+endif
 
 " basic
 colorscheme gruvbox
