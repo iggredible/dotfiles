@@ -91,6 +91,8 @@ set smartcase
 
 nnoremap <Leader>f :GFiles<CR>
 nnoremap <Leader>A :Ag<Space>
+nnoremap <Leader>d :put =strftime('%b %d, %Y')<CR>kJEEE
+nnoremap <Leader>` i```<Esc>e
 nnoremap <esc><esc> :noh<return><esc>
 nnoremap <F5> :buffers<CR>:buffer<Space>
 noremap <silent> <F4> :let @+=expand("%:p")<CR>
