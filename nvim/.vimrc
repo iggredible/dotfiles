@@ -41,6 +41,8 @@ if dein#load_state('/Users/iggy/.cache/dein')
 
   call dein#add('/Users/iggy/.config/nvim/bundle/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('scrooloose/nerdtree')
+  call dein#add('HerringtonDarkholme/yats.vim')
+  call dein#add('mhartington/nvim-typescript', {'build': './install.sh'})
   call dein#add('bling/vim-airline')
   call dein#add('gko/vim-coloresque')
 	call dein#add('junegunn/fzf.vim')
@@ -93,6 +95,7 @@ nnoremap <Leader>f :GFiles<CR>
 nnoremap <Leader>A :Ag<Space>
 nnoremap <Leader>d :put =strftime('%b %d, %Y')<CR>kJEEE
 nnoremap <Leader>` i```<Esc>e
+nnoremap <Leader>- i---<Esc>e
 nnoremap <esc><esc> :noh<return><esc>
 nnoremap <F5> :buffers<CR>:buffer<Space>
 noremap <silent> <F4> :let @+=expand("%:p")<CR>
