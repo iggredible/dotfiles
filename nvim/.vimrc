@@ -41,8 +41,8 @@ if dein#load_state('/Users/iggy/.cache/dein')
 
   call dein#add('/Users/iggy/.config/nvim/bundle/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('scrooloose/nerdtree')
-  call dein#add('HerringtonDarkholme/yats.vim')
-  call dein#add('mhartington/nvim-typescript', {'build': './install.sh'})
+  " call dein#add('HerringtonDarkholme/yats.vim')
+  " call dein#add('mhartington/nvim-typescript', {'build': './install.sh'})
   call dein#add('bling/vim-airline')
   call dein#add('gko/vim-coloresque')
 	call dein#add('junegunn/fzf.vim')
@@ -52,7 +52,7 @@ if dein#load_state('/Users/iggy/.cache/dein')
   call dein#add('tpope/vim-surround')
   call dein#add('terryma/vim-multiple-cursors') " Just type ctrl+n while highlighting the word
   call dein#add('ludovicchabant/vim-gutentags')
-  call dein#add('w0rp/ale')
+  " call dein#add('w0rp/ale')
   call dein#add('tpope/vim-fugitive')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('Xuyuanp/nerdtree-git-plugin')
@@ -67,10 +67,11 @@ if dein#load_state('/Users/iggy/.cache/dein')
 	endif
   call dein#add('moll/vim-node')
   call dein#add('carlitux/deoplete-ternjs')
-  call dein#add('Shougo/neosnippet')
-  call dein#add('Shougo/neosnippet-snippets')
+  " call dein#add('Shougo/neosnippet')
+  " call dein#add('Shougo/neosnippet-snippets')
   call dein#add('pangloss/vim-javascript')
   call dein#add('mxw/vim-jsx')
+  call dein#add('posva/vim-vue')
 
   call dein#end()
   call dein#save_state()
@@ -91,15 +92,12 @@ set encoding=UTF-8
 set ignorecase
 set smartcase
 
+" keys 
 nnoremap <Leader>f :GFiles<CR>
 nnoremap <Leader>A :Ag<Space>
-nnoremap <Leader>d :put =strftime('%b %d, %Y')<CR>kJEEE
-nnoremap <Leader>` i```<Esc>e
-nnoremap <Leader>- i---<Esc>e
+nnoremap <Leader>d :put =strftime('%b %d, %Y')<CR>
 nnoremap <esc><esc> :noh<return><esc>
-nnoremap <F5> :buffers<CR>:buffer<Space>
-noremap <silent> <F4> :let @+=expand("%:p")<CR>
-inoremap jj <Esc>
+inoremap jk <Esc>
 
 if !has('nvim')
   nnoremap <Leader>sv :source $MYVIMRC<CR>
@@ -109,6 +107,11 @@ elseif has('nvim')
   nnoremap <Leader>ev :vsplit ~/.vimrc<CR>
 endif
 
+" F keys
+noremap <silent> <F4> :let @+=expand("%:p")<CR>
+nnoremap <F5> :buffers<CR>:buffer<Space>
+
+" python source
 let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/local/Cellar/python3/3.7.2_2/bin/python3'
 
@@ -128,19 +131,19 @@ let g:neosnippet#enable_completed_snippet = 1
 set rtp+=/usr/local/opt/fzf
 
 " ale
-let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
-\}
-let g:ale_fix_on_save = 1
-let g:ale_sign_error = '●' " Less aggressive than the default '>>'
-let g:ale_sign_warning = '.'
-let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+" let g:ale_fixers = {
+" \   'javascript': ['prettier'],
+" \   'css': ['prettier'],
+" \}
+" let g:ale_fix_on_save = 1
+" let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+" let g:ale_sign_warning = '.'
+" let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
 " NERDTree
 let NERDTreeNaturalSort = 1
 
-nnoremap <Leader>NT :NERDTreeToggle<CR>
+nnoremap <Leader>NT :NERDTreeFind<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
@@ -154,3 +157,25 @@ call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
 call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
 call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+
+"
+" " skeletons
+" " works when creating a file using :e new_file.md
+" if has("autocmd")
+"   augroup templates
+"     autocmd BufNewFile *.notescript.md 0r ~/.vim/templates/skeleton.md
+"   augroup END
+" endif
+"
+" " automatically call DateMod upon saving
+" " notescript may be abbreviated as .ns
+" autocmd BufWritePre,FileWritePre *.notescript.md  ks|call DateMod()|'s
+"   fun DateMod()
+"   if line("$") > 20
+"     let l = 20
+"   else
+"     let l = line("$")
+"   endif
+"   exe "1," . l . "g/date: /s/date: .*/date: " .
+"   \ strftime("%b %d, %Y")
+" endfun
