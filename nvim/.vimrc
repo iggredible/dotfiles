@@ -64,20 +64,20 @@ if dein#load_state('/Users/iggy/.cache/dein')
   call dein#add('ryanoasis/vim-devicons')
   call dein#add('tomtom/tcomment_vim') " gc{motion}{c}
 	call dein#add('mattn/emmet-vim')
-	call dein#add('Shougo/deoplete.nvim')
   call dein#add('shime/vim-livedown')
 	if !has('nvim')
 	  call dein#add('roxma/nvim-yarp')
 		call dein#add('roxma/vim-hug-neovim-rpc')
 	endif
   call dein#add('moll/vim-node')
-  call dein#add('carlitux/deoplete-ternjs')
-  call dein#add('Shougo/neosnippet')
-  call dein#add('Shougo/neosnippet-snippets')
+	" call dein#add('Shougo/deoplete.nvim')
+  " call dein#add('carlitux/deoplete-ternjs')
+  " call dein#add('Shougo/neosnippet')
+  " call dein#add('Shougo/neosnippet-snippets')
   call dein#add('pangloss/vim-javascript')
   call dein#add('mxw/vim-jsx')
   call dein#add('posva/vim-vue')
-
+  call dein#add('tpope/vim-repeat')
   call dein#end()
   call dein#save_state()
 endif
@@ -99,8 +99,7 @@ set smartcase
 
 " keys 
 nnoremap <Leader>p :GFiles<CR>
-nnoremap <Leader>F :Ag<Space>
-nnoremap <Leader>d :put =strftime('%b %d, %Y')<CR>
+nnoremap <Leader>f :Ag<Space>
 nnoremap <esc><esc> :noh<return><esc>
 inoremap jk <Esc>
 
@@ -117,6 +116,7 @@ nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
+"
 " F keys
 noremap <silent> <F4> :let @+=expand("%:p")<CR>
 nnoremap <F5> :buffers<CR>:buffer<Space>
@@ -130,12 +130,12 @@ set statusline+=%{gutentags#statusline()}
 set tags=tags;/
 
 " deoplete
-let g:deoplete#enable_at_startup=1
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-set omnifunc=syntaxcomplete#Complete
+" let g:deoplete#enable_at_startup=1
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" set omnifunc=syntaxcomplete#Complete
 
 " neosnippet
-let g:neosnippet#enable_completed_snippet = 1
+" let g:neosnippet#enable_completed_snippet = 1
 
 " setup for fzf 
 set rtp+=/usr/local/opt/fzf
@@ -167,4 +167,53 @@ call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
 call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
 call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+
+" grepping
+" https://www.reddit.com/r/vim/comments/bmh977/automatically_open_quickfix_window_after/
+augroup quickfix
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l* lwindow
+augroup END
+
+
+" markdown stuff
+function! AddHeader()
+  let headerLevel = input('Header Level? ')
+  if headerLevel == 1
+    normal! I# 
+  elseif headerLevel == 2
+    normal! I## 
+  elseif headerLevel == 3
+    normal! I### 
+  elseif headerLevel == 4
+    normal! I#### 
+  elseif headerLevel == 5
+    normal! I##### 
+  elseif headerLevel == 6
+    normal! I###### 
+  else
+    echo "Enter Header Level values between 1-6"
+  endif
+endfunction
+
+" there are more improvements:
+" what if I do this on line that contains text already?
+" I think it'd be cool to highlight a code block and execute this
+" so it should go to g instead of leader??
+
+function! AddYAMLBlock()
+  normal! 3i-yypO
+endfunction
+
+function! AddCodeBlock()
+  normal! 3i`yypO
+endfunction
+
+augroup filetype_md
+  autocmd!
+  autocmd FileType markdown nnoremap <leader>lh :call AddHeader()<CR>
+  autocmd FileType markdown nnoremap <leader>by :call AddYAMLBlock()<CR>
+  autocmd FileType markdown nnoremap <leader>bc :call AddCodeBlock()<CR>
+augroup END
 
