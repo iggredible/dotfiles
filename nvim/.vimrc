@@ -55,7 +55,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Plug('shime/vim-livedown')
   " Plug('w0rp/ale')
 
-  " installing neo-snippets
+  " deoplete and neosnippets
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else
@@ -68,6 +68,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/neosnippet.vim'
   Plug 'Shougo/neosnippet-snippets'
 call plug#end()
+let mapleader = "\<space>" 
 
 " basic
 filetype plugin indent on
@@ -110,10 +111,18 @@ nnoremap N Nzz
 " normal mode while in insert mode
 inoremap jk <Esc>
 
-" moving lines while in visual mode
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+" moving lines up/down
+vnoremap <Up> :m '<-2<CR>gv=gv
+vnoremap <Down> :m '>+1<CR>gv=gv
+nnoremap <Leader><Up>   :<C-u>silent! move-2<CR>==
+nnoremap <Leader><Down> :<C-u>silent! move+<CR>==
 
+" moving words left/right
+" https://www.reddit.com/r/vim/comments/38d9ts/ideas_for_using_the_leader_key_feature/
+nnoremap <Leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
+nnoremap <Leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
+
+" shortcut to vimrc and sourcing
 if !has('nvim')
   nnoremap <Leader>sv :source $MYVIMRC<CR>
   nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
@@ -121,6 +130,10 @@ elseif has('nvim')
   nnoremap <Leader>sv :source ~/.vimrc<CR>
   nnoremap <Leader>ev :vsplit ~/.vimrc<CR>
 endif
+
+" delete without saving to register
+nnoremap <Leader>d "_d
+xnoremap <Leader>d "_d
 
 " window traversal
 nnoremap <C-h> <C-w><C-h>
@@ -135,13 +148,11 @@ nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
 " Get path of current buffer
-nnoremap <C-c> :let @+=expand("%:p")<CR>
+nnoremap <Leader>c :let @+=expand("%:p")<CR>
 
 " python source
 let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/local/Cellar/python/3.7.4_1/bin/python3'
-
-" let g:python3_host_prog='/usr/local/bin/python3'
 
 " gutentags
 set statusline+=%{gutentags#statusline()}
@@ -159,7 +170,7 @@ set tags=tags;/
 " neosnippet
 " let g:neosnippet#enable_completed_snippet = 1
 
-" setup for fzf 
+" fzf 
 set rtp+=/usr/local/opt/fzf
 
 " ale
