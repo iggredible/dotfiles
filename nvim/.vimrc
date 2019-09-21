@@ -48,6 +48,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug('tomtom/tcomment_vim') " gc{motion}{c}
 	Plug('mattn/emmet-vim')
   Plug('tpope/vim-repeat')
+  Plug('posva/vim-vue')
   " Plug('SirVer/ultisnips')
   " Plug('honza/vim-snippets')
   " Plug('junegunn/goyo.vim')
@@ -94,11 +95,11 @@ set directory=$HOME/.vim/swp//
 
 " KEY MAPPINGS
 " open files and search files
-" nnoremap <Leader>p :GFiles<CR>
 nnoremap <C-p> :GFiles<CR>
-" nnoremap <Leader>f :Ag<Space>
 nnoremap <C-f> :Ag<Space>
 
+" Show active buffers
+nnoremap <C-b> :buffers<CR>:buffer<Space>
 " get rid of highlight
 nnoremap <esc><esc> :noh<return><esc>
 
@@ -126,7 +127,6 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
-nnoremap <C-c> <C-w>c
 
 " buffers traversal
 nnoremap <silent> [b :bprevious<CR>
@@ -134,13 +134,10 @@ nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
-" F keys
-"" copy path
-noremap <silent> <F4> :let @+=expand("%:p")<CR>
-"" list buffers
-nnoremap <F5> :buffers<CR>:buffer<Space>
-" python source
+" Get path of current buffer
+nnoremap <C-c> :let @+=expand("%:p")<CR>
 
+" python source
 let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/local/Cellar/python/3.7.4_1/bin/python3'
 
@@ -178,8 +175,9 @@ set rtp+=/usr/local/opt/fzf
 " NERDTree
 let NERDTreeNaturalSort = 1
 
-nnoremap <Leader>NT :NERDTreeFind<CR>
-nnoremap <Leader>nt :NERDTreeToggle<CR>
+" nnoremap <Leader>NT :NERDTreeFind<CR>
+nnoremap <Leader>t :NERDTreeFind<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
 
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
