@@ -27,81 +27,91 @@
 "
 " ------------------------------
 "
-" Iggy's vimrc file
+" Iggy's vimrc file!
 
-"dein 
 if &compatible
   set nocompatible
 endif
 
-set runtimepath+=/Users/iggy/.config/nvim/bundle/dein/repos/github.com/Shougo/dein.vim
+call plug#begin('~/.local/share/nvim/plugged')
+  Plug('scrooloose/nerdtree')
+  Plug('bling/vim-airline')
+  Plug('gko/vim-coloresque')
+  Plug('junegunn/fzf.vim')
+  Plug('Yggdroot/indentLine')
+  Plug('tpope/vim-surround')
+  Plug('ludovicchabant/vim-gutentags')
+  Plug('tpope/vim-fugitive')
+  Plug('airblade/vim-gitgutter')
+  Plug('Xuyuanp/nerdtree-git-plugin')
+  Plug('ryanoasis/vim-devicons')
+  Plug('tomtom/tcomment_vim') " gc{motion}{c}
+	Plug('mattn/emmet-vim')
+  Plug('tpope/vim-repeat')
+  " Plug('SirVer/ultisnips')
+  " Plug('honza/vim-snippets')
+  " Plug('junegunn/goyo.vim')
+  " Plug('shime/vim-livedown')
+  " Plug('w0rp/ale')
 
-" To uninstall plugins:
-" 1. Comment unwanted plugins (or delete them)
-" 2. Run: call dein#recache_runtimepath()
-" 3. Reinstall: call dein#install()
-if dein#load_state('/Users/iggy/.cache/dein')
-  call dein#begin('/Users/iggy/.config/nvim/bundle/dein')
+  " installing neo-snippets
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
+  let g:deoplete#enable_at_startup = 1
 
-  call dein#add('/Users/iggy/.config/nvim/bundle/dein/repos/github.com/Shougo/dein.vim')
-  call dein#add('scrooloose/nerdtree')
-  " call dein#add('HerringtonDarkholme/yats.vim')
-  " call dein#add('mhartington/nvim-typescript', {'build': './install.sh'})
-  call dein#add('bling/vim-airline')
-  call dein#add('gko/vim-coloresque')
-	call dein#add('junegunn/fzf.vim')
-  call dein#add('junegunn/goyo.vim')
-  " call dein#add('Raimondi/delimitMate')
-  call map(dein#check_clean(), "delete(v:val, 'rf')")
-  call dein#add('Yggdroot/indentLine')
-  call dein#add('tpope/vim-surround')
-  call dein#add('terryma/vim-multiple-cursors') " Just type ctrl+n while highlighting the word
-  call dein#add('ludovicchabant/vim-gutentags')
-  call dein#add('w0rp/ale')
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('airblade/vim-gitgutter')
-  call dein#add('Xuyuanp/nerdtree-git-plugin')
-  call dein#add('ryanoasis/vim-devicons')
-  call dein#add('tomtom/tcomment_vim') " gc{motion}{c}
-	call dein#add('mattn/emmet-vim')
-  call dein#add('shime/vim-livedown')
-	if !has('nvim')
-	  call dein#add('roxma/nvim-yarp')
-		call dein#add('roxma/vim-hug-neovim-rpc')
-	endif
-  call dein#add('moll/vim-node')
-	" call dein#add('Shougo/deoplete.nvim')
-  " call dein#add('carlitux/deoplete-ternjs')
-  " call dein#add('Shougo/neosnippet')
-  " call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('pangloss/vim-javascript')
-  call dein#add('mxw/vim-jsx')
-  call dein#add('posva/vim-vue')
-  call dein#add('tpope/vim-repeat')
-  call dein#end()
-  call dein#save_state()
-endif
+  Plug 'Shougo/neosnippet.vim'
+  Plug 'Shougo/neosnippet-snippets'
+call plug#end()
 
+" basic
 filetype plugin indent on
 if !exists("g:syntax_on")
     syntax enable
 endif
 
-" basic
 colorscheme gruvbox
 set background=dark
 set clipboard=unnamed
 set relativenumber number
-set tabstop=2 shiftwidth=2 expandtab
+set tabstop=2
+set shiftwidth=2
+set expandtab
 set encoding=UTF-8
 set ignorecase
 set smartcase
+set lazyredraw
+" set noswapfile
+set confirm
+set nobackup
+set directory=$HOME/.vim/swp//
+" set undofile
+" set undodir=~/.vim/undodir
 
-" keys 
-nnoremap <Leader>p :GFiles<CR>
-nnoremap <Leader>f :Ag<Space>
+" KEY MAPPINGS
+" open files and search files
+" nnoremap <Leader>p :GFiles<CR>
+nnoremap <C-p> :GFiles<CR>
+" nnoremap <Leader>f :Ag<Space>
+nnoremap <C-f> :Ag<Space>
+
+" get rid of highlight
 nnoremap <esc><esc> :noh<return><esc>
+
+" center search results
+nnoremap n nzz
+nnoremap N Nzz
+
+" normal mode while in insert mode
 inoremap jk <Esc>
+
+" moving lines while in visual mode
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 if !has('nvim')
   nnoremap <Leader>sv :source $MYVIMRC<CR>
@@ -111,23 +121,38 @@ elseif has('nvim')
   nnoremap <Leader>ev :vsplit ~/.vimrc<CR>
 endif
 
-" map buffers
+" window traversal
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-c> <C-w>c
+
+" buffers traversal
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
-"
-" F keys
-noremap <silent> <F4> :let @+=expand("%:p")<CR>
-nnoremap <F5> :buffers<CR>:buffer<Space>
 
+" F keys
+"" copy path
+noremap <silent> <F4> :let @+=expand("%:p")<CR>
+"" list buffers
+nnoremap <F5> :buffers<CR>:buffer<Space>
 " python source
+
 let g:python_host_prog='/usr/bin/python'
-let g:python3_host_prog='/usr/local/Cellar/python3/3.7.2_2/bin/python3'
+let g:python3_host_prog='/usr/local/Cellar/python/3.7.4_1/bin/python3'
+
+" let g:python3_host_prog='/usr/local/bin/python3'
 
 " gutentags
 set statusline+=%{gutentags#statusline()}
 set tags=tags;/
+
+" airline
+" let g:airline_symbols = {}
+" let g:airline_symbols.branch = ''
 
 " deoplete
 " let g:deoplete#enable_at_startup=1
@@ -141,14 +166,14 @@ set tags=tags;/
 set rtp+=/usr/local/opt/fzf
 
 " ale
-let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
-\}
-let g:ale_fix_on_save = 1
-let g:ale_sign_error = '●' " Less aggressive than the default '>>'
-let g:ale_sign_warning = '.'
-let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+" let g:ale_fixers = {
+" \   'javascript': ['prettier'],
+" \   'css': ['prettier'],
+" \}
+" let g:ale_fix_on_save = 1
+" let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+" let g:ale_sign_warning = '.'
+" let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
 " NERDTree
 let NERDTreeNaturalSort = 1
@@ -176,44 +201,29 @@ augroup quickfix
     autocmd QuickFixCmdPost l* lwindow
 augroup END
 
+" UltiSnips
+" let g:UltiSnipsExpandTrigger = "<tab>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" let g:UltiSnipsSnippetDirectories=[$HOME.'/.local/share/nvim/plugged/vim-snippets/UltiSnips']
+" "
+" " source  ~/.vim/markdown.vim
+"" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" markdown stuff
-function! AddHeader()
-  let headerLevel = input('Header Level? ')
-  if headerLevel == 1
-    normal! I# 
-  elseif headerLevel == 2
-    normal! I## 
-  elseif headerLevel == 3
-    normal! I### 
-  elseif headerLevel == 4
-    normal! I#### 
-  elseif headerLevel == 5
-    normal! I##### 
-  elseif headerLevel == 6
-    normal! I###### 
-  else
-    echo "Enter Header Level values between 1-6"
-  endif
-endfunction
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-" there are more improvements:
-" what if I do this on line that contains text already?
-" I think it'd be cool to highlight a code block and execute this
-" so it should go to g instead of leader??
-
-function! AddYAMLBlock()
-  normal! 3i-yypO
-endfunction
-
-function! AddCodeBlock()
-  normal! 3i`yypO
-endfunction
-
-augroup filetype_md
-  autocmd!
-  autocmd FileType markdown nnoremap <leader>lh :call AddHeader()<CR>
-  autocmd FileType markdown nnoremap <leader>by :call AddYAMLBlock()<CR>
-  autocmd FileType markdown nnoremap <leader>bc :call AddCodeBlock()<CR>
-augroup END
-
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
