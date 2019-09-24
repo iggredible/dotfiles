@@ -91,6 +91,8 @@ set lazyredraw
 set confirm
 set nobackup
 set directory=$HOME/.vim/swp//
+set nrformats=alpha
+set nowrapscan
 " set undofile
 " set undodir=~/.vim/undodir
 
