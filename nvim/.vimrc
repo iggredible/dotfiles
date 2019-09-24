@@ -1,29 +1,29 @@
-"  __    _______   ___________    ____  __     _______.                    
-" |  |  /  _____| /  _____\   \  /   / (_ )   /       |                    
-" |  | |  |  __  |  |  __  \   \/   /   |/   |   (----`                    
-" |  | |  | |_ | |  | |_ |  \_    _/          \   \                        
-" |  | |  |__| | |  |__| |    |  |        .----)   |                       
-" |__|  \______|  \______|    |__|        |_______/                        
-"      _______. __    __  .______    _______ .______                       
-"     /       ||  |  |  | |   _  \  |   ____||   _  \                      
-"    |   (----`|  |  |  | |  |_)  | |  |__   |  |_)  |                     
-"     \   \    |  |  |  | |   ___/  |   __|  |      /                      
-" .----)   |   |  `--'  | |  |      |  |____ |  |\  \----.                 
-" |_______/     \______/  | _|      |_______|| _| `._____|                 
-"                                                                          
-"      ___   ____    __    ____  _______     _______. __    __  .___  ___. 
-"     /   \  \   \  /  \  /   / |   ____|   /       ||  |  |  | |   \/   | 
-"    /  ^  \  \   \/    \/   /  |  |__     |   (----`|  |  |  | |  \  /  | 
-"   /  /_\  \  \            /   |   __|     \   \    |  |  |  | |  |\/|  | 
-"  /  _____  \  \    /\    /    |  |____.----)   |   |  `--'  | |  |  |  | 
-" /__/     \__\  \__/  \__/     |_______|_______/     \______/  |__|  |__| 
-"                                                                          
-" ____    ____  __  .___  ___. .______        ______                       
-" \   \  /   / |  | |   \/   | |   _  \      /      |                      
-"  \   \/   /  |  | |  \  /  | |  |_)  |    |  ,----'                      
-"   \      /   |  | |  |\/|  | |      /     |  |                           
-"    \    /    |  | |  |  |  | |  |\  \----.|  `----.                      
-"     \__/     |__| |__|  |__| | _| `._____| \______|                      
+"  __    _______   ___________    ____  __     _______.
+" |  |  /  _____| /  _____\   \  /   / (_ )   /       |
+" |  | |  |  __  |  |  __  \   \/   /   |/   |   (----`
+" |  | |  | |_ | |  | |_ |  \_    _/          \   \
+" |  | |  |__| | |  |__| |    |  |        .----)   |
+" |__|  \______|  \______|    |__|        |_______/
+"      _______. __    __  .______    _______ .______
+"     /       ||  |  |  | |   _  \  |   ____||   _  \
+"    |   (----`|  |  |  | |  |_)  | |  |__   |  |_)  |
+"     \   \    |  |  |  | |   ___/  |   __|  |      /
+" .----)   |   |  `--'  | |  |      |  |____ |  |\  \----.
+" |_______/     \______/  | _|      |_______|| _| `._____|
+"
+"      ___   ____    __    ____  _______     _______. __    __  .___  ___.
+"     /   \  \   \  /  \  /   / |   ____|   /       ||  |  |  | |   \/   |
+"    /  ^  \  \   \/    \/   /  |  |__     |   (----`|  |  |  | |  \  /  |
+"   /  /_\  \  \            /   |   __|     \   \    |  |  |  | |  |\/|  |
+"  /  _____  \  \    /\    /    |  |____.----)   |   |  `--'  | |  |  |  |
+" /__/     \__\  \__/  \__/     |_______|_______/     \______/  |__|  |__|
+"
+" ____    ____  __  .___  ___. .______        ______
+" \   \  /   / |  | |   \/   | |   _  \      /      |
+"  \   \/   /  |  | |  \  /  | |  |_)  |    |  ,----'
+"   \      /   |  | |  |\/|  | |      /     |  |
+"    \    /    |  | |  |  |  | |  |\  \----.|  `----.
+"     \__/     |__| |__|  |__| | _| `._____| \______|
 "
 " ------------------------------
 "
@@ -68,7 +68,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/neosnippet.vim'
   Plug 'Shougo/neosnippet-snippets'
 call plug#end()
-let mapleader = "\<space>" 
+let mapleader = "\<space>"
 
 " basic
 filetype plugin indent on
@@ -96,17 +96,22 @@ set directory=$HOME/.vim/swp//
 
 " KEY MAPPINGS
 " open files and search files
-nnoremap <C-p> :GFiles<CR>
-nnoremap <C-f> :Ag<Space>
+nnoremap <C-p> :Files<CR>
+" nnoremap <C-f> :Ag<CR>
+nnoremap <C-f> :Rg<CR>
 
 " Show active buffers
 nnoremap <C-b> :buffers<CR>:buffer<Space>
+
 " get rid of highlight
 nnoremap <esc><esc> :noh<return><esc>
 
 " center search results
 nnoremap n nzz
 nnoremap N Nzz
+
+" files
+nnoremap <Leader>w :w<CR>
 
 " normal mode while in insert mode
 inoremap jk <Esc>
@@ -150,9 +155,17 @@ nnoremap <silent> ]B :blast<CR>
 " Get path of current buffer
 nnoremap <Leader>c :let @+=expand("%:p")<CR>
 
+" highlight trailing whitespace
+match ErrorMsg '\s\+$'
+" remove trailing whitespaces automatically
+autocmd BufWritePre * :%s/\s\+$//e
+
 " python source
 let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/local/Cellar/python/3.7.4_1/bin/python3'
+
+" fzf
+set rtp+=/usr/local/opt/fzf
 
 " gutentags
 set statusline+=%{gutentags#statusline()}
@@ -170,9 +183,6 @@ set tags=tags;/
 " neosnippet
 " let g:neosnippet#enable_completed_snippet = 1
 
-" fzf 
-set rtp+=/usr/local/opt/fzf
-
 " ale
 " let g:ale_fixers = {
 " \   'javascript': ['prettier'],
@@ -187,7 +197,7 @@ set rtp+=/usr/local/opt/fzf
 let NERDTreeNaturalSort = 1
 
 " nnoremap <Leader>NT :NERDTreeFind<CR>
-nnoremap <Leader>t :NERDTreeFind<CR>
+nnoremap <Leader>nt :NERDTreeFind<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
@@ -236,3 +246,4 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
+
