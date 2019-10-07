@@ -79,7 +79,8 @@ endif
 colorscheme gruvbox
 set background=dark
 set clipboard=unnamed
-set relativenumber number
+set relativenumber
+set number
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -118,6 +119,7 @@ nnoremap <Leader>w :w<CR>
 " normal mode while in insert mode
 inoremap jk <Esc>
 
+" MOVING STUFF
 " moving lines up/down
 vnoremap <Up> :m '<-2<CR>gv=gv
 vnoremap <Down> :m '>+1<CR>gv=gv
@@ -129,38 +131,41 @@ nnoremap <Leader><Down> :<C-u>silent! move+<CR>==
 nnoremap <Leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
 nnoremap <Leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 
+" VIMRC
 " shortcut to vimrc and sourcing
 if !has('nvim')
-  nnoremap <Leader>sv :source $MYVIMRC<CR>
-  nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
+  nnoremap <Leader>vs :source $MYVIMRC<CR>
+  nnoremap <Leader>ve :vsplit $MYVIMRC<CR>
 elseif has('nvim')
-  nnoremap <Leader>sv :source ~/.vimrc<CR>
-  nnoremap <Leader>ev :vsplit ~/.vimrc<CR>
+  nnoremap <Leader>vs :source ~/.vimrc<CR>
+  nnoremap <Leader>ve :vsplit ~/.vimrc<CR>
 endif
 
 " delete without saving to register
 nnoremap <Leader>d "_d
 xnoremap <Leader>d "_d
 
-" window traversal
-nnoremap <C-h> <C-w><C-h>
-nnoremap <C-j> <C-w><C-j>
-nnoremap <C-k> <C-w><C-k>
-nnoremap <C-l> <C-w><C-l>
-
+" BUFFERS
 " buffers traversal
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
+nnoremap <silent> bl :bprevious<CR>
+nnoremap <silent> bh :bnext<CR>
+nnoremap <silent> b0 :bfirst<CR>
+nnoremap <silent> b$ :blast<CR>
 
 " Get path of current buffer
-nnoremap <Leader>c :let @+=expand("%:p")<CR>
+nnoremap <Leader>bp :let @+=expand("%:p")<CR>
 
 " highlight trailing whitespace
 match ErrorMsg '\s\+$'
 " remove trailing whitespaces automatically
 autocmd BufWritePre * :%s/\s\+$//e
+
+" VIM SYNTAX
+" helpers for https://github.com/vim/vim/blob/master/runtime/syntax/README.txt
+nnoremap <Leader>s2 :runtime!syntax/2html.vim<CR>
+nnoremap <Leader>sc :runtime!syntax/colortest.vim<CR>
+nnoremap <Leader>sh :runtime!syntax/hitest.vim<CR>
+nnoremap <Leader>sw :runtime!syntax/whitespace.vim<CR>
 
 " python source
 let g:python_host_prog='/usr/bin/python'
@@ -199,7 +204,8 @@ set tags=tags;/
 let NERDTreeNaturalSort = 1
 
 " nnoremap <Leader>NT :NERDTreeFind<CR>
-nnoremap <Leader>nt :NERDTreeFind<CR>
+nnoremap <Leader>nf :NERDTreeFind<CR>
+nnoremap <Leader>nt :NERDTreeToggle<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
