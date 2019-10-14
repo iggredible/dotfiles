@@ -49,6 +49,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug('mattn/emmet-vim')
   Plug('tpope/vim-repeat')
   Plug('posva/vim-vue')
+  Plug('mtth/scratch.vim')
   " Plug('SirVer/ultisnips')
   " Plug('honza/vim-snippets')
   " Plug('junegunn/goyo.vim')
@@ -67,6 +68,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   Plug 'Shougo/neosnippet.vim'
   Plug 'Shougo/neosnippet-snippets'
+
+  Plug 'kana/vim-textobj-user'
+  Plug 'rhysd/vim-textobj-ruby'
 call plug#end()
 let mapleader = "\<space>"
 
