@@ -50,11 +50,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug('tpope/vim-repeat')
   Plug('posva/vim-vue')
   Plug('mtth/scratch.vim')
-  " Plug('SirVer/ultisnips')
-  " Plug('honza/vim-snippets')
-  " Plug('junegunn/goyo.vim')
+  Plug('rbong/vim-flog')
+  Plug('junegunn/vim-peekaboo')
+  Plug('junegunn/goyo.vim')
   " Plug('shime/vim-livedown')
-  " Plug('w0rp/ale')
+  Plug('w0rp/ale')
 
   " deoplete and neosnippets
   if has('nvim')
@@ -97,7 +97,7 @@ set confirm
 set nobackup
 set directory=$HOME/.vim/swp//
 set nrformats=alpha
-set nowrapscan
+set hidden
 " set undofile
 " set undodir=~/.vim/undodir
 
@@ -108,7 +108,14 @@ nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :Rg<CR>
 
 " Show active buffers
-nnoremap <C-b> :buffers<CR>:buffer<Space>
+" nnoremap <C-b> :buffers<CR>:buffer<Space>
+nnoremap <C-b> :ls<CR>:b<Space>
+
+" window resizing
+nnoremap <C-w><Right> :vertical resize +10<CR>
+nnoremap <C-w><Left> :vertical resize -10<CR>
+nnoremap <C-w><Down> :resize +10<CR>
+nnoremap <C-w><Up> :resize -10<CR>
 
 " get rid of highlight
 nnoremap <esc><esc> :noh<return><esc>
@@ -121,7 +128,7 @@ nnoremap N Nzz
 nnoremap <Leader>w :w<CR>
 
 " normal mode while in insert mode
-inoremap jk <Esc>
+" inoremap jk <Esc>
 
 " MOVING STUFF
 " moving lines up/down
@@ -151,10 +158,10 @@ xnoremap <Leader>d "_d
 
 " BUFFERS
 " buffers traversal
-nnoremap <silent> bl :bprevious<CR>
-nnoremap <silent> bh :bnext<CR>
-nnoremap <silent> b0 :bfirst<CR>
-nnoremap <silent> b$ :blast<CR>
+nnoremap <Leader>h :bprevious<CR>
+nnoremap <Leader>l :bnext<CR>
+nnoremap <Leader>k :bfirst<CR>
+nnoremap <Leader>j :blast<CR>
 
 " Get path of current buffer
 nnoremap <Leader>bp :let @+=expand("%:p")<CR>
@@ -195,14 +202,15 @@ set tags=tags;/
 " let g:neosnippet#enable_completed_snippet = 1
 
 " ale
-" let g:ale_fixers = {
-" \   'javascript': ['prettier'],
-" \   'css': ['prettier'],
-" \}
-" let g:ale_fix_on_save = 1
-" let g:ale_sign_error = '●' " Less aggressive than the default '>>'
-" let g:ale_sign_warning = '.'
-" let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\   'vue': ['prettier']
+\}
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
 " NERDTree
 let NERDTreeNaturalSort = 1
