@@ -55,7 +55,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug('junegunn/goyo.vim')
   " Plug('shime/vim-livedown')
   Plug('w0rp/ale')
-
+  Plug 'kyoz/purify', { 'rtp': 'vim' }
   " deoplete and neosnippets
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -72,6 +72,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'kana/vim-textobj-user'
   Plug 'rhysd/vim-textobj-ruby'
 call plug#end()
+
 let mapleader = "\<space>"
 
 " basic
@@ -80,7 +81,8 @@ if !exists("g:syntax_on")
     syntax enable
 endif
 
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme purify
 set background=dark
 set clipboard=unnamed
 set relativenumber
@@ -189,9 +191,6 @@ set rtp+=/usr/local/opt/fzf
 set statusline+=%{gutentags#statusline()}
 set tags=tags;/
 
-" airline
-" let g:airline_symbols = {}
-" let g:airline_symbols.branch = ''
 
 " deoplete
 " let g:deoplete#enable_at_startup=1
