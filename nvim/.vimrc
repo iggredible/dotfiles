@@ -29,9 +29,7 @@
 "
 " Iggy's vimrc file!
 
-if &compatible
-  set nocompatible
-endif
+set nocompatible
 
 call plug#begin('~/.local/share/nvim/plugged')
   Plug('scrooloose/nerdtree')
@@ -71,12 +69,16 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   Plug 'kana/vim-textobj-user'
   Plug 'rhysd/vim-textobj-ruby'
+
+  Plug 'vimwiki/vimwiki'
+  Plug 'itchyny/calendar.vim'
 call plug#end()
 
 let mapleader = "\<space>"
 
 " basic
 filetype plugin indent on
+syntax on
 if !exists("g:syntax_on")
     syntax enable
 endif
@@ -186,6 +188,10 @@ let g:python3_host_prog='/usr/local/Cellar/python/3.7.4_1/bin/python3'
 
 " fzf
 set rtp+=/usr/local/opt/fzf
+
+" vimwiki
+let g:vimwiki_list = [{'path': '$HOME/Dropbox/Notes/wiki'}]
+let g:vimwiki_use_calendar = 1
 
 " gutentags
 set statusline+=%{gutentags#statusline()}
