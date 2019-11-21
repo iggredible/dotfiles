@@ -51,6 +51,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug('rbong/vim-flog')
   Plug('junegunn/vim-peekaboo')
   Plug('junegunn/goyo.vim')
+  Plug('christoomey/vim-tmux-navigator')
+
   " Plug('shime/vim-livedown')
   Plug('w0rp/ale')
   Plug 'kyoz/purify', { 'rtp': 'vim' }
