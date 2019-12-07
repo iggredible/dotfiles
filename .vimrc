@@ -89,6 +89,7 @@ endif
 colorscheme purify
 set background=dark
 set clipboard=unnamed
+set nomodeline
 set relativenumber
 set number
 set tabstop=2
@@ -109,13 +110,15 @@ set hidden
 
 " KEY MAPPINGS
 " open files and search files
-nnoremap <C-p> :Files<CR>
+nnoremap <Leader>pp :Files<CR>
 " nnoremap <C-f> :Ag<CR>
-nnoremap <C-f> :Rg<CR>
+nnoremap <Leader>ff :Rg<CR>
 
 " Show active buffers
 " nnoremap <C-b> :buffers<CR>:buffer<Space>
-nnoremap <C-b> :ls<CR>:b<Space>
+nnoremap <Leader>bb :ls<CR>:b<Space>
+nnoremap <Leader>bs :ls<CR>:sbuffer<Space>
+nnoremap <Leader>bv :ls<CR>:vertical sbuffer<Space>
 
 " window resizing
 nnoremap <C-w><Right> :vertical resize +10<CR>
@@ -129,9 +132,6 @@ nnoremap <esc><esc> :noh<return><esc>
 " center search results
 nnoremap n nzz
 nnoremap N Nzz
-
-" files
-nnoremap <Leader>w :w<CR>
 
 " normal mode while in insert mode
 " inoremap jk <Esc>
@@ -173,7 +173,7 @@ nnoremap <Leader>j :blast<CR>
 nnoremap <Leader>bp :let @+=expand("%:p")<CR>
 
 " highlight trailing whitespace
-match ErrorMsg '\s\+$'
+" match ErrorMsg '\s\+$'
 " remove trailing whitespaces automatically
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -190,6 +190,7 @@ let g:python3_host_prog='/usr/local/Cellar/python/3.7.4_1/bin/python3'
 
 " fzf
 set rtp+=/usr/local/opt/fzf
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " vimwiki
 let g:vimwiki_list = [{'path': '$HOME/Dropbox/Notes/wiki'}]
@@ -225,19 +226,6 @@ let NERDTreeNaturalSort = 1
 " nnoremap <Leader>NT :NERDTreeFind<CR>
 nnoremap <Leader>nf :NERDTreeFind<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 
 " grepping
 " https://www.reddit.com/r/vim/comments/bmh977/automatically_open_quickfix_window_after/
@@ -256,9 +244,9 @@ augroup END
 " " source  ~/.vim/markdown.vim
 "" Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -274,3 +262,11 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
+" stop using arrow keys. It's an antipattern
+" https://sanctum.geek.nz/arabesque/vim-anti-patterns/
+nnoremap <Up> <nop>
+nnoremap <Down> <nop>
+nnoremap <Left> <nop>
+nnoremap <Right> <nop>
+
+nnoremap <Leader>cg :r !curl -s<Space>
