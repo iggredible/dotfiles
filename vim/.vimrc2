@@ -21,6 +21,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'lifepillar/vim-solarized8'
   Plug 'sheerun/vim-polyglot'
   Plug 'ludovicchabant/vim-gutentags'
+  
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 let mapleader = "\<space>"
@@ -47,6 +49,35 @@ set smartcase
 set lazyredraw
 set confirm
 set nobackup
+set nowritebackup
+
+" Settings for coc.nvim https://github.com/neoclide/coc.nvim
+" Need to install some of these coc extensions: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
+" !!! IMPORTANT !!!
+" For ruby: gem install solargraph + :CocInstall coc-solargraph
+" For JS/TS: :CocInstall coc-tsserver
+" :CocConfig to see configs
+" :CocList extensions to see what is installed (more on extensions page)
+" More settings:
+
+set updatetime=750 " updatetime https://www.reddit.com/r/vim/comments/3ql651/what_do_you_set_your_updatetime_to/
+set shortmess+=c " https://vim.fandom.com/wiki/Avoiding_the_%22Hit_ENTER_to_continue%22_prompts
+set signcolumn=yes
+
+" maps tab. Run :verbose imap <tab> to check whether tab is used or not
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
+
 set hidden
 
 if !has('nvim')
@@ -93,7 +124,7 @@ let NERDTreeNaturalSort = 1
 nnoremap <Leader>nf :NERDTreeFind<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 
-" GUtentags
+" Gutentags
 " https://www.reddit.com/r/vim/comments/d77t6j/guide_how_to_setup_ctags_with_gutentags_properly/
 let g:gutentags_add_default_project_roots = 0
 let g:gutentags_project_root = ['.git']
@@ -145,3 +176,5 @@ let g:gutentags_ctags_exclude = [
       \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
       \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
       \ ]
+
+
