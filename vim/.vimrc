@@ -6,61 +6,51 @@
 " ||V |||I |||M |||R |||C ||
 " ||__|||__|||__|||__|||__||
 " |/__\|/__\|/__\|/__\|/__\|
-"
+
 call plug#begin('~/.vim/plugged')
-  Plug 'mattn/emmet-vim'
-  Plug 'preservim/nerdtree'
-  Plug 'vim-airline/vim-airline'
-  Plug 'tpope/vim-surround'
-  Plug 'Yggdroot/indentLine'
-  Plug 'tomtom/tcomment_vim'
+  Plug 'airblade/vim-gitgutter'
   Plug 'christoomey/vim-tmux-navigator'
-  Plug 'tpope/vim-repeat'
   Plug 'junegunn/fzf.vim'
-  Plug 'tpope/vim-fugitive'
   Plug 'lifepillar/vim-solarized8'
-  Plug 'sheerun/vim-polyglot'
   Plug 'ludovicchabant/vim-gutentags'
-  
+  Plug 'mattn/emmet-vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'preservim/nerdtree'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'tomtom/tcomment_vim'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-sensible'  
+  Plug 'tpope/vim-surround'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-scripts/ReplaceWithRegister'
+  Plug 'Yggdroot/indentLine'
 call plug#end()
 
 let mapleader = "\<space>"
 
-filetype plugin indent on
-syntax enable
-
+" basic
+set clipboard=unnamed
+set relativenumber number
+set tabstop=2 shiftwidth=2
+set expandtab
+set ignorecase smartcase
+set lazyredraw
+set confirm
+set hidden
 set termguicolors
+
+" theme
 set background=dark
 colorscheme solarized8_high
 
-
-" basic
-set clipboard=unnamed
-set nomodeline
-set relativenumber
-set number
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set encoding=UTF-8
-set ignorecase
-set smartcase
-set lazyredraw
-set confirm
-set nobackup
-set nowritebackup
-
 " Settings for coc.nvim https://github.com/neoclide/coc.nvim
-" Need to install some of these coc extensions: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
-" !!! IMPORTANT !!!
-" For ruby: gem install solargraph + :CocInstall coc-solargraph
-" For JS/TS: :CocInstall coc-tsserver
+" :CocInstall coc-solargraph after gem install solargraph
+" :CocInstall coc-tsserver
 " :CocConfig to see configs
 " :CocList extensions to see what is installed (more on extensions page)
-" More settings:
 
-set updatetime=750 " updatetime https://www.reddit.com/r/vim/comments/3ql651/what_do_you_set_your_updatetime_to/
+set updatetime=300 " updatetime https://www.reddit.com/r/vim/comments/3ql651/what_do_you_set_your_updatetime_to/
 set shortmess+=c " https://vim.fandom.com/wiki/Avoiding_the_%22Hit_ENTER_to_continue%22_prompts
 set signcolumn=yes
 
@@ -76,10 +66,6 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-
-
-set hidden
-
 if !has('nvim')
   nnoremap <Leader>vs :source $MYVIMRC<CR>
   nnoremap <Leader>ve :vsplit $MYVIMRC<CR>
@@ -88,10 +74,8 @@ elseif has('nvim')
   nnoremap <Leader>ve :vsplit ~/.vimrc<CR>
 endif
 
-
-
 " FZF (searches)
-nnoremap <Leader>pp :Files<CR>
+nnoremap <Leader>fp :Files<CR>
 nnoremap <Leader>ff :Rg<CR>
 
 " buffers
@@ -101,12 +85,6 @@ nnoremap <Leader>bs :ls<CR>:sbuffer<Space>
 nnoremap <Leader>bv :ls<CR>:vertical sbuffer<Space>
 nnoremap <Leader>bp :let @+=expand("%:p")<CR>
 
-" resize
-nnoremap <C-w><Right> :vertical resize +10<CR>
-nnoremap <C-w><Left> :vertical resize -10<CR>
-nnoremap <C-w><Down> :resize +10<CR>
-nnoremap <C-w><Up> :resize -10<CR>
-
 " nohighlight
 nnoremap <esc><esc> :noh<return><esc>
 
@@ -114,7 +92,7 @@ nnoremap <esc><esc> :noh<return><esc>
 set rtp+=/usr/local/opt/fzf
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
-nnoremap <Leader>bb :Buffers<CR>
+nnoremap <silent> <Leader>bb :Buffers<CR>
 nnoremap <Leader>gc :Commits<CR>
 nnoremap <Leader>gs :GFiles?<CR>
 
@@ -176,5 +154,4 @@ let g:gutentags_ctags_exclude = [
       \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
       \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
       \ ]
-
 
