@@ -1,0 +1,167 @@
+ "  ____ ____ ____ ____ _
+ " ||I |||G |||G |||Y |||
+ " ||__|||__|||__|||__|||
+ " |/__\|/__\|/__\|/__\|/
+ "  ____ ____ ____ ____ ____
+ " ||V |||I |||M |||R |||C ||
+ " ||__|||__|||__|||__|||__||
+ " |/__\|/__\|/__\|/__\|/__\|
+
+" set rtp+=/Users/iggy/Projects/vim-fugitive/
+ " Setup folding {{{
+ " Per https://learnvimscriptthehardway.stevelosh.com/chapters/18.html
+ augroup filetype_vim
+     autocmd!
+     autocmd FileType vim setlocal foldmethod=marker
+ augroup END
+ " }}}
+
+ " Plugins {{{
+ call plug#begin('~/.vim/plugged')
+   Plug 'airblade/vim-gitgutter'
+   Plug 'christoomey/vim-tmux-navigator'
+   Plug 'junegunn/fzf.vim'
+   Plug 'lifepillar/vim-solarized8'
+   Plug 'ludovicchabant/vim-gutentags'
+   Plug 'mattn/emmet-vim'
+   " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+   Plug 'sheerun/vim-polyglot'
+   Plug 'tomtom/tcomment_vim'
+   Plug 'tpope/vim-fugitive'
+   Plug 'tpope/vim-repeat'
+   Plug 'tpope/vim-sensible'  
+   Plug 'tpope/vim-surround'
+   Plug 'itchyny/lightline.vim'
+   Plug 'Yggdroot/indentLine'
+   Plug 'tpope/vim-unimpaired'
+ call plug#end()
+ " }}}
+
+ " leader mapping {{{
+let mapleader = "\<space>"
+ " }}}
+
+ " Basic setup {{{
+ set clipboard=unnamed
+ set relativenumber number
+ set tabstop=2 shiftwidth=2 expandtab
+ set ignorecase smartcase
+"  set lazyredraw
+ set confirm
+ set hidden
+ set termguicolors
+ " }}}
+
+ " Theme {{{
+ set background=dark
+ colorscheme solarized8_high
+ " }}}
+
+ " Key mappings {{{
+ if !has('nvim')
+   nnoremap <Leader>vs :source $MYVIMRC<CR>
+   nnoremap <Leader>ve :vsplit $MYVIMRC<CR>
+ elseif has('nvim')
+   nnoremap <Leader>vs :source ~/.vimrc<CR>
+   nnoremap <Leader>ve :vsplit ~/.vimrc<CR>
+ endif
+
+
+ " buffers
+ nnoremap <silent> <Leader>bs :ls<CR>:sbuffer<Space>
+ nnoremap <silent> <Leader>bv :ls<CR>:vertical sbuffer<Space>
+ nnoremap <silent> <Leader>bp :let @+=expand("%:p")<CR>
+
+ " nohighlight
+ nnoremap <esc><esc> :noh<return><esc>
+ " }}}
+
+ " FZF  {{{
+ set rtp+=/usr/local/opt/fzf
+ command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+ " FZF mappings
+ nnoremap <silent> <Leader>bb :Buffers<CR>
+ nnoremap <silent> <Leader>fp :Files<CR>
+ nnoremap <silent> <Leader>ff :Rg<CR>
+
+ " }}}
+
+"  Gutentags {{{
+"  https://www.reddit.com/r/vim/comments/d77t6j/guide_how_to_setup_ctags_with_gutentags_properly/
+ let g:gutentags_add_default_project_roots = 0
+ let g:gutentags_project_root = ['.git']
+"  Make it faster by ignoring these files
+
+ let g:gutentags_ctags_exclude = [
+       \ '*.git', '*.svg', '*.hg',
+       \ '*/tests/*',
+       \ 'build',
+       \ 'dist',
+       \ '*sites/*/files/*',
+       \ 'bin',
+       \ 'node_modules',
+       \ 'bower_components',
+       \ 'cache',
+       \ 'compiled',
+       \ 'docs',
+       \ 'example',
+       \ 'bundle',
+       \ 'vendor',
+       \ '*.md',
+       \ '*-lock.json',
+       \ '*.lock',
+       \ '*bundle*.js',
+       \ '*build*.js',
+       \ '.*rc*',
+       \ '*.json',
+       \ '*.min.*',
+       \ '*.map',
+       \ '*.bak',
+       \ '*.zip',
+       \ '*.pyc',
+       \ '*.class',
+       \ '*.sln',
+       \ '*.Master',
+       \ '*.csproj',
+       \ '*.tmp',
+       \ '*.csproj.user',
+       \ '*.cache',
+       \ '*.pdb',
+       \ 'tags*',
+       \ 'cscope.*',
+       \ '*.css',
+       \ '*.less',
+       \ '*.scss',
+       \ '*.exe', '*.dll',
+       \ '*.mp3', '*.ogg', '*.flac',
+       \ '*.swp', '*.swo',
+       \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
+       \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+       \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
+       \ ]
+
+" }}}
+
+ " coc.nvim {{{
+ " For more info: https://github.com/neoclide/coc.nvim
+ " :CocInstall coc-solargraph after gem install solargraph
+ " :CocInstall coc-tsserver
+
+"  set updatetime=300 " updatetime https://www.reddit.com/r/vim/comments/3ql651/what_do_you_set_your_updatetime_to/
+"  set shortmess+=c " https://vim.fandom.com/wiki/Avoiding_the_%22Hit_ENTER_to_continue%22_prompts
+"  set signcolumn=yes
+"
+"  " maps tab. Run :verbose imap <tab> to check whether tab is used or not
+"  inoremap <silent><expr> <TAB>
+"        \ pumvisible() ? "\<C-n>" :
+"        \ <SID>check_back_space() ? "\<TAB>" :
+"        \ coc#refresh()
+"  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"
+"  function! s:check_back_space() abort
+"    let col = col('.') - 1
+"    return !col || getline('.')[col - 1]  =~# '\s'
+"  endfunction
+"  " }}}
+"
