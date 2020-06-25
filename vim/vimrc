@@ -24,6 +24,7 @@
   endif
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'lifepillar/vim-solarized8'
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'mattn/emmet-vim'
@@ -35,17 +36,12 @@
   Plug 'tpope/vim-surround'
   Plug 'itchyny/lightline.vim'
   Plug 'Yggdroot/indentLine'
-  Plug 'tpope/vim-unimpaired'
   Plug 'preservim/nerdtree'
   Plug 'ryanoasis/vim-devicons'
-
-  Plug 'sjl/tslime.vim'
-  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'luochen1990/rainbow'
+  Plug 'iamcco/markdown-preview.nvim'
+  Plug  'sjl/tslime.vim'
  call plug#end()
- " }}}
-
- " leader mapping {{{
-let mapleader = "\<space>"
  " }}}
 
  " Basic setup {{{
@@ -57,38 +53,24 @@ let mapleader = "\<space>"
  set confirm
  set hidden
  set termguicolors
+ set shortmess-=S
  " }}}
 
  " Theme {{{
  set background=dark
- colorscheme solarized8_high
- " }}}
-
- " Key mappings {{{
-if !has('nvim')
-  nnoremap <Leader>vs :source $MYVIMRC<CR>
-  nnoremap <Leader>ve :vsplit $MYVIMRC<CR>
-elseif has('nvim')
-  nnoremap <Leader>vs :source ~/.vimrc<CR>
-  nnoremap <Leader>ve :vsplit ~/.vimrc<CR>
-endif
-
-nnoremap <esc><esc> :noh<return><esc>
+ colorscheme solarized8
  " }}}
 
 " FZF  {{{
 set rtp+=/usr/local/opt/fzf
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
-nnoremap <silent> <Leader>bb :Buffers<CR>
-nnoremap <silent> <Leader>fp :Files<CR>
-nnoremap <silent> <Leader>ff :Rg<CR>
 " }}}
 
 "  Gutentags {{{
-"  https://www.reddit.com/r/vim/comments/d77t6j/guide_how_to_setup_ctags_with_gutentags_properly/
+"  per https://www.reddit.com/r/vim/comments/d77t6j/guide_how_to_setup_ctags_with_gutentags_properly/
 let g:gutentags_add_default_project_roots = 0
 let g:gutentags_project_root = ['.git']
-"
+
 "  Make it faster by ignoring these files
 let g:gutentags_ctags_exclude = [
       \ '*.git', '*.svg', '*.hg',
@@ -141,40 +123,69 @@ let g:gutentags_ctags_exclude = [
 
 " NERDTree {{{
 let NERDTreeNaturalSort = 1
-nnoremap <Leader>nf :NERDTreeFind<CR>
-nnoremap <Leader>nt :NERDTreeToggle<CR>
 " }}}
 
 " signify {{{
 set updatetime=1000
 " }}}
 
-"  " coc.nvim {{{
-"  " For more info: https://github.com/neoclide/coc.nvim
-"  " :CocInstall coc-solargraph after gem install solargraph
-"  " :CocInstall coc-tsserver
-"
-" "  set updatetime=300 " updatetime https://www.reddit.com/r/vim/comments/3ql651/what_do_you_set_your_updatetime_to/
-" "  set shortmess+=c " https://vim.fandom.com/wiki/Avoiding_the_%22Hit_ENTER_to_continue%22_prompts
-" "  set signcolumn=yes
-" "
-" "  " maps tab. Run :verbose imap <tab> to check whether tab is used or not
-" "  inoremap <silent><expr> <TAB>
-" "        \ pumvisible() ? "\<C-n>" :
-" "        \ <SID>check_back_space() ? "\<TAB>" :
-" "        \ coc#refresh()
-" "  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-" "
-" "  function! s:check_back_space() abort
-" "    let col = col('.') - 1
-" "    return !col || getline('.')[col - 1]  =~# '\s'
-" "  endfunction
-" "  " }}}
-
 " tslime {{{
 let g:tslime_ensure_trailing_newlines = 0
-let g:tslime_normal_mapping = '<C-t>'
-let g:tslime_visual_mapping = '<C-t>' 
-let g:tslime_vars_mapping = '<leader>tm'
-imap <C-t> <Esc><C-t>A
+let g:tslime_normal_mapping = '<Leader>ts'
+let g:tslime_visual_mapping = '<Leader>ts'
 " }}}
+
+" rainbow {{{
+let g:rainbow_active = 1
+" }}}
+
+" markdown-preview {{{
+" https://github.com/iamcco/markdown-preview.nvim
+nnoremap <Leader>mp :MarkdownPreview<CR>
+nnoremap <Leader>ms :MarkdownPreviewStop<CR>
+" }}}
+
+" toggler {{{
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunc
+" }}}
+
+
+" Key mappings {{{
+let mapleader = "\<space>"
+
+" quick access to vimrc
+if !has('nvim')
+  nnoremap <Leader>vs :source $MYVIMRC<CR>
+  nnoremap <Leader>ve :vsplit $MYVIMRC<CR>
+elseif has('nvim')
+  nnoremap <Leader>vs :source ~/.vimrc<CR>
+  nnoremap <Leader>ve :vsplit ~/.vimrc<CR>
+endif
+
+" no highlight
+nnoremap <esc><esc> :noh<return><esc>
+
+" toggle numbers
+nnoremap <leader>tn :call NumberToggle()<CR>
+
+" PLUGIN: FZF
+nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <silent> <Leader>/ :Rg<CR>
+nnoremap <silent> <Leader>H :Helptags!<CR>
+nnoremap <silent> <Leader>hh :History<CR>
+nnoremap <silent> <Leader>h: :History:<CR> ; Command history
+nnoremap <silent> <Leader>h/ :History/<CR> ; Search history
+nnoremap <silent> <Leader>' :Marks<CR>
+
+" PLUGIN: NERDTree
+nnoremap <Leader>nf :NERDTreeFind<CR>
+nnoremap <Leader>nt :NERDTreeToggle<CR>
+ " }}}
+
