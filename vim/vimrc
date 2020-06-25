@@ -146,7 +146,7 @@ nnoremap <Leader>ms :MarkdownPreviewStop<CR>
 " }}}
 
 " toggler {{{
-function! NumberToggle()
+function! ToggleNumber()
   if(&relativenumber == 1)
     set norelativenumber
   else
@@ -172,17 +172,19 @@ endif
 nnoremap <esc><esc> :noh<return><esc>
 
 " toggle numbers
-nnoremap <leader>tn :call NumberToggle()<CR>
+nnoremap <leader>tn :call ToggleNumber()<CR>
 
 " PLUGIN: FZF
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>f :Files<CR>
-nnoremap <silent> <Leader>/ :Rg<CR>
+nnoremap <silent> <Leader>F :Rg<CR>
+nnoremap <silent> <Leader>/ :BLines<CR>
+nnoremap <silent> <Leader>' :Marks<CR>
+nnoremap <silent> <Leader>g :Commits<CR>
 nnoremap <silent> <Leader>H :Helptags!<CR>
 nnoremap <silent> <Leader>hh :History<CR>
 nnoremap <silent> <Leader>h: :History:<CR> ; Command history
 nnoremap <silent> <Leader>h/ :History/<CR> ; Search history
-nnoremap <silent> <Leader>' :Marks<CR>
 
 " PLUGIN: NERDTree
 nnoremap <Leader>nf :NERDTreeFind<CR>
