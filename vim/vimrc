@@ -159,6 +159,11 @@ function! ToggleNumber()
 endfunc
 " }}}
 
+" clear buffers {{{
+" source: https://stackoverflow.com/questions/4545275/vim-close-all-buffers-but-this-one
+command! BufOnly execute "%bd | e# | bd# | echo 'Bufs Deleted'"
+" }}}
+
 " MAPPINGS
 " {{{
 let mapleader = "\<space>"
@@ -178,9 +183,12 @@ nnoremap <esc><esc> :noh<return><esc>
 " toggle numbers
 nnoremap <leader>tn :call ToggleNumber()<CR>
 
+" delete all buffers except current buffer
+nnoremap <silent> <Leader>bd :BufOnly<CR>
+
 " PLUGIN: FZF
+nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <silent> <C-f> :Files<CR>
-nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>f :RgNoLine<CR>
 nnoremap <silent> <Leader>F :RgLine<CR>
 nnoremap <silent> <Leader>/ :BLines<CR>
