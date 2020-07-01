@@ -39,7 +39,7 @@
   Plug 'preservim/nerdtree'
   Plug 'ryanoasis/vim-devicons'
   Plug 'luochen1990/rainbow'
-  Plug 'iamcco/markdown-preview.nvim'
+  Plug 'tpope/vim-dispatch'
   Plug  'sjl/tslime.vim'
  call plug#end()
  " }}}
@@ -141,12 +141,6 @@ let g:tslime_visual_mapping = '<Leader>ts'
 
 " rainbow {{{
 let g:rainbow_active = 1
-" }}}
-
-" markdown-preview {{{
-" https://github.com/iamcco/markdown-preview.nvim
-nnoremap <Leader>mp :MarkdownPreview<CR>
-nnoremap <Leader>ms :MarkdownPreviewStop<CR>
 " }}}
 
 " toggler {{{
