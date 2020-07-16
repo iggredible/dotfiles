@@ -50,6 +50,7 @@
  set relativenumber number
  set tabstop=2 shiftwidth=2 expandtab
  set ignorecase smartcase
+ set hlsearch
  set confirm
  set hidden
  set termguicolors
@@ -154,8 +155,17 @@ endfunc
 " }}}
 
 " clear buffers {{{
-" source: https://stackoverflow.com/questions/4545275/vim-close-all-buffers-but-this-one
-command! BufOnly execute "%bd | e# | bd# | echo 'Bufs Deleted'"
+" source: 
+" buffer delete
+"   https://stackoverflow.com/questions/4545275/vim-close-all-buffers-but-this-one
+
+" getpos
+"   https://vi.stackexchange.com/questions/7761/how-to-restore-the-position-of-the-cursor-after-executing-a-normal-command
+function! BufOnlySavePos()
+  let current_pos = getpos('.')
+  execute "%bd | e# | bd# | echo 'Bufs Deleted'"
+  call setpos('.', current_pos)
+endfunc
 " }}}
 
 " MAPPINGS
@@ -178,7 +188,7 @@ nnoremap <esc><esc> :noh<return><esc>
 nnoremap <leader>tn :call ToggleNumber()<CR>
 
 " delete all buffers except current buffer
-nnoremap <silent> <Leader>bd :BufOnly<CR>
+nnoremap <silent> <Leader>bd :call BufOnlySavePos()<CR>
 
 " PLUGIN: FZF
 nnoremap <silent> <C-b> :Buffers<CR>
