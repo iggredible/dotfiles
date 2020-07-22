@@ -67,8 +67,8 @@
 set rtp+=/usr/local/opt/fzf
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
-command! -bang -nargs=* RgNoLine call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
-command! -bang -nargs=* RgLine call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+command! -bang -nargs=* RgNoFile call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+command! -bang -nargs=* RgFile call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 " }}}
 
 "  Gutentags {{{
@@ -193,8 +193,8 @@ nnoremap <silent> <Leader>bd :call BufOnlySavePos()<CR>
 " PLUGIN: FZF
 nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <silent> <C-f> :Files<CR>
-nnoremap <silent> <Leader>f :RgNoLine<CR>
-nnoremap <silent> <Leader>F :RgLine<CR>
+nnoremap <silent> <Leader>f :RgNoFile<CR>
+nnoremap <silent> <Leader>F :RgFile<CR>
 nnoremap <silent> <Leader>/ :BLines<CR>
 nnoremap <silent> <Leader>' :Marks<CR>
 nnoremap <silent> <Leader>g :Commits<CR>
