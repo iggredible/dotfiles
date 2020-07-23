@@ -41,6 +41,7 @@
   Plug 'luochen1990/rainbow'
   Plug 'tpope/vim-dispatch'
   Plug  'sjl/tslime.vim'
+  Plug 'junegunn/vim-peekaboo'
  call plug#end()
  " }}}
 
