@@ -25,23 +25,23 @@
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'lifepillar/vim-solarized8'
+  Plug 'kyoz/purify', { 'rtp': 'vim' }
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'mattn/emmet-vim'
   Plug 'sheerun/vim-polyglot'
   Plug 'tomtom/tcomment_vim'
   Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-sensible'  
-  Plug 'tpope/vim-surround'
   Plug 'itchyny/lightline.vim'
   Plug 'Yggdroot/indentLine'
   Plug 'preservim/nerdtree'
   Plug 'ryanoasis/vim-devicons'
   Plug 'luochen1990/rainbow'
   Plug 'tpope/vim-dispatch'
-  Plug  'sjl/tslime.vim'
+  Plug 'sjl/tslime.vim'
   Plug 'junegunn/vim-peekaboo'
+  Plug 'machakann/vim-sandwich'
+  Plug 'simnalamburt/vim-mundo'
  call plug#end()
  " }}}
 
@@ -55,19 +55,21 @@
  set confirm
  set hidden
  set termguicolors
+
  " show how many matches when searching with / or ?
  set shortmess-=S
  " }}}
 
  " Theme {{{
  set background=dark
- colorscheme solarized8
+ colorscheme  purify
  " }}}
 
 " FZF  {{{
 set rtp+=/usr/local/opt/fzf
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
+command! -nargs=1 Hello execute "echo 'you '" string(<q-args>)
 command! -bang -nargs=* RgNoFile call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 command! -bang -nargs=* RgFile call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 " }}}
@@ -207,4 +209,7 @@ nnoremap <silent> <Leader>h/ :History/<CR>
 " PLUGIN: NERDTree
 nnoremap <Leader>nf :NERDTreeFind<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
+
+" PLUGIN: Mundo
+nnoremap <Leader>u :MundoToggle<CR>
 " }}}
