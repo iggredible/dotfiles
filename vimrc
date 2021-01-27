@@ -36,6 +36,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-peekaboo'
   Plug 'machakann/vim-sandwich'
   Plug 'simnalamburt/vim-mundo'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 " }}}
 
@@ -68,6 +69,15 @@ set shortmess-=S
 set background=dark
 colorscheme one
 let g:airline_theme='one'
+" }}}
+
+" coc.nvim {{{
+let g:coc_global_extensions = [
+  \ 'coc-json',
+  \ 'coc-tsserver',
+  \ 'coc-sh',
+  \ 'coc-solargraph'
+  \ ]
 " }}}
 
 " FZF  {{{
@@ -170,13 +180,13 @@ endfunc
 " https://vi.stackexchange.com/questions/7761/how-to-restore-the-position-of-the-cursor-after-executing-a-normal-command
 function! BufOnlySavePos()
 let current_pos = getpos('.')
-execute "%bd | e#"
+execute "%bd | e# | echo 'Buffers Deleted'"
 call setpos('.', current_pos)
 endfunc
 " }}}
 
 " mappings {{{
-let mapleader = "\<space>"
+let mapleader = "\<Space>"
 
 " quick access to vimrc
 if !has('nvim')
@@ -216,4 +226,8 @@ nnoremap <Leader>nt :NERDTreeToggle<CR>
 
 " PLUGIN: Mundo
 nnoremap <Leader>u :MundoToggle<CR>
+
+" PLUGIN: Coc.nvim
+nnoremap <Leader>cd :CocDisable<CR>
+nnoremap <Leader>ce :CocEnable<CR>
 " }}
