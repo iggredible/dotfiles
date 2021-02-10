@@ -17,8 +17,7 @@ augroup END
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
   Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
-  Plug 'chriskempson/base16-vim'
-  Plug 'arcticicestudio/nord-vim'
+  Plug 'vim-airline/vim-airline'
   Plug 'rakr/vim-one'
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -37,6 +36,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'machakann/vim-sandwich'
   Plug 'simnalamburt/vim-mundo'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'tpope/vim-endwise'
 call plug#end()
 " }}}
 
@@ -78,6 +78,7 @@ let g:coc_global_extensions = [
   \ 'coc-sh',
   \ 'coc-solargraph'
   \ ]
+let g:coc_start_at_startup = v:false
 " }}}
 
 " FZF  {{{
@@ -105,14 +106,10 @@ let g:gutentags_ctags_exclude = [
   \ '*/tests/*',
   \ 'build',
   \ 'dist',
-  \ '*sites/*/files/*',
   \ 'bin',
   \ 'node_modules',
-  \ 'bower_components',
   \ 'cache',
   \ 'compiled',
-  \ 'docs',
-  \ 'example',
   \ 'bundle',
   \ 'vendor',
   \ '*.md',
@@ -126,26 +123,13 @@ let g:gutentags_ctags_exclude = [
   \ '*.map',
   \ '*.bak',
   \ '*.zip',
-  \ '*.pyc',
-  \ '*.class',
-  \ '*.sln',
-  \ '*.Master',
-  \ '*.csproj',
   \ '*.tmp',
-  \ '*.csproj.user',
-  \ '*.cache',
-  \ '*.pdb',
   \ 'tags*',
   \ 'cscope.*',
   \ '*.css',
   \ '*.less',
   \ '*.scss',
-  \ '*.exe', '*.dll',
-  \ '*.mp3', '*.ogg', '*.flac',
   \ '*.swp', '*.swo',
-  \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
-  \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
-  \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
 \ ]
 " }}}
 
@@ -175,13 +159,10 @@ endfunc
 " source:
 " buffer delete
 " https://stackoverflow.com/questions/4545275/vim-close-all-buffers-but-this-one
-
-" getpos
-" https://vi.stackexchange.com/questions/7761/how-to-restore-the-position-of-the-cursor-after-executing-a-normal-command
 function! BufOnlySavePos()
-let current_pos = getpos('.')
-execute "%bd | e# | echo 'Buffers Deleted'"
-call setpos('.', current_pos)
+  let current_pos = getpos('.')
+  execute "%bd | e# | echo 'Buffers Deleted'"
+  call setpos('.', current_pos)
 endfunc
 " }}}
 
@@ -189,13 +170,8 @@ endfunc
 let mapleader = "\<Space>"
 
 " quick access to vimrc
-if !has('nvim')
-  nnoremap <Leader>vs :source $MYVIMRC<CR>
-  nnoremap <Leader>ve :vsplit $MYVIMRC<CR>
-elseif has('nvim')
-  nnoremap <Leader>vs :source ~/.vimrc<CR>
-  nnoremap <Leader>ve :vsplit ~/.vimrc<CR>
-endif
+nnoremap <Leader>vs :source ~/.vimrc<CR>
+nnoremap <Leader>ve :vsplit ~/.vimrc<CR>
 
 " no highlight
 nnoremap <Esc><Esc> :noh<Return><Esc>
@@ -206,10 +182,12 @@ nnoremap <leader>tn :call ToggleNumber()<CR>
 " delete all buffers except current buffer
 nnoremap <silent> <Leader>bd :call BufOnlySavePos()<CR>
 
+" in insert mode delete from current position to the end
+inoremap <C-d> <C-O>D
+
 " PLUGIN: FZF
 nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <silent> <C-f> :GFiles<CR>
-imap <silent> <C-f> <plug>(fzf-complete-line)
 nnoremap <silent> <Leader>f :RgNoFile<CR>
 nnoremap <silent> <Leader>F :RgFile<CR>
 nnoremap <silent> <Leader>/ :BLines<CR>
@@ -230,4 +208,5 @@ nnoremap <Leader>u :MundoToggle<CR>
 " PLUGIN: Coc.nvim
 nnoremap <Leader>cd :CocDisable<CR>
 nnoremap <Leader>ce :CocEnable<CR>
+nnoremap <Leader>cs :CocStart<CR>
 " }}
