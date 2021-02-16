@@ -78,7 +78,12 @@ let g:coc_global_extensions = [
   \ 'coc-sh',
   \ 'coc-solargraph'
   \ ]
-let g:coc_start_at_startup = v:false
+
+let cwd = getcwd()
+
+if cwd !~? "work"
+  let g:coc_start_at_startup = v:false
+endif
 " }}}
 
 " FZF  {{{
