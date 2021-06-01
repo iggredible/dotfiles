@@ -16,9 +16,10 @@ augroup END
 
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
-  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
-  Plug 'vim-airline/vim-airline'
-  Plug 'rakr/vim-one'
+  Plug 'iggredible/totitle-vim'
+  Plug 'tpope/vim-sensible'
+  Plug 'sjl/badwolf'
+  Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'ludovicchabant/vim-gutentags'
@@ -26,7 +27,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/emmet-vim'
   Plug 'sheerun/vim-polyglot'
   Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-sensible'
   Plug 'itchyny/lightline.vim'
   Plug 'Yggdroot/indentLine'
   Plug 'preservim/nerdtree'
@@ -35,8 +35,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-peekaboo'
   Plug 'machakann/vim-sandwich'
   Plug 'simnalamburt/vim-mundo'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'godlygeek/tabular'
+  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+  Plug 'iggredible/totitle-vim'
 call plug#end()
 " }}}
 
@@ -53,6 +56,7 @@ set hlsearch
 set confirm
 set hidden
 set termguicolors
+set background=dark
 
 " Dictionary
 let s:english_dict = "/usr/share/dict/words"
@@ -65,30 +69,17 @@ endif
 set shortmess-=S
 " }}}
 
-" Theme {{{
-set background=dark
-colorscheme one
-let g:airline_theme='one'
-" }}}
-
-" coc.nvim {{{
-let g:coc_global_extensions = [
-  \ 'coc-json',
-  \ 'coc-tsserver',
-  \ 'coc-sh',
-  \ 'coc-solargraph'
-  \ ]
-
-let cwd = getcwd()
-
-if cwd !~? "work"
-  let g:coc_start_at_startup = v:false
-endif
+" Custom Theme {{{
+colorscheme badwolf 
+highlight CursorColumn guibg=#ecf0c1
+highlight CursorLine guibg=#ecf0c1
 " }}}
 
 " FZF  {{{
 set rtp+=/usr/local/opt/fzf
-set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+endif
 
 command! -bang -nargs=* RgNoFile call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 command! -bang -nargs=* RgFile call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
@@ -135,7 +126,7 @@ let g:gutentags_ctags_exclude = [
   \ '*.less',
   \ '*.scss',
   \ '*.swp', '*.swo',
-\ ]
+  \ ]
 " }}}
 
 " NERDTree {{{
@@ -150,7 +141,22 @@ set updatetime=1000
 let g:rainbow_active = 1
 " }}}
 
-" toggler {{{
+" Custom Functions {{{
+" toggler
+function! ToggleCursor()
+  if(&cursorcolumn == 1)
+    set nocursorcolumn
+  elseif (&cursorcolumn == 0)
+    set cursorcolumn
+  endif
+
+  if(&cursorline == 1)
+    set nocursorline
+  elseif (&cursorline == 0)
+    set cursorline
+  endif
+endfunction
+
 function! ToggleNumber()
   if(&relativenumber == 1)
     set norelativenumber
@@ -158,17 +164,39 @@ function! ToggleNumber()
     set relativenumber
   endif
 endfunc
-" }}}
 
-" clear buffers {{{
-" source:
-" buffer delete
-" https://stackoverflow.com/questions/4545275/vim-close-all-buffers-but-this-one
-function! BufOnlySavePos()
-  let current_pos = getpos('.')
+" clear buffers 
+" source: https://stackoverflow.com/questions/4545275/vim-close-all-buffers-but-this-one
+function! BuffersDelete()
+  let l:current_pos = getpos('.')
   execute "%bd | e# | echo 'Buffers Deleted'"
-  call setpos('.', current_pos)
+  call setpos('.', l:current_pos)
 endfunc
+
+" return current date. Format: 2020-12-05
+function! GetDate()
+  return strftime("%Y-%m-%d")
+endfunction
+
+" Open URL. Fixes the buggy gx in mac
+function! OpenURLUnderCursor()
+  let l:uri = expand('<cWORD>')
+  silent exec "!open '" . l:uri . "'"
+  redraw!
+endfunction
+
+" Call :Tabularize when we insert  |
+" http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
 " }}}
 
 " mappings {{{
@@ -181,27 +209,31 @@ nnoremap <Leader>ve :vsplit ~/.vimrc<CR>
 " no highlight
 nnoremap <Esc><Esc> :noh<Return><Esc>
 
+" quick date
+inoremap <C-d> <C-r>=GetDate()<CR><Esc>
+
 " toggle numbers
 nnoremap <leader>tn :call ToggleNumber()<CR>
 
-" delete all buffers except current buffer
-nnoremap <silent> <Leader>bd :call BufOnlySavePos()<CR>
+" toggle cursor highlights
+nnoremap <leader>tc :call ToggleCursor()<CR>
 
-" in insert mode delete from current position to the end
-inoremap <C-d> <C-O>D
+" open URL
+nnoremap gx :call OpenURLUnderCursor()<CR>
+
+" delete all buffers except current buffer
+nnoremap <silent> <Leader>bd :call BuffersDelete()<CR>
 
 " PLUGIN: FZF
 nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <silent> <C-f> :GFiles<CR>
-nnoremap <silent> <Leader>f :RgNoFile<CR>
-nnoremap <silent> <Leader>F :RgFile<CR>
-nnoremap <silent> <Leader>/ :BLines<CR>
-nnoremap <silent> <Leader>' :Marks<CR>
-nnoremap <silent> <Leader>g :Commits<CR>
-nnoremap <silent> <Leader>H :Helptags<CR>
-nnoremap <silent> <Leader>hh :History<CR>
-nnoremap <silent> <Leader>h: :History:<CR>
-nnoremap <silent> <Leader>h/ :History/<CR>
+nnoremap <silent> <Leader>ff :RgNoFile<CR>
+nnoremap <silent> <Leader>fF :RgFile<CR>
+nnoremap <silent> <Leader>f/ :BLines<CR>
+nnoremap <silent> <Leader>f' :Marks<CR>
+nnoremap <silent> <Leader>fg :Commits<CR>
+nnoremap <silent> <Leader>fh :Helptags<CR>
+nnoremap <silent> <Leader>ft :Tags<CR>
 
 " PLUGIN: NERDTree
 nnoremap <Leader>nf :NERDTreeFind<CR>
@@ -210,8 +242,11 @@ nnoremap <Leader>nt :NERDTreeToggle<CR>
 " PLUGIN: Mundo
 nnoremap <Leader>u :MundoToggle<CR>
 
-" PLUGIN: Coc.nvim
-nnoremap <Leader>cd :CocDisable<CR>
-nnoremap <Leader>ce :CocEnable<CR>
-nnoremap <Leader>cs :CocStart<CR>
-" }}
+" PLUGIN: Tabularize
+inoremap <silent> <Bar> <Bar><Esc>:call <SID>align()<CR>a
+
+" PLUGIN: Vim-markdown 
+" disables ]c caused by Vim-markdown
+map <Plug> <Plug>Markdown_MoveToCurHeader
+" }}}
+
