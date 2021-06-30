@@ -39,7 +39,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-unimpaired'
   Plug 'godlygeek/tabular'
   Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
-  Plug 'iggredible/totitle-vim'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'dense-analysis/ale'
 call plug#end()
 " }}}
 
@@ -141,6 +142,19 @@ set updatetime=1000
 let g:rainbow_active = 1
 " }}}
 
+" ale {{{
+let g:ale_linters = {
+      \   'javascript': ['eslint'],
+      \   'ruby': ['rubocop'],
+      \}
+
+let g:ale_linters_explicit = 1 " Only run linters named in ale_linters settings.
+let g:ale_sign_column_always = 1
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" }}}
+
 " Custom Functions {{{
 " toggler
 function! ToggleCursor()
@@ -221,12 +235,16 @@ nnoremap <leader>tc :call ToggleCursor()<CR>
 " open URL
 nnoremap gx :call OpenURLUnderCursor()<CR>
 
+" center when searching
+nnoremap n nzz
+nnoremap N Nzz
+
 " delete all buffers except current buffer
 nnoremap <silent> <Leader>bd :call BuffersDelete()<CR>
 
 " PLUGIN: FZF
 nnoremap <silent> <C-b> :Buffers<CR>
-nnoremap <silent> <C-f> :GFiles<CR>
+nnoremap <silent> <C-f> :Files<CR>
 nnoremap <silent> <Leader>ff :RgNoFile<CR>
 nnoremap <silent> <Leader>fF :RgFile<CR>
 nnoremap <silent> <Leader>f/ :BLines<CR>
@@ -249,4 +267,3 @@ inoremap <silent> <Bar> <Bar><Esc>:call <SID>align()<CR>a
 " disables ]c caused by Vim-markdown
 map <Plug> <Plug>Markdown_MoveToCurHeader
 " }}}
-
