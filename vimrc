@@ -27,7 +27,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/emmet-vim'
   Plug 'sheerun/vim-polyglot'
   Plug 'tpope/vim-fugitive'
-  Plug 'itchyny/lightline.vim'
   Plug 'Yggdroot/indentLine'
   Plug 'preservim/nerdtree'
   Plug 'luochen1990/rainbow'
