@@ -40,6 +40,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
   Plug 'ryanoasis/vim-devicons'
   Plug 'dense-analysis/ale'
+  Plug 'szw/vim-maximizer'
+  Plug 'puremourning/vimspector'
 call plug#end()
 " }}}
 
@@ -70,7 +72,8 @@ set shortmess-=S
 " }}}
 
 " Custom Theme {{{
-colorscheme badwolf 
+" colorscheme badwolf
+colorscheme iggy
 highlight CursorColumn guibg=#ecf0c1
 highlight CursorLine guibg=#ecf0c1
 " }}}
@@ -150,6 +153,7 @@ let g:ale_linters = {
 let g:ale_linters_explicit = 1 " Only run linters named in ale_linters settings.
 let g:ale_sign_column_always = 1
 
+" moving up and down
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " }}}
@@ -234,10 +238,6 @@ nnoremap <leader>tc :call ToggleCursor()<CR>
 " open URL
 nnoremap gx :call OpenURLUnderCursor()<CR>
 
-" center when searching
-nnoremap n nzz
-nnoremap N Nzz
-
 " delete all buffers except current buffer
 nnoremap <silent> <Leader>bd :call BuffersDelete()<CR>
 
@@ -262,7 +262,35 @@ nnoremap <Leader>u :MundoToggle<CR>
 " PLUGIN: Tabularize
 inoremap <silent> <Bar> <Bar><Esc>:call <SID>align()<CR>a
 
+" Plugin: fugitive
+nnoremap <Leader>gb :Git blame<CR>
+
 " PLUGIN: Vim-markdown 
 " disables ]c caused by Vim-markdown
 map <Plug> <Plug>Markdown_MoveToCurHeader
+
+" PLUGIN: Vim-maximizer
+nnoremap <Leader>o :MaximizerToggle!<CR>
+
+" PLUGIN: Vimspector (debugger)
+nnoremap <Leader>dd :call vimspector#Launch()<CR>
+nnoremap <Leader>dc :call win_gotoid(g:vimspector_session_windows.code)<CR>
+nnoremap <Leader>dt :call win_gotoid(g:vimspector_session_windows.tagpage)<CR>
+nnoremap <Leader>dv :call win_gotoid(g:vimspector_session_windows.variables)<CR>
+nnoremap <Leader>dw :call win_gotoid(g:vimspector_session_windows.watches)<CR>
+nnoremap <Leader>ds :call win_gotoid(g:vimspector_session_windows.stack_trace)<CR>
+nnoremap <Leader>do :call win_gotoid(g:vimspector_session_windows.output)<CR>
+nnoremap <Leader>de :call vimspector#Reset()<CR>
+
+nnoremap <Leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
+
+nmap <Leader>dl <Plug>VimspectorStepInto
+nmap <Leader>dj <Plug>VimspectorStepOver
+nmap <Leader>dk <Plug>VimspectorStepOut
+nmap <Leader>d_ <Plug>VimspectorRestart
+nnoremap <Leader>d<Space> :call vimspector#continue()<CR>
+
+nmap <Leader>drc <Plug>VimspectorRunToCursor
+nmap <Leader>dbp <Plug>VimspectorToggleBreakpoint
+nmap <Leader>dbcp <Plug>VimspectorToggleConditionalBreakpoint
 " }}}
