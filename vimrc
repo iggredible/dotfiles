@@ -41,6 +41,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ryanoasis/vim-devicons'
   Plug 'dense-analysis/ale'
   Plug 'szw/vim-maximizer'
+  Plug 't9md/vim-choosewin'
   Plug 'puremourning/vimspector'
 call plug#end()
 " }}}
@@ -214,7 +215,23 @@ function! s:align()
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
 endfunction
+
+" Vimspector 
+" Jest testing Inspired by 
+" Vim as IDE: Config Part 3 (Vimspector) 4:00+
+" https://www.youtube.com/watch?v=-AZUIL1rY3U 
+function! GetCurrentFile()
+  let l:name = expand('%:t')
+  return l:name
+endfunction
+
+function! CallJestOnCurrentFile()
+  let l:currentFileName = GetCurrentFile()
+  call vimspector#LaunchWithSettings( #{FileName: l:currentFileName} )
+endfunction
+
 " }}}
+
 
 " mappings {{{
 let mapleader = "\<Space>"
@@ -264,6 +281,7 @@ inoremap <silent> <Bar> <Bar><Esc>:call <SID>align()<CR>a
 
 " Plugin: fugitive
 nnoremap <Leader>gb :Git blame<CR>
+nnoremap <Leader>gr :Gread<CR>
 
 " PLUGIN: Vim-markdown 
 " disables ]c caused by Vim-markdown
@@ -272,25 +290,22 @@ map <Plug> <Plug>Markdown_MoveToCurHeader
 " PLUGIN: Vim-maximizer
 nnoremap <Leader>o :MaximizerToggle!<CR>
 
+" " PLUGIN: vim-choosewin
+nmap  <Leader>q  <Plug>(choosewin)
+
 " PLUGIN: Vimspector (debugger)
+" nnoremap <Leader>dd :call CallJestOnCurrentFile()<CR>
 nnoremap <Leader>dd :call vimspector#Launch()<CR>
-nnoremap <Leader>dc :call win_gotoid(g:vimspector_session_windows.code)<CR>
-nnoremap <Leader>dt :call win_gotoid(g:vimspector_session_windows.tagpage)<CR>
-nnoremap <Leader>dv :call win_gotoid(g:vimspector_session_windows.variables)<CR>
-nnoremap <Leader>dw :call win_gotoid(g:vimspector_session_windows.watches)<CR>
-nnoremap <Leader>ds :call win_gotoid(g:vimspector_session_windows.stack_trace)<CR>
-nnoremap <Leader>do :call win_gotoid(g:vimspector_session_windows.output)<CR>
 nnoremap <Leader>de :call vimspector#Reset()<CR>
+nnoremap <Leader>dc :call vimspector#Continue()<CR>
 
-nnoremap <Leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
+nnoremap <Leader>dt :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <Leader>dT :call vimspector#ClearBreakpoints()<CR>
 
+nmap <Leader>dk <Plug>VimspectorRestart
+nmap <Leader>dh <Plug>VimspectorStepOut
 nmap <Leader>dl <Plug>VimspectorStepInto
 nmap <Leader>dj <Plug>VimspectorStepOver
-nmap <Leader>dk <Plug>VimspectorStepOut
-nmap <Leader>d_ <Plug>VimspectorRestart
-nnoremap <Leader>d<Space> :call vimspector#continue()<CR>
 
-nmap <Leader>drc <Plug>VimspectorRunToCursor
-nmap <Leader>dbp <Plug>VimspectorToggleBreakpoint
-nmap <Leader>dbcp <Plug>VimspectorToggleConditionalBreakpoint
+nmap <Leader>di <Plug>VimspectorBalloonEval
 " }}}
