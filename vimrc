@@ -43,6 +43,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'szw/vim-maximizer'
   Plug 't9md/vim-choosewin'
   Plug 'puremourning/vimspector'
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
 call plug#end()
 " }}}
 
@@ -73,8 +75,8 @@ set shortmess-=S
 " }}}
 
 " Custom Theme {{{
-" colorscheme badwolf
-colorscheme iggy
+colorscheme badwolf
+" colorscheme iggy
 highlight CursorColumn guibg=#ecf0c1
 highlight CursorLine guibg=#ecf0c1
 " }}}
@@ -151,6 +153,10 @@ let g:ale_linters = {
       \   'ruby': ['rubocop'],
       \}
 
+let g:ale_fixers = {
+      \   'javascript': ['eslint'],
+      \   'ruby': ['rubocop'],
+      \}
 let g:ale_linters_explicit = 1 " Only run linters named in ale_linters settings.
 let g:ale_sign_column_always = 1
 
@@ -230,8 +236,12 @@ function! CallJestOnCurrentFile()
   call vimspector#LaunchWithSettings( #{FileName: l:currentFileName} )
 endfunction
 
-" }}}
 
+" ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" }}}
 
 " mappings {{{
 let mapleader = "\<Space>"
@@ -290,8 +300,11 @@ map <Plug> <Plug>Markdown_MoveToCurHeader
 " PLUGIN: Vim-maximizer
 nnoremap <Leader>o :MaximizerToggle!<CR>
 
-" " PLUGIN: vim-choosewin
+" PLUGIN: vim-choosewin
 nmap  <Leader>q  <Plug>(choosewin)
+
+" PLUGIN: Ale
+nnoremap <Leader>at :ALEToggle<CR>
 
 " PLUGIN: Vimspector (debugger)
 " nnoremap <Leader>dd :call CallJestOnCurrentFile()<CR>
