@@ -1,0 +1,25 @@
+" 'junegunn/fzf.vim'
+
+set rtp+=/usr/local/opt/fzf
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+endif
+
+command! -bang -nargs=* RgNoFile call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+command! -bang -nargs=* RgFile call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+
+" https://sts10.github.io/2016/01/10/vim-line-complete-with-fzf.html
+let g:fzf_action = {
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-v': 'vsplit'
+      \ }
+
+nnoremap <silent> <C-b> :Buffers<CR>
+nnoremap <silent> <C-f> :GFiles<CR>
+nnoremap <silent> <C-g> :RgNoFile<CR>
+nnoremap <silent> <Leader>fF :RgFile<CR>
+nnoremap <silent> <Leader>f/ :BLines<CR>
+nnoremap <silent> <Leader>f' :Marks<CR>
+nnoremap <silent> <Leader>fg :Commits<CR>
+nnoremap <silent> <Leader>fh :Helptags<CR>
+nnoremap <silent> <Leader>ft :Tags<CR>
