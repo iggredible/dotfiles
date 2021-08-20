@@ -15,7 +15,7 @@ let g:fzf_action = {
       \ }
 
 nnoremap <silent> <C-b> :Buffers<CR>
-nnoremap <silent> <C-f> :GFiles<CR>
+nnoremap <silent> <expr> <C-f> fugitive#head() != '' ? ':GFiles --cached --others --exclude-standard<CR>' : ':Files<CR>'
 nnoremap <silent> <C-g> :RgNoFile<CR>
 nnoremap <silent> <Leader>fF :RgFile<CR>
 nnoremap <silent> <Leader>f/ :BLines<CR>
@@ -23,3 +23,6 @@ nnoremap <silent> <Leader>f' :Marks<CR>
 nnoremap <silent> <Leader>fg :Commits<CR>
 nnoremap <silent> <Leader>fh :Helptags<CR>
 nnoremap <silent> <Leader>ft :Tags<CR>
+
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
+
