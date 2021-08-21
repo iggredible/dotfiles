@@ -1,1 +1,6 @@
+vim/plugged/
+vim/autoload/
+vim/.netrwhist
 tags
+
+.DS_Store
