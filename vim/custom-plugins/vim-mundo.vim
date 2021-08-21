@@ -1,5 +1,10 @@
-" 'simnalamburt/vim-mundo'
+" -------------------------
+" Configs
+" -------------------------
 
-" PLUGIN: Mundo
+" -------------------------
+" Keymaps
+" -------------------------
+
 nnoremap <Leader>u :MundoToggle<CR>
 

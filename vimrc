@@ -1,5 +1,3 @@
-echo "HELLO THERE"
-
 if empty(glob('~/.vim/autoload/plug.vim'))
   echo "about to glob vim-plug"
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs

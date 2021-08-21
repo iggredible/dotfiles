@@ -1,6 +1,10 @@
-" 'junegunn/fzf.vim'
+" -------------------------
+" Configs
+" -------------------------
 
+" runtimepath 
 set rtp+=/usr/local/opt/fzf
+
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 endif
@@ -21,6 +25,10 @@ let g:fzf_action = {
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit'
       \ }
+"
+" -------------------------
+" Keymaps
+" -------------------------
 
 nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <silent> <expr> <C-f> fugitive#head() != '' ? ':GFiles --cached --others --exclude-standard<CR>' : ':Files<CR>'

@@ -1,10 +1,13 @@
-" 'preservim/nerdtree'
+" -------------------------
+" Configs
+" -------------------------
 
-" ===== Configs =====
 let NERDTreeNaturalSort = 1
 
-" ===== Keymaps =====
+" -------------------------
+" Keymaps
+" -------------------------
+
 nnoremap <Leader>nf :NERDTreeFind<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 
-" =====  Unite  =====

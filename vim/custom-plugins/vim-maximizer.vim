@@ -1,3 +1,10 @@
-" 'szw/vim-maximizer'
+" -------------------------
+" Configs
+" -------------------------
+
+" -------------------------
+" Keymaps
+" -------------------------
+
 nnoremap <Leader>o :MaximizerToggle!<CR>
 

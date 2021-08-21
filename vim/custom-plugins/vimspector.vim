@@ -1,9 +1,7 @@
-" 'puremourning/vimspector'
+" -------------------------
+" Configs
+" -------------------------
 
-
-" Vimspector
-" Jest testing Inspired by
-" Vim as IDE: Config Part 3 (Vimspector) 4:00+
 " https://www.youtube.com/watch?v=-AZUIL1rY3U
 function! GetCurrentFile()
   let l:name = expand('%:t')
@@ -15,8 +13,10 @@ function! CallJestOnCurrentFile()
   call vimspector#LaunchWithSettings( #{FileName: l:currentFileName} )
 endfunction
 
+" -------------------------
+" Keymaps
+" -------------------------
 
-" PLUGIN: Vimspector (debugger)
 " nnoremap <Leader>dd :call CallJestOnCurrentFile()<CR>
 nnoremap <Leader>dd :call vimspector#Launch()<CR>
 nnoremap <Leader>de :call vimspector#Reset()<CR>
@@ -31,3 +31,4 @@ nmap <Leader>dl <Plug>VimspectorStepInto
 nmap <Leader>dj <Plug>VimspectorStepOver
 
 nmap <Leader>di <Plug>VimspectorBalloonEval
+

@@ -1,7 +1,7 @@
-" 'godlygeek/tabular'
-"
-" " Call :Tabularize when we insert  |
-" http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+" -------------------------
+" Configs
+" -------------------------
+
 function! s:align()
   let p = '^\s*|\s.*\s|\s*$'
   if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
@@ -13,6 +13,11 @@ function! s:align()
   endif
 endfunction
 
-inoremap <silent> <Bar> <Bar><Esc>:call <SID>align()<CR>a
+" -------------------------
+" Keymaps
+" -------------------------
 
+" " Call :Tabularize when we insert  |
+" http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+inoremap <silent> <Bar> <Bar><Esc>:call <SID>align()<CR>a
 
