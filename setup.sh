@@ -1,3 +1,29 @@
+#!/usr/bin/env bash
+
+if [ "$(uname)" == "Darwin" ]; then
+    echo "Hello Mac"
+    brew install fzf
+    brew install ripgrep
+
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    echo "Hello Linux"
+    sudo apt-get install fzf
+    sudo apt-get install ripgrep
+
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+    echo "Hello Windows <32 bit"
+
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+    echo "Hello Windows 64 bit"
+
+fi
+
+sudo rm -rf ~/.vim > /dev/null 2>&1
+sudo rm -rf ~/.vimrc > /dev/null 2>&1
+
+ln -sf $(pwd)/vimrc ~/.vimrc
+ln -sf $(pwd)/vim ~/.vim
+
 # WIP
 # Creating an install scipt
 # First, gain admin control
