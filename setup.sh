@@ -4,11 +4,12 @@ if [ "$(uname)" == "Darwin" ]; then
     echo "Hello Mac"
     brew install fzf
     brew install ripgrep
-
+    brew install universal-ctags
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     echo "Hello Linux"
     sudo apt-get install fzf
     sudo apt-get install ripgrep
+    sudo apt-get install universal-ctags
 
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
     echo "Hello Windows <32 bit"
