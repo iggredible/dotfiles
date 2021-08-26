@@ -18,6 +18,6 @@ endfunction
 command! -nargs=1 DelBuf call DeleteMatchingBuffers('<args>')
 
 
-nnoremap <silent> <Leader>bd :call DeleteAllBuffers()<CR>
-nnoremap <Leader>bD :DelBuf<Space>
+nnoremap <silent> <Leader>bD :call DeleteAllBuffers()<CR>
+nnoremap <Leader>bd :DelBuf<Space>
 
