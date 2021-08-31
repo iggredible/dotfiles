@@ -1,27 +1,63 @@
 #!/usr/bin/env bash
 
+packages=("fzf" "universal-ctags" "ripgrep")
+
+dependency_checker() {
+    if [ "$(uname)" == "Darwin" ]; then
+        CMD="brew install"
+
+    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+        CMD="sudo apt install"
+
+    fi
+
+    for package in "${packages[@]}"
+    do
+        echo "checking if $package is installed..."
+        dpkg -s $package &> /dev/null
+    
+        if [ $? -ne 0 ]
+    
+    	then
+    	    echo "$package is not installed"
+    	    echo "running: $CMD $package"
+          eval $CMD "$package"
+    	    echo "done"
+    
+    	else
+    	    echo "$package is installed"
+        fi
+    done
+
+}
+
 if [ "$(uname)" == "Darwin" ]; then
     echo "Hello Mac"
-    brew install fzf
-    brew install ripgrep
-    brew install universal-ctags
+    # brew install fzf
+    # brew install ripgrep
+    # brew install universal-ctags
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    echo "Hello Linux"
-    sudo apt-get install fzf
-    sudo apt-get install ripgrep
-    sudo apt-get install universal-ctags
+    echo "running: sudo apt update"
+    # sudo apt update # uncomment later
+    dependency_checker
 
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+    # TODO
     echo "Hello Windows <32 bit"
 
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+    # TODO
     echo "Hello Windows 64 bit"
 
 fi
 
+echo "Dependency check done. All dependencies have been installed"
+
+echo "removing the current ~/.vim and ~/.vimrc"
 sudo rm -rf ~/.vim > /dev/null 2>&1
 sudo rm -rf ~/.vimrc > /dev/null 2>&1
 
+echo "symlinking vim/ and vimrc"
 ln -sf $(pwd)/vimrc ~/.vimrc
 ln -sf $(pwd)/vim ~/.vim
 
