@@ -18,9 +18,9 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     do
         dpkg -s $package &> /dev/null
         if [ $? -ne 0 ]; then
-            sudo apt install $package  && echo "$package is installed"
+            sudo apt install $package  && echo "$(tput setaf 2)$package is $(tput setaf 3)installed$(tput sgr0)"
         else
-            echo "$package is already installed"
+            echo "$(tput setaf 2)$package is already $(tput setaf 3)installed$(tput sgr0)"
         fi
     done
 
