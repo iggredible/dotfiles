@@ -34,7 +34,6 @@ elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
 
 fi
 
-printf "$(tput setaf 7)*\e[50b\n$(tput sgr0)"
 echo "$(tput setaf 4)Dependency check done. All dependencies have been $(tput setaf 3)installed$(tput sgr0)"
 
 echo "$(tput setaf 5)Removing the current ~/.vim and ~/.vimrc$(tput sgr0)"
