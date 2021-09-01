@@ -3,28 +3,24 @@
 packages=("fzf" "universal-ctags" "ripgrep")
 
 if [ "$(uname)" == "Darwin" ]; then
-    echo "Hello Mac"
-    # brew install fzf
-    # brew install ripgrep
-    # brew install universal-ctags
+    for package in "${packages[@]}"
+    do
+        if brew list $package &>/dev/null; then
+            echo "$(tput setaf 2) $package is already $(tput setaf 3)installed$(tput sgr0)"
+        else
+            brew install $package && echo "$(tput setaf 2)$package is $(tput setaf 3)installed$(tput sgr0)"
+        fi
+
+    done
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    echo "running: sudo apt update"
     sudo apt update
     for package in "${packages[@]}"
     do
-        echo "checking if $package is installed..."
         dpkg -s $package &> /dev/null
-
-        if [ $? -ne 0 ]
-
-        then
-            echo "$package is not installed"
-            echo "running: sudo apt install $package"
-            sudo apt install $package 
-            echo "done"
-
+        if [ $? -ne 0 ]; then
+            sudo apt install $package  && echo "$package is installed"
         else
-            echo "$package is installed"
+            echo "$package is already installed"
         fi
     done
 
@@ -38,15 +34,18 @@ elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
 
 fi
 
-echo "Dependency check done. All dependencies have been installed"
+printf "$(tput setaf 7)*\e[50b\n$(tput sgr0)"
+echo "$(tput setaf 4)Dependency check done. All dependencies have been $(tput setaf 3)installed$(tput sgr0)"
 
-echo "removing the current ~/.vim and ~/.vimrc"
+echo "$(tput setaf 5)Removing the current ~/.vim and ~/.vimrc$(tput sgr0)"
 sudo rm -rf ~/.vim > /dev/null 2>&1
 sudo rm -rf ~/.vimrc > /dev/null 2>&1
 
-echo "symlinking vim/ and vimrc"
+echo "$(tput setaf 6)Symlinking vim/ and vimrc$(tput sgr0)"
 ln -sf $(pwd)/vimrc ~/.vimrc
 ln -sf $(pwd)/vim ~/.vim
+
+echo "$(tput setaf 3)$(tput bold)You're all set!$(tput sgr0)"
 
 # WIP
 # Creating an install scipt
