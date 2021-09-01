@@ -2,15 +2,14 @@
 
 packages=("fzf" "universal-ctags" "ripgrep")
 
-dependency_checker() {
-    if [ "$(uname)" == "Darwin" ]; then
-        CMD="brew install"
-
-    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-        CMD="sudo apt install"
-
-    fi
-
+if [ "$(uname)" == "Darwin" ]; then
+    echo "Hello Mac"
+    # brew install fzf
+    # brew install ripgrep
+    # brew install universal-ctags
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    echo "running: sudo apt update"
+    sudo apt update
     for package in "${packages[@]}"
     do
         echo "checking if $package is installed..."
@@ -20,26 +19,14 @@ dependency_checker() {
 
         then
             echo "$package is not installed"
-            echo "running: $CMD $package"
-            eval $CMD "$package"
+            echo "running: sudo apt install $package"
+            sudo apt install $package 
             echo "done"
 
         else
             echo "$package is installed"
         fi
     done
-
-}
-
-if [ "$(uname)" == "Darwin" ]; then
-    echo "Hello Mac"
-    # brew install fzf
-    # brew install ripgrep
-    # brew install universal-ctags
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    echo "running: sudo apt update"
-    # sudo apt update # uncomment later
-    dependency_checker
 
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
     # TODO
