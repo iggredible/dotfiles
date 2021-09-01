@@ -52,10 +52,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'dense-analysis/ale'
   Plug 'szw/vim-maximizer'
   Plug 't9md/vim-choosewin'
-  Plug 'puremourning/vimspector'
+  Plug 'Shougo/unite.vim'
+  " Plug 'puremourning/vimspector'
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
-  Plug 'Shougo/unite.vim'
 call plug#end()
 " }}}
 let mapleader = "\<Space>"

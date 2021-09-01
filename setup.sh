@@ -15,17 +15,17 @@ dependency_checker() {
     do
         echo "checking if $package is installed..."
         dpkg -s $package &> /dev/null
-    
+
         if [ $? -ne 0 ]
-    
-    	then
-    	    echo "$package is not installed"
-    	    echo "running: $CMD $package"
-          eval $CMD "$package"
-    	    echo "done"
-    
-    	else
-    	    echo "$package is installed"
+
+        then
+            echo "$package is not installed"
+            echo "running: $CMD $package"
+            eval $CMD "$package"
+            echo "done"
+
+        else
+            echo "$package is installed"
         fi
     done
 
