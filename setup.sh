@@ -41,8 +41,8 @@ sudo rm -rf ~/.vim > /dev/null 2>&1
 sudo rm -rf ~/.vimrc > /dev/null 2>&1
 
 echo "$(tput setaf 6)Symlinking vim/ and vimrc$(tput sgr0)"
-ln -sf $(pwd)/dotfiles/vimrc ~/.vimrc
-ln -sf $(pwd)/dotfiles/vim ~/.vim
+ln -sf $(pwd)/vimrc ~/.vimrc
+ln -sf $(pwd)/vim ~/.vim
 
 echo "$(tput setaf 3)$(tput bold)You're all set!$(tput sgr0)"
 
