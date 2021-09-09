@@ -1,6 +1,3 @@
-" DESC
-" Usage
-"
 function! ToggleCursor()
   if(&cursorcolumn == 1)
     set nocursorcolumn

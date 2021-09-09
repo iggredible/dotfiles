@@ -1,4 +1,3 @@
-" source: https://stackoverflow.com/questions/4545275/vim-close-all-buffers-but-this-one
 function! DeleteAllBuffers()
   let l:current_pos = getpos('.')
   execute "%bd | e# | echo 'Buffers Deleted'"

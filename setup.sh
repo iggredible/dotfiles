@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-# Mac installation assumes that homebrew is already installed
-
 packages=("fzf" "universal-ctags" "ripgrep")
 
+# MacOS
 if [ "$(uname)" == "Darwin" ]; then
     for package in "${packages[@]}"
     do
@@ -14,6 +13,7 @@ if [ "$(uname)" == "Darwin" ]; then
         fi
 
     done
+# Linux
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     sudo apt update
     for package in "${packages[@]}"
