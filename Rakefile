@@ -1,15 +1,25 @@
 desc "Installing dotfiles into system"
-task :install do
+namespace :install do
+  task :vim => [:vim_packages, :vim_plug]
 
-  # TODO: install homebrew - DONE
-  install_homebrew if is_darwin?
+  task :vim_packages do
+    if is_darwin?
+      install_homebrew 
+      update_homebrew
+      install_homebrew_packages("vim fzf universal-ctags ripgrep")
+    end
+  end
 
-  # TODO: install Vim dependencies
+  task :vim_plug do
+    install_vim_plug unless vim_plug_exists?
+  end
 end
 
 desc "Updating installed programs"
-task :update do
-  Rake::Task["install"].execute
+namespace :update do
+  task :vim do
+    Rake::Task["install:vim"].execute
+  end
 end
 
 private
@@ -23,11 +33,26 @@ def install_homebrew
   unless $?.success?
     system %(bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)")
   end
-
-  puts "Updating homebrew..."
-  system %(brew update)
-
-  puts "Installing brew packages"
-  system %(brew install fzf universal-ctags ripgrep)
 end
 
+def update_homebrew
+  puts "Updating homebrew..."
+  system %(brew update)
+end
+
+def install_homebrew_packages(packages="")
+  unless packages.empty?
+    puts "Installing brew packages"
+    system %(brew install #{packages})
+  end
+end
+
+def install_vim_plug
+  system %(bash -c "$(curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim)")
+  puts "Not called"
+end
+
+def vim_plug_exists?
+  vim_plug_path = File.join('vim', 'autoload', 'plug.vim')
+  File.exists? vim_plug_path
+end
