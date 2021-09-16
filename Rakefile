@@ -13,6 +13,10 @@ namespace :install do
   task :vim_plug do
     install_vim_plug unless vim_plug_exists?
   end
+
+  task :vim_files do
+    install_vim_files
+  end
 end
 
 desc "Updating installed programs"
@@ -55,4 +59,10 @@ end
 def vim_plug_exists?
   vim_plug_path = File.join('vim', 'autoload', 'plug.vim')
   File.exists? vim_plug_path
+end
+
+def install_vim_files
+  # if .vim/ and .vimrc exists in $HOME
+  # create a backup .vim.bak/ and .vimrc.bak with mv
+  # then symlink it
 end
