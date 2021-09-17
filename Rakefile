@@ -1,5 +1,3 @@
-require_relative 'installer/colorizer.rb'
-
 desc "Installing dotfiles into system"
 namespace :install do
   task :vim => [:vim_packages, :vim_plug]
@@ -82,3 +80,12 @@ def install_vim_files(vim_files)
     system %(ln -sf #{dotfiles_vim_file} #{original_vim_file})
   end
 end
+
+
+class String
+  def blue;           "\e[34m#{self}\e[0m" end
+  def cyan;           "\e[36m#{self}\e[0m" end
+
+  def bold;           "\e[1m#{self}\e[22m" end
+end
+
