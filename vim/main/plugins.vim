@@ -32,5 +32,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'puremourning/vimspector'
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
+  Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
