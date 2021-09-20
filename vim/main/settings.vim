@@ -1,14 +1,28 @@
-set clipboard=unnamed
-set noswapfile
-set relativenumber number
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set ignorecase
-set smartcase
-set hlsearch
-set confirm
+" unsaved changed buffer is hidden
 set hidden
+
+" allow yank and paste without prepending "*
+set clipboard=unnamed
+
+" don't create swapfile
+set noswapfile
+
+" make it easy to target a specific line
+set relativenumber number
+
+" consistent tabs and spacings
+set tabstop=2 shiftwidth=2
+set expandtab
+
+" easier search
+set ignorecase smartcase
+set hlsearch
+
+" raises dialog
+set confirm
+
+" more natural window placement when splitting
+set splitbelow splitright
 
 " show how many matches when searching with / or ?
 set shortmess-=S

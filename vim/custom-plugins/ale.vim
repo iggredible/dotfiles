@@ -18,8 +18,8 @@ let g:ale_sign_column_always = 1
 " Keymaps
 " -------------------------
 
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> <Leader>ap <Plug>(ale_previous_wrap)
+nmap <silent> <Leader>an <Plug>(ale_next_wrap)
 
 nnoremap <Leader>at :ALEToggle<CR>
 
