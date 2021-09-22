@@ -34,5 +34,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'honza/vim-snippets'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'preservim/vimux'
+  Plug 'pgr0ss/vimux-ruby-test'
+  Plug 'tyewang/vimux-jest-test'
 call plug#end()
 
