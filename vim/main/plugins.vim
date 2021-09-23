@@ -2,6 +2,9 @@ call plug#begin('~/.vim/plugged')
   " Defaults
   Plug 'tpope/vim-sensible'
 
+  " Chords Keymaps
+  Plug 'kana/vim-arpeggio'
+
   " Themes
   Plug 'sjl/badwolf'
   Plug 'itchyny/lightline.vim'
@@ -58,3 +61,5 @@ call plug#begin('~/.vim/plugged')
   Plug 'pgr0ss/vimux-ruby-test'
   Plug 'tyewang/vimux-jest-test'
 call plug#end()
+
+call arpeggio#load()

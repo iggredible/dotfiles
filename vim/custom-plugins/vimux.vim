@@ -2,8 +2,7 @@
 " Keymaps
 " -------------------------
 
- nnoremap <Leader>vp :VimuxPromptCommand<CR>
- nnoremap <Leader>vl :VimuxRunLastCommand<CR>
- nnoremap <Leader>vi :VimuxInspectRunner<CR>
- nnoremap <Leader>vz :VimuxZoomRunner<CR>
-
+Arpeggio nnoremap vp :VimuxPromptCommand<CR>
+Arpeggio nnoremap vl :VimuxRunLastCommand<CR>
+Arpeggio nnoremap vi :VimuxInspectRunner<CR>
+Arpeggio nnoremap vz :VimuxZoomRunner<CR>
