@@ -1,40 +1,60 @@
-" idea: run Vim based on speed
-" MIN and MAX modes
-" MAX has the whole enchiladas
-" MIN excludes nice-to-have but not-absolutely-necessary plugins
 call plug#begin('~/.vim/plugged')
-  Plug 'iggredible/totitle-vim'
+  " Defaults
   Plug 'tpope/vim-sensible'
+
+  " Themes
   Plug 'sjl/badwolf'
   Plug 'itchyny/lightline.vim'
+  Plug 'ryanoasis/vim-devicons'
+
+  " Searches
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
   Plug 'ludovicchabant/vim-gutentags'
-  Plug 'tomtom/tcomment_vim'
-  Plug 'mattn/emmet-vim'
+
+  " Languages
   Plug 'sheerun/vim-polyglot'
+
+  " Linter
+  Plug 'dense-analysis/ale'
+
+  " Git
   Plug 'tpope/vim-fugitive'
+  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+
+  " Editing
   Plug 'Yggdroot/indentLine'
-  Plug 'preservim/nerdtree'
   Plug 'luochen1990/rainbow'
-  Plug 'tpope/vim-dispatch'
-  Plug 'junegunn/vim-peekaboo'
   Plug 'machakann/vim-sandwich'
-  Plug 'simnalamburt/vim-mundo'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-unimpaired'
   Plug 'godlygeek/tabular'
-  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
-  Plug 'ryanoasis/vim-devicons'
-  Plug 'dense-analysis/ale'
+  Plug 'iggredible/totitle-vim'
+  Plug 'tomtom/tcomment_vim'
+
+  " Windows/Panes
+  Plug 'preservim/nerdtree'
   Plug 'szw/vim-maximizer'
   Plug 't9md/vim-choosewin'
+
+  " Registers
+  Plug 'junegunn/vim-peekaboo'
+
+  " Undo tree
+  Plug 'simnalamburt/vim-mundo'
+
+  " Debugger
   Plug 'puremourning/vimspector'
+  "
+  " Snippets
+  Plug 'mattn/emmet-vim'
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
+  "
+  " Tmux
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'preservim/vimux'
   Plug 'pgr0ss/vimux-ruby-test'
   Plug 'tyewang/vimux-jest-test'
 call plug#end()
-
