@@ -2,6 +2,10 @@ call plug#begin('~/.vim/plugged')
   " Defaults
   Plug 'tpope/vim-sensible'
 
+  " Custom Text Objects
+  Plug 'kana/vim-textobj-user'
+  Plug 'tek/vim-textobj-ruby'
+
   " Chords Keymaps
   Plug 'kana/vim-arpeggio'
 
@@ -60,6 +64,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'preservim/vimux'
   Plug 'pgr0ss/vimux-ruby-test'
   Plug 'tyewang/vimux-jest-test'
+
 call plug#end()
 
 call arpeggio#load()
