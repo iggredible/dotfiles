@@ -9,8 +9,13 @@ call plug#begin('~/.vim/plugged')
   " Chords Keymaps
   Plug 'kana/vim-arpeggio'
 
+  " Git
+  Plug 'tpope/vim-fugitive'
+  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+
   " Themes
   Plug 'sjl/badwolf'
+  Plug 'morhetz/gruvbox'
   Plug 'itchyny/lightline.vim'
   Plug 'ryanoasis/vim-devicons'
 
@@ -25,10 +30,6 @@ call plug#begin('~/.vim/plugged')
 
   " Linter
   Plug 'dense-analysis/ale'
-
-  " Git
-  Plug 'tpope/vim-fugitive'
-  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
 
   " Editing
   Plug 'Yggdroot/indentLine'
