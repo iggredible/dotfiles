@@ -1,13 +1,31 @@
-desc "Installing dotfiles into system"
+desc "Installing programs"
 namespace :install do
-  task :vim => [:vim_packages, :vim_plug]
 
-  task :vim_packages do
+  task :check_osx do
     if is_darwin?
+      puts "Yay, Mac user!"
+      puts "Installing/ Checking Homebrew..."
       install_homebrew 
       update_homebrew
-      install_homebrew_packages('vim fzf universal-ctags ripgrep')
+    else
+      abort("You are not using OSX")
     end
+  end
+
+  task :tmux => [:check_osx, :tmux_packages, :tmux_files]
+
+  task :tmux_packages do
+    install_homebrew_packages('tmux')
+  end
+
+  task :tmux_files do
+    install_files('tmux.conf')
+  end
+
+  task :vim => [:check_osx, :vim_packages, :vim_plug]
+
+  task :vim_packages do
+    install_homebrew_packages('vim fzf universal-ctags ripgrep')
   end
 
   task :vim_plug do
@@ -15,7 +33,7 @@ namespace :install do
   end
 
   task :vim_files do
-    install_vim_files('vimrc vim')
+    install_files('vimrc vim')
   end
 end
 
@@ -23,6 +41,10 @@ desc "Updating installed programs"
 namespace :update do
   task :vim do
     Rake::Task["install:vim"].execute
+  end
+
+  task :tmux do
+    Rake::Task["install:tmux"].execute
   end
 end
 
@@ -61,23 +83,23 @@ def vim_plug_exists?
   File.exist? vim_plug_path
 end
 
-def install_vim_files(vim_files)
-  vim_files = vim_files.split(' ')
-  vim_files.each do |vim_file|
-    original_vim_file = %(#{ENV["HOME"]}/.#{vim_file})
-    dotfiles_vim_file = %(#{ENV["PWD"]}/#{vim_file})
+def install_files(files)
+  files = files.split(' ')
+  files.each do |file|
+    original_file = %(#{ENV["HOME"]}/.#{file})
+    dotfiles_file = %(#{ENV["PWD"]}/#{file})
 
-    if File.exist?(original_vim_file) &&
-       (!File.symlink?(original_vim_file) || 
-       (File.symlink?(original_vim_file) &&
-        File.readlink(original_vim_file) != dotfiles_vim_file))
+    if File.exist?(original_file) &&
+       (!File.symlink?(original_file) || 
+       (File.symlink?(original_file) &&
+        File.readlink(original_file) != dotfiles_file))
 
-        puts "Moving #{original_vim_file} to #{original_vim_file}.bak"
-        system %(mv #{original_vim_file} #{original_vim_file}.bak)
+        puts "Moving #{original_file} to #{original_file}.bak"
+        system %(mv #{original_file} #{original_file}.bak)
     end
 
-    puts "Symlinking #{original_vim_file.blue} to #{dotfiles_vim_file.cyan.bold}"
-    system %(ln -sf #{dotfiles_vim_file} #{original_vim_file})
+    puts "Symlinking #{original_file.blue} to #{dotfiles_file.cyan.bold}"
+    system %(ln -sf #{dotfiles_file} #{original_file})
   end
 end
 
