@@ -66,6 +66,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'pgr0ss/vimux-ruby-test'
   Plug 'tyewang/vimux-jest-test'
 
+  " SQL
+  Plug 'tpope/vim-dadbod'
+
+  " Dispatch
+  Plug 'tpope/vim-dispatch'
+
 call plug#end()
 
 call arpeggio#load()
