@@ -34,6 +34,7 @@ call plug#begin('~/.vim/plugged')
   " Editing
   Plug 'Yggdroot/indentLine'
   Plug 'luochen1990/rainbow'
+  Plug 'nathanaelkane/vim-indent-guides'
   Plug 'machakann/vim-sandwich'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-unimpaired'
