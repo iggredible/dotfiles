@@ -15,7 +15,7 @@ call plug#begin('~/.vim/plugged')
 
   " Themes
   Plug 'sjl/badwolf'
-  Plug 'morhetz/gruvbox'
+  Plug 'NLKNguyen/papercolor-theme'
   Plug 'itchyny/lightline.vim'
   Plug 'ryanoasis/vim-devicons'
 
