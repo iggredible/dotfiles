@@ -6,7 +6,7 @@
 " Keymaps
 " -------------------------
 
-nnoremap gb :Git blame<CR>
-nnoremap gr :Gread<CR>
-nnoremap gs :Gstatus<CR>
+nnoremap gib :Git blame<CR>
+nnoremap gir :Gread<CR>
+nnoremap git :Gstatus<CR>
 
