@@ -14,6 +14,10 @@ bind-key "_" split-window -fv -c "#{pane_current_path}"
 bind-key -r "<" swap-window -d -t -1
 bind-key -r ">" swap-window -d -t +1
 
+# join pane
+bind-key j choose-window 'join-pane -h -s "%%"'
+bind-key J choose-window 'join-pane    -s "%%"'
+
 ## Toggle between windows
 bind-key Space last-window
 
