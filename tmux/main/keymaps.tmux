@@ -30,6 +30,9 @@ bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded!"
 # keep current path when creating new window
 bind c new-window -c "#{pane_current_path}"
 
+# go to a marked pane
+bind \` switch-client -t'{marked}'
+
 # Vi mode
 setw    -g  mode-keys    vi
 
