@@ -9,5 +9,5 @@ let NERDTreeNaturalSort = 1
 " -------------------------
 
 nnoremap <Leader>nf :NERDTreeFind<CR>
-nnoremap <Leader>nt :NERDTreeToggle<CR>
+nnoremap yot :NERDTreeToggle<CR>
 
