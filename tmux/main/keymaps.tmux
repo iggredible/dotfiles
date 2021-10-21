@@ -40,8 +40,7 @@ setw    -g  mode-keys    vi
 bind-key -T copy-mode-vi v                 send      -X begin-selection
 bind-key -T copy-mode-vi y                 send-keys -X copy-pipe-and-cancel "pbcopy"
 bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
-bind-key -T copy-mode-vi P                 send-keys -X copy-selection
-bind-key -T copy-mode-vi ]                 send-keys -X copy-selection
+bind-key P paste-buffer
 
 # Resizing pane
 bind -r C-j resize-pane -D 15
