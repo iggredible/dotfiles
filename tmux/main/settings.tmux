@@ -20,3 +20,6 @@ set -g display-time 4000
 
 # set the default-terminal to use screen-256color
 set -g default-terminal "screen-256color"
+
+# Vi mode
+setw -g mode-keys vi
