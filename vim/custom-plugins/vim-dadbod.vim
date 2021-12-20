@@ -5,31 +5,12 @@
 
 let g:dadbods = []
 
-let db_main = {
-		\"name": "cryoportal main",
-		\"url": "mysql://root:fun@localhost/"
-		\}
-
-let db_v2 = {
-		\"name": "cryoportal v2",
-		\"url": "mysql://root:fun@localhost/cryoportal_development"
-		\}
-
-
-let db_cm = {
-		\"name": "cryoportal tracking",
-		\"url": "mysql://root:fun@localhost/cryo_continuous_migration"
-		\}
-
-let db_v1 = {
-		\"name": "cryoportal v1",
-		\"url": "mysql://root:fun@localhost/cryoportal_v1"
-		\}
-
-call add(g:dadbods, db_main)
-call add(g:dadbods, db_v1)
-call add(g:dadbods, db_v2)
-call add(g:dadbods, db_cm)
+" add the DB, ex:
+" let my_db = {
+" 		\"name": "MY_DB",
+" 		\"url": "mysq/://USER:PASS@localhost/DATABASE_NAME"
+" 		\}
+" call add(g:dadbods, my_db)
 
 command! DBSelect :call popup_menu(map(copy(g:dadbods), {k,v -> v.name}), {
 			\"callback": 'DBSelected'
