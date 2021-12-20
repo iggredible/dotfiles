@@ -1,12 +1,20 @@
 # Tmux plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'christoomey/vim-tmux-navigator'
-set -g @plugin 'dracula/tmux'
+set -g @plugin 'iggredible/tmux-colorful'
+set -g @tmux_colorful_plugins "cpu network date"
 
-# Dracula customization https://draculatheme.com/tmux
-set -g @dracula-plugins "battery cpu-usage time"
-set -g @dracula-battery-colors "dark_purple yellow"
-set -g @dracula-border-contrast true
-set -g @dracula-show-powerline true
-set -g @dracula-show-left-icon session
-set -g @dracula-cpu-usage-label "■"
+# set -g @plugin 'dracula/tmux'
+# set -g @dracula-plugins "cpu-usage gpu-usage ram-usage"
+ 
+# set -g @dracula-plugins "battery cpu-usage git"
+
+# set -g @plugin 'iggredible/tmux-colorful'
+
+# set -g @tmux_colorful_color_scheme 'https://coolors.co/30362f-ffaebc-a6e2dc-fffbdb-fad02c'
+# set -g @tmux_colorful_color5 '#821d30'
+# set -g @tmux_colorful_text_color5 '#ffffff'
+# set -g @tmux_colorful_text_color2 '#000000'
+
+# run-shell ~/Projects/tmux-colorful/colorful.tmux
+

@@ -6,5 +6,6 @@
 " Keymaps
 " -------------------------
 
-nmap <Leader>q <Plug>(choosewin)
+nnoremap <Leader>qq :ChooseWin<CR>
+nnoremap <Leader>qs :ChooseWinSwapStay<CR>
 
