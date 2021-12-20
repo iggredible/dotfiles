@@ -11,7 +11,7 @@ call plug#begin('~/.vim/plugged')
 
   " Git
   Plug 'tpope/vim-fugitive'
-  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+  Plug 'mhinz/vim-signify'
 
   " Themes
   Plug 'sjl/badwolf'
@@ -23,6 +23,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
+  " Tags
   Plug 'ludovicchabant/vim-gutentags'
 
   " Languages
@@ -46,6 +47,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'preservim/nerdtree'
   Plug 'szw/vim-maximizer'
   Plug 't9md/vim-choosewin'
+
+  " Show keybindings
+  Plug 'liuchengxu/vim-which-key'
 
   " Registers
   Plug 'junegunn/vim-peekaboo'

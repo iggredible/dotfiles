@@ -1,4 +1,4 @@
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 nnoremap <Leader>ve :vsplit ~/.vimrc<CR>
 nnoremap <Leader>vs :source ~/.vimrc<CR>

@@ -2,6 +2,7 @@
 " Configs
 " -------------------------
 
+let g:ale_enabled = 0
 let g:ale_linters = {
       \   'javascript': ['eslint'],
       \   'ruby': ['rubocop'],
@@ -21,5 +22,7 @@ let g:ale_sign_column_always = 1
 nmap <silent> <Leader>ap <Plug>(ale_previous_wrap)
 nmap <silent> <Leader>an <Plug>(ale_next_wrap)
 
-nnoremap <Leader>at :ALEToggle<CR>
+nnoremap yoa :ALEToggle<CR>
+nnoremap [oa :ALEEnable<CR>
+nnoremap ]oa :ALEDisable<CR>
 

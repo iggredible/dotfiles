@@ -14,9 +14,9 @@ function! DeleteMatchingBuffers(pattern)
     exec 'bd ' . join(l:matchingBuffers, ' ')
 endfunction
 
-command! -nargs=1 DelBuf call DeleteMatchingBuffers('<args>')
+command! -nargs=1 DeleteWhichBuffer call DeleteMatchingBuffers('<args>')
 
 
-nnoremap <silent> <Leader>bD :call DeleteAllBuffers()<CR>
-nnoremap <Leader>bd :DelBuf<Space>
+nnoremap <Leader>dB :call DeleteAllBuffers()<CR>
+nnoremap <Leader>db :DeleteWhichBuffer<Space>
 
