@@ -32,13 +32,20 @@ let g:which_key_map['a'] = {
 " FZF
 let g:which_key_map['f'] = {
       \ 'name' : '+fzf' ,
-      \ '/' : [':Lines', 'Fuzzy search buffer'],
+      \ '/' : [':Lines', 'Search in buffer'],
       \ 'f' : [':RgWithFile', 'Search with files'],
       \ 's' : [':Snippets', 'Snippets'],
       \ 'm' : [':Marks', 'Marks'],
       \ 'h' : [':Helptags', 'Helps'],
       \ 'c' : [':Commits', 'Git commits buffer'],
       \ 'g' : [':GFiles?', 'Git status'],
+      \ 'o' : [':History?', 'Old files'],
+      \ }
+
+let g:which_key_map['f']['b'] = {
+      \ 'name' : '+fzf_buffers' ,
+      \ '/' : [':BLines?', 'Search in buffers'],
+      \ 'c' : [':BCommits?', 'Git commits buffers'],
       \ }
 
 " NERDTree

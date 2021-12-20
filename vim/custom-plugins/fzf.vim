@@ -41,11 +41,13 @@ nnoremap <silent> <C-g> :RG<CR>
 nnoremap <silent> <Leader>f/ :Lines<CR>
 nnoremap <silent> <Leader>fs :Snippets<CR>
 nnoremap <silent> <Leader>fm :Marks<CR>
-nnoremap <silent> <Leader>fb/ :BLines<CR>
 nnoremap <silent> <Leader>fh :Helptags<CR>
-nnoremap <silent> <Leader>fbc :BCommits<CR>
 nnoremap <silent> <Leader>fc :Commits<CR>
+nnoremap <silent> <Leader>fo :History<CR>
 nnoremap <silent> <Leader>fg :GFiles?<CR>
+
+nnoremap <silent> <Leader>fb/ :BLines<CR>
+nnoremap <silent> <Leader>fbc :BCommits<CR>
 
 nnoremap <silent> <C-b> :Buffers<CR>
 
