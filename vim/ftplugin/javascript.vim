@@ -3,6 +3,6 @@
 " -------------------------
 
 " Vimux Javascript/Jest
-nnoremap <Leader>vt :RunJestFocused<CR>
-nnoremap <Leader>vT :RunJestOnBuffer<CR>
+nnoremap <Leader>tt :RunJestFocused<CR>
+nnoremap <Leader>tT :RunJestOnBuffer<CR>
 

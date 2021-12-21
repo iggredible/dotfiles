@@ -2,8 +2,8 @@
 " Keymaps
 " -------------------------
 
-nnoremap <Leader>vp :VimuxPromptCommand<CR>
-nnoremap <Leader>vl :VimuxRunLastCommand<CR>
-nnoremap <Leader>vc :VimuxCloseRunner<CR>
+nnoremap <Leader>tp :VimuxPromptCommand<CR>
+nnoremap <Leader>tl :VimuxRunLastCommand<CR>
+nnoremap <Leader>tc :VimuxCloseRunner<CR>
 
 let g:VimuxHeight = "30"

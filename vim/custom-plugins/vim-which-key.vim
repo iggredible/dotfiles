@@ -13,10 +13,10 @@ let g:which_key_map['u'] = [':mundoToggle', 'Undo tree']
 let g:which_key_map['o'] = [':MaximizerToggle!', 'Maximize window']
 
 " Vimux
-let g:which_key_map['v'] = {
+let g:which_key_map['t'] = {
       \ 'name' : '+vimux' ,
       \ 'p' : [':VimuxPromptCommand', 'Enter command to run'],
-      \ 'l' : [':VimuxRunLastCommand', 'Rerun last vimux cmd'],
+      \ 'l' : [':VimuxRunLastCommand', 'Rerun last tmux cmd'],
       \ 'c' : [':VimuxCloseRunner', 'Close tmux runner'],
       \ 't' : ['Focused Test', 'Run a focused test'],
       \ 'T' : ['All Tests', 'Run all tests'],
@@ -53,6 +53,7 @@ let g:which_key_map['n'] = {
       \ 'name' : '+NERDTree' ,
       \ 'f' : [':NERDTreeFind', 'Find file'],
       \ 't' : [':NERDTreeToggle', 'Toggle tree'],
+      \ 'v' : [':NERDTreeToggle vimrc', 'Toggle vimrc'],
       \ }
 
 " Choosewin
@@ -66,6 +67,14 @@ let g:which_key_map['q'] = {
 let g:which_key_map['d'] = {
       \ 'name' : '+Vimspector' ,
       \ }
+
+let g:which_key_map['v'] = {
+      \ 'name' : '+vimrc' ,
+      \ 'e' : [':vsplit vimrc', 'Edit vimrc'],
+      \ 's' : [':source vimrc', 'Source vimrc'],
+      \ }
+
+
 call which_key#register('<Space>', "g:which_key_map")
 
 " -------------------------

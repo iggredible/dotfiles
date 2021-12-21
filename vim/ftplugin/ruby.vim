@@ -3,6 +3,6 @@
 " -------------------------
 
 " Vimux Ruby
-nnoremap <Leader>vt :RunRubyFocusedTest<CR>
-nnoremap <Leader>vT :RunAllRubyTests<CR>
+nnoremap <Leader>tt :RunRubyFocusedTest<CR>
+nnoremap <Leader>tT :RunAllRubyTests<CR>
 
