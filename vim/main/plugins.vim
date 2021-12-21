@@ -42,6 +42,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'godlygeek/tabular'
   Plug 'iggredible/totitle-vim'
   Plug 'tomtom/tcomment_vim'
+  Plug 'markonm/traces.vim'
 
   " Windows/Panes
   Plug 'preservim/nerdtree'

@@ -11,6 +11,7 @@ set rtp+=/usr/local/opt/fzf
 " If you need to search for a keyword of a certain type, use either:
 " :grep --type ruby foo
 " :grep -g '*.rb' foo
+" For more: https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --smart-case
 endif
