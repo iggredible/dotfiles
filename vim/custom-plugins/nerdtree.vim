@@ -12,4 +12,4 @@ let NERDTreeAutoDeleteBuffer = 1
 
 nnoremap <Leader>nf :NERDTreeFind<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
-nnoremap <Leader>nv :NERDTreeToggle ~/.vimrc<CR>
+nnoremap <Leader>nv :NERDTree ~/.vimrc<CR>

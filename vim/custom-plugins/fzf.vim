@@ -16,15 +16,9 @@ if executable('rg')
   set grepprg=rg\ --vimgrep\ --smart-case
 endif
 
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
-
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+command! -bang -nargs=* RG
+  \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
 " https://sts10.github.io/2016/01/10/vim-line-complete-with-fzf.html
 let g:fzf_action = {
@@ -53,3 +47,4 @@ nnoremap <silent> <Leader>fbc :BCommits<CR>
 nnoremap <silent> <C-b> :Buffers<CR>
 
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
+
