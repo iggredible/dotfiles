@@ -2,13 +2,6 @@ call plug#begin('~/.vim/plugged')
   " Defaults
   Plug 'tpope/vim-sensible'
 
-  " Custom Text Objects
-  Plug 'kana/vim-textobj-user'
-  Plug 'tek/vim-textobj-ruby'
-
-  " Chords Keymaps
-  Plug 'kana/vim-arpeggio'
-
   " Git
   Plug 'tpope/vim-fugitive'
   Plug 'mhinz/vim-signify'
@@ -26,8 +19,10 @@ call plug#begin('~/.vim/plugged')
   " Tags
   Plug 'ludovicchabant/vim-gutentags'
 
-  " Languages
-  Plug 'sheerun/vim-polyglot'
+  " Languages/Env-specific
+  " Plug 'sheerun/vim-polyglot'
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'tpope/vim-rails'
 
   " Linter
   Plug 'dense-analysis/ale'
@@ -39,7 +34,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'machakann/vim-sandwich'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-unimpaired'
-  Plug 'godlygeek/tabular'
   Plug 'iggredible/totitle-vim'
   Plug 'tomtom/tcomment_vim'
   Plug 'markonm/traces.vim'
@@ -52,7 +46,7 @@ call plug#begin('~/.vim/plugged')
   " Show keybindings
   Plug 'liuchengxu/vim-which-key'
 
-  " Registers
+  " Peekaboos
   Plug 'junegunn/vim-peekaboo'
 
   " Undo tree
@@ -79,5 +73,3 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-dispatch'
 
 call plug#end()
-
-call arpeggio#load()

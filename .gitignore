@@ -1,6 +1,8 @@
 vim/plugged/
 vim/autoload/
 vim/.netrwhist
+vim/secret-stuff*
+
 tags
 
 .DS_Store
