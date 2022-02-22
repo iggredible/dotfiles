@@ -19,9 +19,10 @@ call plug#begin('~/.vim/plugged')
   " Tags
   Plug 'ludovicchabant/vim-gutentags'
 
-  " Languages/Env-specific
+  " Languages and Frameworks
   " Plug 'sheerun/vim-polyglot'
   Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-rake'
   Plug 'vim-ruby/vim-ruby'
   Plug 'slim-template/vim-slim'
 
@@ -36,7 +37,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-unimpaired'
   Plug 'iggredible/totitle-vim'
-  Plug 'tomtom/tcomment_vim'
+  Plug 'tpope/vim-commentary'
   Plug 'markonm/traces.vim'
 
   " Windows/Panes
@@ -63,9 +64,6 @@ call plug#begin('~/.vim/plugged')
   "
   " Tmux
   Plug 'christoomey/vim-tmux-navigator'
-  Plug 'preservim/vimux'
-  Plug 'pgr0ss/vimux-ruby-test'
-  Plug 'tyewang/vimux-jest-test'
 
   " SQL
   Plug 'tpope/vim-dadbod'
