@@ -21,8 +21,9 @@ call plug#begin('~/.vim/plugged')
 
   " Languages/Env-specific
   " Plug 'sheerun/vim-polyglot'
-  Plug 'vim-ruby/vim-ruby'
   Plug 'tpope/vim-rails'
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'slim-template/vim-slim'
 
   " Linter
   Plug 'dense-analysis/ale'

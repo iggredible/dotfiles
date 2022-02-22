@@ -2,7 +2,24 @@
 " Configs
 " -------------------------
 
+" Adding SQL URLs to dadbods
+" In ~/.vim/secrets/, create dadbod.vim
+" Inside, add something like:
+" let db_main = {
+" 		\"name": 'my main DB',
+" 		\"url": 'mysql://user:pass@host/'
+" 		\}
+" call add(g:dadbods, db_main)
+
+" Add as many db configs as needed
+
 let g:dadbods = []
+
+let b:dadbodFile = globpath('~/.vim/secrets', 'dadbod.vim')
+
+if filereadable(b:dadbodFile)
+  exe 'source' . b:dadbodFile
+endif
 
 command! DBSelect :call popup_menu(map(copy(g:dadbods), {k,v -> v.name}), {
 			\"callback": 'DBSelected'
