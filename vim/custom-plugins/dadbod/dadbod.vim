@@ -20,11 +20,11 @@ if filereadable(s:dadbodFile)
   let s:dadbodDict = json_decode(join(s:dadbodData))
   let s:dadbodList = keys(s:dadbodDict)
 
+  for dadbodDbKey in s:dadbodList
+    call add(g:dbs, s:dadbodDict[dadbodDbKey])
+  endfor
 endif
 
-for dadbodDbKey in s:dadbodList
-  call add(g:dbs, s:dadbodDict[dadbodDbKey])
-endfor
 
 command! DBSelect :call popup_menu(map(copy(g:dbs), {k,v -> v.name}), {
 			\'callback': 'DBSelected'
