@@ -40,6 +40,8 @@ nnoremap <silent> <Leader>fh :Helptags<CR>
 nnoremap <silent> <Leader>fc :Commits<CR>
 nnoremap <silent> <Leader>fo :History<CR>
 nnoremap <silent> <Leader>fg :GFiles?<CR>
+nnoremap <silent> <Leader>fw :call fzf#vim#tags(expand('<cword>'))<CR>
+
 
 nnoremap <silent> <Leader>fb/ :BLines<CR>
 nnoremap <silent> <Leader>fbc :BCommits<CR>

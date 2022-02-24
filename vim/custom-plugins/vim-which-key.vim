@@ -12,16 +12,6 @@ let g:which_key_map['u'] = [':mundoToggle', 'Undo tree']
 " Maximizer
 let g:which_key_map['o'] = [':MaximizerToggle!', 'Maximize window']
 
-" Vimux
-let g:which_key_map['t'] = {
-      \ 'name' : '+vimux' ,
-      \ 'p' : [':VimuxPromptCommand', 'Enter command to run'],
-      \ 'l' : [':VimuxRunLastCommand', 'Rerun last tmux cmd'],
-      \ 'c' : [':VimuxCloseRunner', 'Close tmux runner'],
-      \ 't' : ['Focused Test', 'Run a focused test'],
-      \ 'T' : ['All Tests', 'Run all tests'],
-      \ }
-
 " ALE
 let g:which_key_map['a'] = {
       \ 'name' : '+ale' ,
@@ -33,13 +23,13 @@ let g:which_key_map['a'] = {
 let g:which_key_map['f'] = {
       \ 'name' : '+fzf' ,
       \ '/' : [':Lines', 'Search in buffer'],
-      \ 'f' : [':RgWithFile', 'Search with files'],
       \ 's' : [':Snippets', 'Snippets'],
       \ 'm' : [':Marks', 'Marks'],
       \ 'h' : [':Helptags', 'Helps'],
       \ 'c' : [':Commits', 'Git commits buffer'],
       \ 'g' : [':GFiles?', 'Git status'],
       \ 'o' : [':History?', 'Old files'],
+      \ 'w' : [':fzf#vim#tags', 'Find cword in tags'],
       \ }
 
 let g:which_key_map['f']['b'] = {
