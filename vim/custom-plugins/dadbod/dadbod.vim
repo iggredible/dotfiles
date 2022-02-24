@@ -64,7 +64,6 @@ endfunc
 " Keymaps
 " -------------------------
 
-nnoremap <leader>db :DBUI<CR>
 " https://habamax.github.io/2019/09/02/use-vim-dadbod-to-query-databases.html
 nnoremap <leader>ds :DBSelect<CR>
 
