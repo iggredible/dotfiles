@@ -13,7 +13,7 @@
 " g:dbs so we can use it with https://github.com/kristijanhusak/vim-dadbod-ui
 " Then run :DBUI
 let g:dbs = []
-let s:dadbodFile = glob('**/dadbod/secrets.json')
+let s:dadbodFile = glob('~/.vim/**/dadbod/secrets.json')
 
 if filereadable(s:dadbodFile)
   let s:dadbodData = readfile(s:dadbodFile)
