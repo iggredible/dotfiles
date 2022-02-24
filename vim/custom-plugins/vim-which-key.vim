@@ -54,16 +54,32 @@ let g:which_key_map['q'] = {
       \ }
 
 " Vimspector TODO
-let g:which_key_map['d'] = {
-      \ 'name' : '+Vimspector' ,
-      \ }
+" let g:which_key_map['d'] = {
+"       \ 'name' : '+Vimspector' ,
+"       \ }
 
+" splits
 let g:which_key_map['v'] = {
-      \ 'name' : '+vimrc' ,
+      \ 'name' : 'vimrc' ,
       \ 'e' : [':vsplit vimrc', 'Edit vimrc'],
       \ 's' : [':source vimrc', 'Source vimrc'],
       \ }
 
+" remove buffers/marks
+let g:which_key_map['r'] = {
+      \ 'name' : 'remove buffers/marks' ,
+      \ 'b' : [':RemoveWhichBuffer', 'Remove select buffer(s)'],
+      \ 'B' : [':call RemoveAllBuffers()', 'Remove all buffers'],
+      \ 'm' : [':call RemoveAllMarks()', 'Remove select mark'],
+      \ 'M' : [':delm!', 'Remove all marks'],
+      \ }
+
+" DB
+let g:which_key_map['d'] = {
+      \ 'name' : 'DB' ,
+      \ 'b' : [':DBUI', 'Dadbod UI'],
+      \ 's' : [':DBSelect', 'Select DB'],
+      \ }
 
 call which_key#register('<Space>', "g:which_key_map")
 

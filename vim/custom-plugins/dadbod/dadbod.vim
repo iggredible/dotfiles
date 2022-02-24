@@ -10,7 +10,9 @@
 "   'db2': {'name': 'my second db', 'url': 'mysql://user2:pass2@localhost/db2'}
 " }
 
-let s:dadbods = []
+" g:dbs so we can use it with https://github.com/kristijanhusak/vim-dadbod-ui
+" Then run :DBUI
+let g:dbs = []
 let s:dadbodFile = glob('**/dadbod/secrets.json')
 
 if filereadable(s:dadbodFile)
@@ -21,17 +23,17 @@ if filereadable(s:dadbodFile)
 endif
 
 for dadbodDbKey in s:dadbodList
-  call add(s:dadbods, s:dadbodDict[dadbodDbKey])
+  call add(g:dbs, s:dadbodDict[dadbodDbKey])
 endfor
 
-command! DBSelect :call popup_menu(map(copy(s:dadbods), {k,v -> v.name}), {
+command! DBSelect :call popup_menu(map(copy(g:dbs), {k,v -> v.name}), {
 			\'callback': 'DBSelected'
 			\})
 
 func! DBSelected(id, result)
 	if a:result != -1
-		let b:db = s:dadbods[a:result-1].url
-		echomsg 'DB ' . s:dadbods[a:result-1].name . ' is selected.'
+		let b:db = g:dbs[a:result-1].url
+		echomsg 'DB ' . g:dbs[a:result-1].name . ' is selected.'
 	endif
 endfunc
 
@@ -62,8 +64,8 @@ endfunc
 " Keymaps
 " -------------------------
 
+nnoremap <leader>db :DBUI<CR>
 " https://habamax.github.io/2019/09/02/use-vim-dadbod-to-query-databases.html
-
 nnoremap <leader>ds :DBSelect<CR>
 
 xnoremap <expr> <Plug>(DBExe)     DBExe()

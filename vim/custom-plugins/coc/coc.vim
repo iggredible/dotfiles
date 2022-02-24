@@ -6,6 +6,7 @@
 let g:coc_global_extensions = [
       \'coc-solargraph', 
       \'coc-json', 
+      \'coc-db',
       \]
 " -------------------------
 " Keymaps

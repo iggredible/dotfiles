@@ -1,10 +1,10 @@
-function! DeleteAllBuffers()
+function! RemoveAllBuffers()
   let l:current_pos = getpos('.')
-  execute "%bd | e# | echo 'Buffers Deleted'"
+  execute "%bd | e# | echo 'Buffers Removed'"
   call setpos('.', l:current_pos)
 endfunc
 
-function! DeleteMatchingBuffers(pattern)
+function! RemoveMatchingBuffers(pattern)
     let l:bufferList = filter(range(1, bufnr('$')), 'buflisted(v:val)')
     let l:matchingBuffers = filter(bufferList, 'bufname(v:val) =~ a:pattern')
     if len(l:matchingBuffers) < 1
@@ -14,9 +14,9 @@ function! DeleteMatchingBuffers(pattern)
     exec 'bd ' . join(l:matchingBuffers, ' ')
 endfunction
 
-command! -nargs=1 DeleteWhichBuffer call DeleteMatchingBuffers('<args>')
+command! -nargs=1 RemoveWhichBuffer call RemoveMatchingBuffers('<args>')
 
 
-nnoremap <Leader>dB :call DeleteAllBuffers()<CR>
-nnoremap <Leader>db :DeleteWhichBuffer<Space>
+nnoremap <Leader>rb :RemoveWhichBuffer<Space>
+nnoremap <Leader>rB :call RemoveAllBuffers()<CR>
 

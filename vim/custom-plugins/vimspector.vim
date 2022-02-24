@@ -18,6 +18,8 @@ endfunction
 " -------------------------
 
 " nnoremap <Leader>dd :call CallJestOnCurrentFile()<CR>
+" TODO: change vimspector prefix from d to something else
+" (d is taken by dadbod). Maybe i for inspect?
 nnoremap <Leader>dd :call vimspector#Launch()<CR>
 nnoremap <Leader>de :call vimspector#Reset()<CR>
 nnoremap <Leader>dc :call vimspector#Continue()<CR>

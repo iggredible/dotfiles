@@ -67,6 +67,7 @@ call plug#begin('~/.vim/plugged')
 
   " SQL
   Plug 'tpope/vim-dadbod'
+  Plug 'kristijanhusak/vim-dadbod-ui'
 
   " Dispatch
   Plug 'tpope/vim-dispatch'
