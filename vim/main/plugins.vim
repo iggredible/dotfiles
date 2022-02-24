@@ -71,4 +71,7 @@ call plug#begin('~/.vim/plugged')
   " Dispatch
   Plug 'tpope/vim-dispatch'
 
+  " Autocompletion
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 call plug#end()

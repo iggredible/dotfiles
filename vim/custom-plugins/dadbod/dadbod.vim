@@ -3,32 +3,35 @@
 " -------------------------
 
 " Adding SQL URLs to dadbods
-" In ~/.vim/secrets/, create dadbod.vim
-" Inside, add something like:
-" let db_main = {
-" 		\"name": 'my main DB',
-" 		\"url": 'mysql://user:pass@host/'
-" 		\}
-" call add(g:dadbods, db_main)
+" In this directory, create secrets.json
+" fill it with the name and url of the DBs you want to connect
+"{
+"   'db1': {'name': 'my first db', 'url': 'mysql://user1:pass1@localhost/db1'},
+"   'db2': {'name': 'my second db', 'url': 'mysql://user2:pass2@localhost/db2'}
+" }
 
-" Add as many db configs as needed
+let s:dadbods = []
+let s:dadbodFile = glob('**/dadbod/secrets.json')
 
-let g:dadbods = []
+if filereadable(s:dadbodFile)
+  let s:dadbodData = readfile(s:dadbodFile)
+  let s:dadbodDict = json_decode(join(s:dadbodData))
+  let s:dadbodList = keys(s:dadbodDict)
 
-let b:dadbodFile = globpath('~/.vim/secrets', 'dadbod.vim')
-
-if filereadable(b:dadbodFile)
-  exe 'source' . b:dadbodFile
 endif
 
-command! DBSelect :call popup_menu(map(copy(g:dadbods), {k,v -> v.name}), {
-			\"callback": 'DBSelected'
+for dadbodDbKey in s:dadbodList
+  call add(s:dadbods, s:dadbodDict[dadbodDbKey])
+endfor
+
+command! DBSelect :call popup_menu(map(copy(s:dadbods), {k,v -> v.name}), {
+			\'callback': 'DBSelected'
 			\})
 
 func! DBSelected(id, result)
 	if a:result != -1
-		let b:db = g:dadbods[a:result-1].url
-		echomsg 'DB ' . g:dadbods[a:result-1].name . ' is selected.'
+		let b:db = s:dadbods[a:result-1].url
+		echomsg 'DB ' . s:dadbods[a:result-1].name . ' is selected.'
 	endif
 endfunc
 
@@ -38,7 +41,7 @@ func! DBExe(...)
 		return 'g@'
 	endif
 	let sel_save = &selection
-	let &selection = "inclusive"
+	let &selection = 'inclusive'
 	let reg_save = @@
 
 	if a:1 == 'char'	" Invoked from Visual mode, use gv command.
