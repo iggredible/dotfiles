@@ -37,8 +37,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-unimpaired'
   Plug 'iggredible/totitle-vim'
-  Plug 'tpope/vim-commentary'
   Plug 'markonm/traces.vim'
+  Plug 'tomtom/tcomment_vim'
 
   " Windows/Panes
   Plug 'preservim/nerdtree'
