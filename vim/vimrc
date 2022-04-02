@@ -1,0 +1,8 @@
+" Load from vim/
+let b:fileList = split(globpath('~/.vim/main', '*.vim'), '\n')
+let b:fileList += split(globpath('~/.vim/functions', '*.vim'), '\n')
+let b:fileList += split(globpath('~/.vim/plugins', '**/*.vim'), '\n')
+
+for fpath in b:fileList
+  exe 'source' fpath
+endfor
