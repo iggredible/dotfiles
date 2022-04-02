@@ -1,5 +1,16 @@
-" unsaved changed buffer is hidden
-set hidden
+if !has('nvim')
+  " unsaved changed buffer is hidden
+  set hidden
+
+  " easier search
+  set hlsearch
+
+  " show how many matches when searching with / or ?
+  set shortmess-=S
+
+  " don't give the file info when editing a file
+  set shortmess+=F
+endif
 
 " allow yank and paste without prepending "*
 set clipboard=unnamed
@@ -16,16 +27,12 @@ set expandtab
 
 " easier search
 set ignorecase smartcase
-set hlsearch
 
 " raises dialog
 set confirm
 
 " more natural window placement when splitting
 set splitbelow splitright
-
-" show how many matches when searching with / or ?
-set shortmess-=S
 
 let s:english_dict = "/usr/share/dict/words"
 

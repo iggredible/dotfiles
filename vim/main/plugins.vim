@@ -61,7 +61,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/emmet-vim'
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
-  "
+"
   " Tmux
   Plug 'christoomey/vim-tmux-navigator'
 
