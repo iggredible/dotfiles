@@ -72,6 +72,9 @@ call plug#begin('~/.vim/plugged')
   " Dispatch
   Plug 'tpope/vim-dispatch'
 
+  " Testing
+  Plug 'thoughtbot/vim-rspec'
+
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
