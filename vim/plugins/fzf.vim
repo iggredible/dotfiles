@@ -14,6 +14,7 @@ set rtp+=/usr/local/opt/fzf
 " :grep --type ruby foo
 " :grep -g '*.rb' foo
 " For more: https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
+" Ripgrep also supports regex: https://docs.rs/regex/1.7.1/regex/#syntax
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --smart-case
 endif
@@ -32,7 +33,8 @@ let g:fzf_action = {
 " Keymaps
 " -------------------------
 
-nnoremap <silent> <expr> <C-f> fugitive#head() != '' ? ':GFiles<CR>' : ':Files<CR>'
+" nnoremap <silent> <expr> <C-f> fugitive#head() != '' ? ':GFiles<CR>' : ':Files<CR>'
+nnoremap <silent> <C-f> :GFiles<CR>
 nnoremap <silent> <C-g> :RG<CR>
 
 nnoremap <silent> <Leader>f/ :Lines<CR>

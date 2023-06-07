@@ -5,19 +5,29 @@
 " Adding SQL URLs to dadbods
 " In this directory, create secrets.json
 " fill it with the name and url of the DBs you want to connect
-"{
-"   'db1': {'name': 'my first db', 'url': 'mysql://user1:pass1@localhost/db1'},
-"   'db2': {'name': 'my second db', 'url': 'mysql://user2:pass2@localhost/db2'}
+" {
+"    'db1': {'name': 'my first db', 'url': 'mysql://user1:pass1@localhost/db1'},
+"    'db2': {'name': 'my second db', 'url': 'mysql://user2:pass2@localhost/db2'}
 " }
 
 " g:dbs so we can use it with https://github.com/kristijanhusak/vim-dadbod-ui
 " Then run :DBUI
 let g:dbs = []
-let s:dadbodFile = glob('~/.vim/**/dadbod/secrets.json')
+let s:dadbodRootFile = glob('~/.vim/configs/dadbod/config.json')
 
-if filereadable(s:dadbodFile)
-  let s:dadbodData = readfile(s:dadbodFile)
+" Project-specific configs
+let s:dadbodProjectFile = glob(getcwd() . '/vim/configs/dadbod/config.json')
+
+if filereadable(s:dadbodRootFile)
+  let s:dadbodData = readfile(s:dadbodRootFile)
   let s:dadbodDict = json_decode(join(s:dadbodData))
+
+  if filereadable(s:dadbodProjectFile)
+    let s:dadbodProjectData = readfile(s:dadbodProjectFile)
+    let s:dadbodProjectDict = json_decode(join(s:dadbodProjectData))
+    let s:dadbodDict = extend(s:dadbodDict, s:dadbodProjectDict)
+  endif
+
   let s:dadbodList = keys(s:dadbodDict)
 
   for dadbodDbKey in s:dadbodList

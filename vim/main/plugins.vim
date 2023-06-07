@@ -36,7 +36,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'machakann/vim-sandwich'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-unimpaired'
-  Plug 'iggredible/totitle-vim'
   Plug 'markonm/traces.vim'
   Plug 'tomtom/tcomment_vim'
 
@@ -45,9 +44,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'szw/vim-maximizer'
   Plug 't9md/vim-choosewin'
 
-  " Show keybindings
-  Plug 'liuchengxu/vim-which-key'
-
   " Peekaboos
   Plug 'junegunn/vim-peekaboo'
 
@@ -55,7 +51,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'simnalamburt/vim-mundo'
 
   " Debugger
-  Plug 'puremourning/vimspector'
+  " Plug 'puremourning/vimspector'
   "
   " Snippets
   Plug 'mattn/emmet-vim'
@@ -76,6 +72,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'thoughtbot/vim-rspec'
 
   " Autocompletion
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()

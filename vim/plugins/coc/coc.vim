@@ -5,13 +5,13 @@
 " -------------------------
 
 " NOTE: coc-db requires dadbod plugin
-let g:coc_global_extensions = [
-      \'coc-solargraph', 
-      \'coc-json', 
-      \'coc-db',
-      \'coc-tsserver',
-      \'coc-snippets',
-      \]
+" let g:coc_global_extensions = [
+"       \'coc-solargraph', 
+"       \'coc-json', 
+"       \'coc-db',
+"       \'coc-tsserver',
+"       \'coc-snippets',
+"       \]
 " -------------------------
 " Keymaps
 " -------------------------

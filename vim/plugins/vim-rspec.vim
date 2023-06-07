@@ -2,7 +2,7 @@
 " Configs
 " -------------------------
 
-let g:rspec_command = "Dispatch rspec {spec}"
+let g:rspec_command = "Dispatch bin/rspec {spec}"
 
 " -------------------------
 " Keymaps
