@@ -45,7 +45,9 @@ let g:fzf_action = {
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit'
       \ }
-"
+
+let g:fzf_layout = { 'down': '~40%' }
+
 " -------------------------
 " Keymaps
 " -------------------------
