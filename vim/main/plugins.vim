@@ -27,7 +27,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'pangloss/vim-javascript'
 
   " Linter
-  Plug 'dense-analysis/ale'
+  " Plug 'dense-analysis/ale'
 
   " Editing
   Plug 'Yggdroot/indentLine'
@@ -70,6 +70,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'thoughtbot/vim-rspec'
 
   " Autocompletion
-  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()

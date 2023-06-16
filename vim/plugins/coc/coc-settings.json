@@ -1,0 +1,6 @@
+{
+  "solargraph.autoformat": true,
+  "solargraph.formatting": true,
+  "solargraph.hover": true,
+  "solargraph.diagnostics": true
+}
