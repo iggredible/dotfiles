@@ -6,6 +6,7 @@
 " Keymaps
 " -------------------------
 
-nnoremap <Leader>qq :ChooseWin<CR>
-nnoremap <Leader>qs :ChooseWinSwapStay<CR>
+nnoremap <Leader>ww :ChooseWin<CR>
+" Mnemonics: [w]indow [s]wap
+nnoremap <Leader>ws :ChooseWinSwapStay<CR>
 

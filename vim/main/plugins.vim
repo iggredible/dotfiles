@@ -22,9 +22,9 @@ call plug#begin('~/.vim/plugged')
   " Languages and Frameworks
   " Plug 'sheerun/vim-polyglot'
   Plug 'tpope/vim-rails'
-  Plug 'tpope/vim-rake'
   Plug 'vim-ruby/vim-ruby'
   Plug 'slim-template/vim-slim'
+  Plug 'pangloss/vim-javascript'
 
   " Linter
   Plug 'dense-analysis/ale'
@@ -67,8 +67,6 @@ call plug#begin('~/.vim/plugged')
 
   " Dispatch
   Plug 'tpope/vim-dispatch'
-
-  " Testing
   Plug 'thoughtbot/vim-rspec'
 
   " Autocompletion
