@@ -14,7 +14,7 @@
 " Then run :DBUI
 let g:dbs = []
 " Root dadbod config
-let s:dadbodRootFile = glob('~/.vim/plugins/dadbod/config.json')
+let s:dadbodRootFile = glob('~/.vim/plugins/dadbod/secrets/config.json')
 
 " Project-specific configs
 let s:dadbodProjectFile = glob(getcwd() . '/vim/configs/dadbod/config.json')

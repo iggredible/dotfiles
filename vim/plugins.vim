@@ -1,3 +1,4 @@
+" List of all plugins
 call plug#begin('~/.vim/plugged')
   " Defaults
   Plug 'tpope/vim-sensible'
@@ -16,18 +17,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
-  " Tags
-  Plug 'ludovicchabant/vim-gutentags'
-
   " Languages and Frameworks
-  " Plug 'sheerun/vim-polyglot'
   Plug 'tpope/vim-rails'
   Plug 'vim-ruby/vim-ruby'
   Plug 'slim-template/vim-slim'
   Plug 'pangloss/vim-javascript'
-
-  " Linter
-  " Plug 'dense-analysis/ale'
 
   " Editing
   Plug 'Yggdroot/indentLine'
@@ -52,10 +46,9 @@ call plug#begin('~/.vim/plugged')
 
   " Debugger
   " Plug 'puremourning/vimspector'
-  "
+
   " Snippets
   Plug 'mattn/emmet-vim'
-  Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
 "
   " Tmux
@@ -73,3 +66,4 @@ call plug#begin('~/.vim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
+

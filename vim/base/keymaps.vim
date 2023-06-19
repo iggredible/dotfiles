@@ -1,6 +1,6 @@
 let g:mapleader = "\<Space>"
 
-nnoremap <Leader>ve :vsplit ~/.vim/vimrc<CR>
+nnoremap <Leader>ve :vsplit ~/.vim/<CR>
 nnoremap <Leader>vs :source ~/.vim/vimrc<CR>
 
 " quickly remove highlights

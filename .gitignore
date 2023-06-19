@@ -1,7 +1,7 @@
 vim/plugged/
 vim/autoload/
 vim/.netrwhist
-vim/plugins/dadbod/config.json
+**/secrets/**
 
 tags
 
