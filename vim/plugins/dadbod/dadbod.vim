@@ -13,11 +13,12 @@
 " g:dbs so we can use it with https://github.com/kristijanhusak/vim-dadbod-ui
 " Then run :DBUI
 let g:dbs = []
-" Root dadbod config
-let s:dadbodRootFile = glob('~/.vim/plugins/dadbod/secrets/config.json')
 
-" Project-specific configs
-let s:dadbodProjectFile = glob(getcwd() . '/vim/configs/dadbod/config.json')
+" Root dadbod config
+let s:dadbodRootFile = glob('~/.vim/configs/secrets/dadbod.json')
+
+" Project-specific configs (overwrites dadbodRootFile)
+let s:dadbodProjectFile = glob(getcwd() . '/vim/configs/secrets/dadbod.json')
 
 if filereadable(s:dadbodRootFile)
   let s:dadbodData = readfile(s:dadbodRootFile)

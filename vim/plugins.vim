@@ -32,6 +32,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-unimpaired'
   Plug 'markonm/traces.vim'
   Plug 'tomtom/tcomment_vim'
+  Plug 'iggredible/argh.vim'
 
   " Windows/Panes
   Plug 'preservim/nerdtree'
@@ -64,6 +65,9 @@ call plug#begin('~/.vim/plugged')
 
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+  " AI
+  Plug 'madox2/vim-ai'
 
 call plug#end()
 

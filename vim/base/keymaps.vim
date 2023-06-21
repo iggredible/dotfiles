@@ -17,3 +17,11 @@ nnoremap <silent> sn :new<CR>
 " quickly yank current file path
 nnoremap <silent> cp :let @* = expand("%")<CR>
 nnoremap <silent> cP :let @* = expand("%:p")<CR>
+
+nnoremap <Leader>rM :call RemoveAllMarks()<CR>
+nnoremap <Leader>rm :delm!<Space>
+
+nnoremap <Leader>rb :RemoveWhichBuffer<Space>
+nnoremap <Leader>rB :call RemoveAllBuffers()<CR>
+
+nnoremap gx :call OpenURLUnderCursor()<CR>
