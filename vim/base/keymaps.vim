@@ -1,7 +1,7 @@
 let g:mapleader = "\<Space>"
 
-nnoremap <Leader>ve :vsplit ~/.vim/<CR>
-nnoremap <Leader>vs :source ~/.vim/vimrc<CR>
+nnoremap <Leader>ve :vsplit $HOME/.vim/<CR>
+nnoremap <Leader>vs :source $HOME/.vim/vimrc<CR>
 
 " quickly remove highlights
 nnoremap <Esc><Esc> :noh<Return><Esc>

@@ -1,10 +1,10 @@
 " Load from vim/
 
-let b:fileList = split(globpath('~/.vim/base', '**/*.vim'), '\n')
-let b:fileList += split(globpath('~/.vim', 'plugins.vim'), '\n')
-let b:fileList += split(globpath('~/.vim/plugins', '**/*.vim'), '\n')
-let b:fileList += split(globpath('~/.vim/colorschemes', '**/*.vim'), '\n')
+let s:fileList = split(globpath('$HOME/.vim/base', '**/*.vim'), '\n')
+let s:fileList += split(globpath('$HOME/.vim', 'plugins.vim'), '\n')
+let s:fileList += split(globpath('$HOME/.vim/plugins', '**/*.vim'), '\n')
+let s:fileList += split(globpath('$HOME/.vim/colorschemes', '**/*.vim'), '\n')
 
-for fpath in b:fileList
+for fpath in s:fileList
   exe 'source' fpath
 endfor

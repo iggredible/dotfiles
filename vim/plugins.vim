@@ -68,6 +68,6 @@ call plug#begin('~/.vim/plugged')
 
   " AI
   Plug 'madox2/vim-ai'
-
+  " Plug 'CoderCookE/vim-chatgpt'
 call plug#end()
 
