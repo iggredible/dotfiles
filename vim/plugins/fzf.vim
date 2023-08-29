@@ -16,8 +16,7 @@ endif
 
 " For complete configs
 " Check out https://github.com/junegunn/fzf/blob/master/README-VIM.md
-" runtimepath
-set rtp+=/usr/local/opt/fzf
+set rtp+=/opt/homebrew/opt/fzf
 
 let g:rgGlob = ''
 
@@ -40,7 +39,6 @@ command! -bang -nargs=* Rgg call RgSet(<f-args>)
 command! -bang -nargs=* Rg 
   \ call fzf#vim#grep(RgRunner().shellescape(<q-args>), 1, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
-" https://sts10.github.io/2016/01/10/vim-line-complete-with-fzf.html
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit'
@@ -56,11 +54,10 @@ nnoremap <silent> <C-g> :Rg<CR>
 nnoremap <silent> <C-b> :Buffers<CR>
 
 nnoremap <silent> <Leader>f/ :Lines<CR>
-nnoremap <silent> <Leader>fm :Marks<CR>
 nnoremap <silent> <Leader>fh :Helptags<CR>
 nnoremap <silent> <Leader>fc :BCommits<CR>
 nnoremap <silent> <Leader>fo :History<CR>
 nnoremap <silent> <Leader>fg :GFiles?<CR>
-nnoremap <silent> <Leader>fw :call fzf#vim#tags(expand('<cword>'))<CR>
 
+" https://sts10.github.io/2016/01/10/vim-line-complete-with-fzf.html
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')

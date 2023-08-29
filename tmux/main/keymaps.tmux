@@ -20,6 +20,7 @@ bind-key J choose-window 'join-pane    -s "%%"'
 
 ## Toggle between windows
 bind-key Space last-window
+bind-key 6 last-window
 
 ## Toggle between sessions
 bind-key C-Space switch-client -l

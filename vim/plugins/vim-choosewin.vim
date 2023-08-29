@@ -2,11 +2,13 @@
 " Configs
 " -------------------------
 
+let g:choosewin_overlay_enable = 1
+
 " -------------------------
 " Keymaps
 " -------------------------
 
-nnoremap <Leader>ww :ChooseWin<CR>
+nnoremap <Leader>q :ChooseWin<CR>
 " Mnemonics: [w]indow [s]wap
-nnoremap <Leader>ws :ChooseWinSwapStay<CR>
+nnoremap <Leader>> :ChooseWinSwapStay<CR>
 

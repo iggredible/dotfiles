@@ -6,5 +6,5 @@
 " Keymaps
 " -------------------------
 
-nnoremap <Leader>o :MaximizerToggle!<CR>
+nnoremap <Leader>z :MaximizerToggle!<CR>
 

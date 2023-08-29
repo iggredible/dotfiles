@@ -49,7 +49,6 @@ call plug#begin('~/.vim/plugged')
   " Plug 'puremourning/vimspector'
 
   " Snippets
-  Plug 'mattn/emmet-vim'
   Plug 'honza/vim-snippets'
 "
   " Tmux
@@ -66,8 +65,7 @@ call plug#begin('~/.vim/plugged')
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-  " AI
-  Plug 'madox2/vim-ai'
-  " Plug 'CoderCookE/vim-chatgpt'
+  " Vimux
+  Plug 'preservim/vimux'
 call plug#end()
 
