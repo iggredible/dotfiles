@@ -14,12 +14,22 @@ if executable('rg')
   set grepprg=rg\ --vimgrep\ --smart-case
 endif
 
+let g:fzf_action = {
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-v': 'vsplit'
+      \ }
+
+let g:fzf_layout = { 'down': '~40%' }
+
 " For complete configs
 " Check out https://github.com/junegunn/fzf/blob/master/README-VIM.md
 set rtp+=/opt/homebrew/opt/fzf
 
 let g:rgGlob = ''
 
+" -------------------------
+" Helpers
+" -------------------------
 function RgSet(rgGlob = '')
   let g:rgGlob = ''
   if a:rgGlob != ''
@@ -32,19 +42,16 @@ function RgRunner()
     return 'rg --column --line-number --no-heading --color=always --smart-case '.g:rgGlob
 endfunction
 
+" -------------------------
+" Commands
+" -------------------------
+
 " How to use Rgg
 " :Rgg *.vim
 " Now it will search only files ended in *vim
 command! -bang -nargs=* Rgg call RgSet(<f-args>)
 command! -bang -nargs=* Rg 
   \ call fzf#vim#grep(RgRunner().shellescape(<q-args>), 1, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
-
-let g:fzf_action = {
-      \ 'ctrl-s': 'split',
-      \ 'ctrl-v': 'vsplit'
-      \ }
-
-let g:fzf_layout = { 'down': '~40%' }
 
 " -------------------------
 " Keymaps
