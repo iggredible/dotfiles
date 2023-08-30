@@ -33,17 +33,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'markonm/traces.vim'
   Plug 'tomtom/tcomment_vim'
   Plug 'iggredible/argh.vim'
+  Plug 'junegunn/vim-peekaboo'
+  Plug 'simnalamburt/vim-mundo'
+  Plug 'terryma/vim-multiple-cursors'
 
-  " Windows/Panes
+  " Organizer
   Plug 'preservim/nerdtree'
   Plug 'szw/vim-maximizer'
   Plug 't9md/vim-choosewin'
-
-  " Peekaboos
-  Plug 'junegunn/vim-peekaboo'
-
-  " Undo tree
-  Plug 'simnalamburt/vim-mundo'
+  Plug 'tpope/vim-obsession'
 
   " Debugger
   " Plug 'puremourning/vimspector'
@@ -58,14 +56,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-dadbod'
   Plug 'kristijanhusak/vim-dadbod-ui'
 
-  " Dispatch
+  " Runner
   Plug 'tpope/vim-dispatch'
   Plug 'thoughtbot/vim-rspec'
+  Plug 'preservim/vimux'
 
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-  " Vimux
-  Plug 'preservim/vimux'
 call plug#end()
-
