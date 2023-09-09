@@ -12,7 +12,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'NLKNguyen/papercolor-theme'
   Plug 'itchyny/lightline.vim'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'mhinz/vim-startify'
 
   " Searches
   Plug 'junegunn/fzf.vim'
