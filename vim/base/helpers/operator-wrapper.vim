@@ -1,6 +1,5 @@
 function! OperatorWrapper(partialFunc = 'test_null_function', context = {}, type = '') abort
   if a:type == ''
-    echom 'partialFunc when type is empty : '. a:partialFunc
     let context = #{
       \ dot_command: v:false,
       \ extend_block: '',
@@ -10,8 +9,6 @@ function! OperatorWrapper(partialFunc = 'test_null_function', context = {}, type
     set virtualedit=block
     return 'g@'
   endif
-
-  echom 'partialFunc with type: ' . a:partialFunc
 
   let save = #{
     \ clipboard: &clipboard,

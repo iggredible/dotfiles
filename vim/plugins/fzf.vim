@@ -62,9 +62,10 @@ nnoremap <silent> <C-b> :Buffers<CR>
 
 nnoremap <silent> <Leader>f/ :Lines<CR>
 nnoremap <silent> <Leader>fh :Helptags<CR>
-nnoremap <silent> <Leader>fc :BCommits<CR>
 nnoremap <silent> <Leader>fo :History<CR>
 nnoremap <silent> <Leader>fg :GFiles?<CR>
+
+nnoremap git :BCommits<CR>
 
 " https://sts10.github.io/2016/01/10/vim-line-complete-with-fzf.html
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
