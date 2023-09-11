@@ -10,5 +10,5 @@ let g:choosewin_overlay_enable = 1
 
 nnoremap <Leader>q :ChooseWin<CR>
 " Mnemonics: [w]indow [s]wap
-nnoremap <Leader>> :ChooseWinSwapStay<CR>
+nnoremap <Leader>ws :ChooseWinSwapStay<CR>
 

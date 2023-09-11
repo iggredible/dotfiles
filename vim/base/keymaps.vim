@@ -25,3 +25,6 @@ nnoremap <Leader>rb :RemoveWhichBuffer<Space>
 nnoremap <Leader>rB :call RemoveAllBuffers()<CR>
 
 nnoremap gx :call OpenURLUnderCursor()<CR>
+
+nnoremap <Leader>< <C-w>R<CR>
+nnoremap <Leader>> <C-w>r<CR>
