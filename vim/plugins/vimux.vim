@@ -6,17 +6,6 @@ function! VimuxSlime(text = '')
   call VimuxRunCommand(a:text)
 endfunction
 
-" -------------------------
-" Keymaps
-" -------------------------
-
-nnoremap <Leader>vp :VimuxPromptCommand<CR>
-
-nnoremap <expr> gs OperatorWrapper('VimuxSlime')
-xnoremap <expr> gs OperatorWrapper('VimuxSlime')
-nnoremap <expr> gss OperatorWrapper('VimuxSlime') .. '_'
-
-
 let g:vimux_rspec_commands = ['Test File', 'Test Current Line']
 
 function! RSpecSelected(id, result)
@@ -35,4 +24,15 @@ function! ShowVimuxRspec()
   call popup_menu(g:vimux_rspec_commands, {'callback': 'RSpecSelected'})
 endfunction
 
+" -------------------------
+" Keymaps
+" -------------------------
+
+nnoremap <Leader>vp :VimuxPromptCommand<CR>
+
+nnoremap <expr> gs OperatorWrapper('VimuxSlime')
+xnoremap <expr> gs OperatorWrapper('VimuxSlime')
+nnoremap <expr> gss OperatorWrapper('VimuxSlime') .. '_'
+
+" Conditional, buffer-specific keymap
 au! BufRead **/*_spec.rb nnoremap <buffer><expr> <Leader>tt ShowVimuxRspec()
