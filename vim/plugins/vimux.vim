@@ -6,7 +6,7 @@ function! VimuxSlime(text = '')
   call VimuxRunCommand(a:text)
 endfunction
 
-let g:vimux_rspec_commands = ['Test File', 'Test Current Line']
+let g:vimux_rspec_commands = ['Test Current Line', 'Test File']
 
 function! RSpecSelected(id, result)
   if a:result != -1
