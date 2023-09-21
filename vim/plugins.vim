@@ -58,7 +58,6 @@ call plug#begin('~/.vim/plugged')
 
   " Runner
   Plug 'tpope/vim-dispatch'
-  Plug 'thoughtbot/vim-rspec'
   Plug 'preservim/vimux'
 
   " Autocompletion
