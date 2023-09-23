@@ -62,4 +62,7 @@ call plug#begin('~/.vim/plugged')
 
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+  " Secrets
+  Plug 'tpope/vim-dotenv'
 call plug#end()

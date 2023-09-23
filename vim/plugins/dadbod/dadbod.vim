@@ -3,52 +3,31 @@
 " -------------------------
 
 " Adding SQL URLs to dadbods
-" In this directory, create secrets.json
-" fill it with the name and url of the DBs you want to connect
-" {
-"    'db1': {'name': 'my first db', 'url': 'mysql://user1:pass1@localhost/db1'},
-"    'db2': {'name': 'my second db', 'url': 'mysql://user2:pass2@localhost/db2'}
-" }
+" create .env in project root
+" Note: the DB urls keys must end with _DB
+" DEVELOPMENT_DB=mysql://user:passw0rD@127.0.0.1/db1
+" PRODUCTION_DB=mysql://prod_user:prodpassw0rD@some_prod_host.com/db2
 
-" g:dbs so we can use it with https://github.com/kristijanhusak/vim-dadbod-ui
-" Then run :DBUI
-let g:dbs = []
-
-" Root dadbod config
-let s:dadbodRootFile = glob('~/.vim/configs/secrets/dadbod.json')
-
-" Project-specific configs (overwrites dadbodRootFile)
-let s:dadbodProjectFile = glob(getcwd() . '/vim/configs/secrets/dadbod.json')
-
-if filereadable(s:dadbodRootFile)
-  let s:dadbodData = readfile(s:dadbodRootFile)
-  let s:dadbodDict = json_decode(join(s:dadbodData))
-
-  if filereadable(s:dadbodProjectFile)
-    let s:dadbodProjectData = readfile(s:dadbodProjectFile)
-    let s:dadbodProjectDict = json_decode(join(s:dadbodProjectData))
-    let s:dadbodDict = extend(s:dadbodDict, s:dadbodProjectDict)
+function! s:load_databases()
+  if exists('*DotenvRead')
+    return DotenvRead()->keys()->filter('v:val =~# "_DB"')
   endif
+endfunction
 
-  let s:dadbodList = keys(s:dadbodDict)
-
-  for dadbodDbKey in s:dadbodList
-    call add(g:dbs, s:dadbodDict[dadbodDbKey])
-  endfor
-endif
-
-
-command! DBSelect :call popup_menu(map(copy(g:dbs), {k,v -> v.name}), {
+command! DBSelect :call popup_menu(s:load_databases(), {
 			\'callback': 'DBSelected'
 			\})
 
 func! DBSelected(id, result)
 	if a:result != -1
-		let b:db = g:dbs[a:result-1].url
-		echomsg 'DB ' . g:dbs[a:result-1].name . ' is selected.'
+    let l:dbs = s:load_databases()
+    let l:selection = l:dbs[a:result-1]
+		let b:db = DotenvGet(l:selection)
+		echomsg 'DB ' . l:selection . ' is selected.'
 	endif
 endfunc
 
+" TODO use operator wrapper
 func! DBExe(...)
 	if !a:0
 		let &operatorfunc = matchstr(expand('<sfile>'), '[^. ]*$')
@@ -77,7 +56,7 @@ endfunc
 " -------------------------
 
 " https://habamax.github.io/2019/09/02/use-vim-dadbod-to-query-databases.html
-nnoremap <leader>ds :DBSelect<CR>
+nnoremap <leader>dd :DBSelect<CR>
 
 xnoremap <expr> <Plug>(DBExe)     DBExe()
 nnoremap <expr> <Plug>(DBExe)     DBExe()
@@ -87,4 +66,3 @@ xmap gd <Plug>(DBExe)
 nmap gd <Plug>(DBExe)
 omap gd <Plug>(DBExe)
 nmap gdd <Plug>(DBExeLine)
-
