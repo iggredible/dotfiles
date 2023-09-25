@@ -14,11 +14,11 @@ function! s:load_databases()
   endif
 endfunction
 
-command! DBSelect :call popup_menu(s:load_databases(), {
-			\'callback': 'DBSelected'
+command! SelectDB :call popup_menu(s:load_databases(), {
+			\'callback': 'SelectDBSource'
 			\})
 
-func! DBSelected(id, result)
+func! SelectDBSource(_id, result)
 	if a:result != -1
     let l:dbs = s:load_databases()
     let l:selection = l:dbs[a:result-1]
@@ -27,28 +27,8 @@ func! DBSelected(id, result)
 	endif
 endfunc
 
-" TODO use operator wrapper
-func! DBExe(...)
-	if !a:0
-		let &operatorfunc = matchstr(expand('<sfile>'), '[^. ]*$')
-		return 'g@'
-	endif
-	let sel_save = &selection
-	let &selection = 'inclusive'
-	let reg_save = @@
-
-	if a:1 == 'char'	" Invoked from Visual mode, use gv command.
-		silent exe 'normal! gvy'
-	elseif a:1 == 'line'
-		silent exe "normal! '[V']y"
-	else
-		silent exe 'normal! `[v`]y'
-	endif
-
-	execute "DB " . @@
-
-	let &selection = sel_save
-	let @@ = reg_save
+func! DadbodExe(db_script = '')
+  execute "DB " . a:db_script
 endfunc
 
 " -------------------------
@@ -56,13 +36,12 @@ endfunc
 " -------------------------
 
 " https://habamax.github.io/2019/09/02/use-vim-dadbod-to-query-databases.html
-nnoremap <leader>dd :DBSelect<CR>
+nnoremap <leader>dd :SelectDB<CR>
 
-xnoremap <expr> <Plug>(DBExe)     DBExe()
-nnoremap <expr> <Plug>(DBExe)     DBExe()
-nnoremap <expr> <Plug>(DBExeLine) DBExe() . '_'
+nnoremap <expr> <Plug>DadbodExe     OperatorWrapper('DadbodExe')
+xnoremap <expr> <Plug>DadbodExe     OperatorWrapper('DadbodExe')
+nnoremap <expr> <Plug>DadbodExeLine OperatorWrapper('DadbodExe') .. '_'
 
-xmap gd <Plug>(DBExe)
-nmap gd <Plug>(DBExe)
-omap gd <Plug>(DBExe)
-nmap gdd <Plug>(DBExeLine)
+nnoremap gd <Plug>DadbodExe
+xnoremap gd <Plug>DadbodExe
+nnoremap gdd <Plug>DadbodExeLine

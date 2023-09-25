@@ -2,7 +2,7 @@
 " Helpers
 " -------------------------
 " Modified https://github.com/jgdavey/tslime.vim into an operator
-function! VimuxSlime(text = '')
+function! VimuxSlimeExe(text = '')
   call VimuxRunCommand(a:text)
 endfunction
 
@@ -30,9 +30,13 @@ endfunction
 
 nnoremap <Leader>vp :VimuxPromptCommand<CR>
 
-nnoremap <expr> gs OperatorWrapper('VimuxSlime')
-xnoremap <expr> gs OperatorWrapper('VimuxSlime')
-nnoremap <expr> gss OperatorWrapper('VimuxSlime') .. '_'
+nnoremap <expr> <Plug>VimuxSlimeExe OperatorWrapper('VimuxSlimeExe')
+xnoremap <expr> <Plug>VimuxSlimeExe OperatorWrapper('VimuxSlimeExe')
+nnoremap <expr> <Plug>VimuxSlimeExeLine OperatorWrapper('VimuxSlimeExe') .. '_'
 
-" Conditional, buffer-specific keymap
+nnoremap gs <Plug>VimuxSlimeExe
+xnoremap gs <Plug>VimuxSlimeExe
+nnoremap gss <Plug>VimuxSlimeExeLine
+
+" Conditional keymap for spec files only
 au! BufRead **/*_spec.rb nnoremap <buffer><expr> <Leader>tt ShowVimuxRspec()
