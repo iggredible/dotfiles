@@ -1,10 +1,1 @@
-" Load from vim/
-
-let s:fileList = split(globpath('$HOME/.vim/base', '**/*.vim'), '\n')
-let s:fileList += split(globpath('$HOME/.vim', 'plugins.vim'), '\n')
-let s:fileList += split(globpath('$HOME/.vim/plugins', '**/*.vim'), '\n')
-let s:fileList += split(globpath('$HOME/.vim/colorschemes', '**/*.vim'), '\n')
-
-for fpath in s:fileList
-  exe 'source' fpath
-endfor
+runtime loader.vim

@@ -41,7 +41,6 @@ function! OperatorWrapper(partialFunc = 'test_null_function', context = {}, type
     execute 'silent noautocmd keepjumps normal! ' .. commands
 
     let regText = getreg('"')
-
     execute 'call function(a:partialFunc)(regText)'
 
   finally

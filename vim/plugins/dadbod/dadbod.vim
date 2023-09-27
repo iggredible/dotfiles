@@ -10,7 +10,7 @@
 
 function! s:load_databases()
   if exists('*DotenvRead')
-    return DotenvRead()->keys()->filter('v:val =~# "_DB"')
+    return DotenvRead()->keys()->filter('v:val =~# "DB_"')
   endif
 endfunction
 
@@ -22,7 +22,7 @@ func! SelectDBSource(_id, result)
 	if a:result != -1
     let l:dbs = s:load_databases()
     let l:selection = l:dbs[a:result-1]
-		let b:db = DotenvGet(l:selection)
+		let g:db = DotenvGet(l:selection)
 		echomsg 'DB ' . l:selection . ' is selected.'
 	endif
 endfunc
