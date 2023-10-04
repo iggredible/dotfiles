@@ -2,9 +2,9 @@
 " Configs
 " -------------------------
 
-" Adding SQL URLs to dadbods
+" NOTE: Adding SQL connections to dadbod
 " create .env in project root
-" Note: the DB urls keys must end with _DB
+" the DB urls keys must start with DB_
 " DEVELOPMENT_DB=mysql://user:passw0rD@127.0.0.1/db1
 " PRODUCTION_DB=mysql://prod_user:prodpassw0rD@some_prod_host.com/db2
 
