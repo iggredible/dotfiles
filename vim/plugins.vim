@@ -22,6 +22,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-ruby/vim-ruby'
   Plug 'slim-template/vim-slim'
   Plug 'pangloss/vim-javascript'
+  Plug 'tpope/vim-bundler'
 
   " Editing
   Plug 'Yggdroot/indentLine'
@@ -36,12 +37,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-peekaboo'
   Plug 'simnalamburt/vim-mundo'
   Plug 'mg979/vim-visual-multi'
+  Plug 'tpope/vim-abolish'
 
-  " Organizer
+  " Managers
   Plug 'szw/vim-maximizer'
   Plug 't9md/vim-choosewin'
   Plug 'tpope/vim-obsession'
   Plug 'preservim/nerdtree'
+  Plug 'tpope/vim-dotenv'
 
   " Debugger
   " Plug 'puremourning/vimspector'
@@ -62,7 +65,4 @@ call plug#begin('~/.vim/plugged')
 
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-  " Secrets
-  Plug 'tpope/vim-dotenv'
 call plug#end()
