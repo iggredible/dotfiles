@@ -1,6 +1,13 @@
 " -------------------------
-" Configs
+" Keymaps
 " -------------------------
 
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
+" Remapping vim-ruby's ]M and [M
+augroup key_remaps
+  autocmd!
+
+  autocmd FileType ruby nmap <buffer> ]M ]]
+  autocmd FileType ruby xmap <buffer> ]M ]]
+  autocmd FileType ruby nmap <buffer> [M [[
+  autocmd FileType ruby xmap <buffer> [M [[
+augroup END
