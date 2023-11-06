@@ -4,7 +4,11 @@
 " Configs
 " -------------------------
 
+" To list the extensions, run :CocList extensions
+
 " NOTE: coc-db requires dadbod plugin
+" CoC saves the extensions inside
+" ~/.config/coc/extensions/package.json
 let g:coc_global_extensions = [
       \'coc-solargraph', 
       \'coc-json', 
@@ -35,7 +39,6 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

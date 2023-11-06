@@ -1,8 +1,12 @@
 {
+  "suggest.minTriggerInputLength": 2,
+  "suggest.virtualText": true,
+  "diagnostic.virtualText": true,
   "solargraph.autoformat": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,
-  "solargraph.diagnostics": false,
+  "solargraph.useBundler": true,
+  "solargraph.diagnostics": true,
   "eslint.packageManager": "yarn",
   "eslint.autoFixOnSave": true
 }
