@@ -14,7 +14,7 @@ let g:coc_global_extensions = [
       \'coc-eslint'
       \]
 
-let g:coc_config_home = '~/.vim/configs/settings/'
+let g:coc_config_home = expand('<sfile>:p:h')
 
 " -------------------------
 " Keymaps

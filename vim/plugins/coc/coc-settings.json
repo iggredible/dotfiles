@@ -2,7 +2,7 @@
   "solargraph.autoformat": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,
-  "solargraph.diagnostics": true,
+  "solargraph.diagnostics": false,
   "eslint.packageManager": "yarn",
   "eslint.autoFixOnSave": true
 }
