@@ -36,7 +36,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'iggredible/argh.vim'
   Plug 'junegunn/vim-peekaboo'
   Plug 'simnalamburt/vim-mundo'
-  Plug 'mg979/vim-visual-multi'
+  " Plug 'mg979/vim-visual-multi'
   Plug 'tpope/vim-abolish'
 
   " Managers
