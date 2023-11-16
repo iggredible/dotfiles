@@ -1,4 +1,6 @@
 {
+  "list.smartCase": true,
+  "suggest.ignoreRegexps": ["\\."],
   "suggest.minTriggerInputLength": 2,
   "suggest.virtualText": true,
   "diagnostic.virtualText": true,
