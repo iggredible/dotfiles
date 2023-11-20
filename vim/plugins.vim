@@ -23,9 +23,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'slim-template/vim-slim'
   Plug 'pangloss/vim-javascript'
   Plug 'tpope/vim-bundler'
+  Plug 'lepture/vim-jinja'
 
   " Editing
-  Plug 'Yggdroot/indentLine'
   Plug 'luochen1990/rainbow'
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'machakann/vim-sandwich'
