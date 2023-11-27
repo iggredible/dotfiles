@@ -1,13 +1,11 @@
 " -------------------------
 " Configs
 " -------------------------
-
-" show mundo on the right
-let g:mundo_right = 1
+let g:undotree_WindowLayout = 4
+let g:undotree_ShortIndicators = 1
 
 " -------------------------
 " Keymaps
 " -------------------------
 
-nnoremap <Leader>u :MundoToggle<CR>
-
+nnoremap <Leader>u :UndotreeToggle<CR>

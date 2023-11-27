@@ -1,13 +1,9 @@
 colorscheme PaperColor
 
-let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch' ],
-      \             [ 'readonly', 'filename', 'modified' ] ],
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
-      \ }}
-
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default.dark': {
+  \       'transparent_background': 1
+  \     }
+  \   }
+  \ }

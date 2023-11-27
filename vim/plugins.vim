@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'NLKNguyen/papercolor-theme'
   Plug 'itchyny/lightline.vim'
   Plug 'ryanoasis/vim-devicons'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
   " Searches
   Plug 'junegunn/fzf.vim'
@@ -35,7 +36,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tomtom/tcomment_vim'
   Plug 'iggredible/argh.vim'
   Plug 'junegunn/vim-peekaboo'
-  Plug 'simnalamburt/vim-mundo'
+  Plug 'mbbill/undotree'
+
   " Plug 'mg979/vim-visual-multi'
   Plug 'tpope/vim-abolish'
 
