@@ -35,8 +35,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'markonm/traces.vim'
   Plug 'tomtom/tcomment_vim'
   Plug 'iggredible/argh.vim'
-  Plug 'junegunn/vim-peekaboo'
   Plug 'mbbill/undotree'
+  Plug 'terryma/vim-smooth-scroll'
+
+  " Registers
+  Plug 'junegunn/vim-peekaboo'
+  Plug 'inkarkat/vim-ReplaceWithRegister'
 
   " Plug 'mg979/vim-visual-multi'
   Plug 'tpope/vim-abolish'

@@ -24,6 +24,9 @@ nnoremap <Leader>rm :delm!<Space>
 nnoremap <Leader>rb :RemoveWhichBuffer<Space>
 nnoremap <Leader>rB :call RemoveAllBuffers()<CR>
 
+nnoremap <Leader>rr :call RemoveARegister()<CR>
+nnoremap <Leader>rR :call RemoveAllRegisters()<CR>
+
 nnoremap gx :call OpenURLUnderCursor()<CR>
 
 nnoremap <Leader>{ <C-w>R<CR>
