@@ -31,6 +31,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'machakann/vim-sandwich'
   Plug 'tpope/vim-endwise'
+  Plug 'rstacruz/vim-closer'
   Plug 'tpope/vim-unimpaired'
   Plug 'markonm/traces.vim'
   Plug 'tomtom/tcomment_vim'
