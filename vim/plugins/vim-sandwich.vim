@@ -27,6 +27,22 @@ let g:sandwich#recipes += [
       \     'input'       : ['m'],
       \     'listexpr'    : 1,
       \     'nesting'     : 1,
+      \   },
+      \   {
+      \     'buns'        : ['#{', '}'],
+      \     'filetype'    : ['ruby'],
+      \     'kind'        : ['add', 'replace'],
+      \     'action'      : ['add'],
+      \     'input'       : ['l'],
+      \     'nesting'     : 1,
+      \   },
+      \   {
+      \     'buns'        : ['${', '}'],
+      \     'filetype'    : ['javascript', 'javascriptreact'],
+      \     'kind'        : ['add', 'replace'],
+      \     'action'      : ['add'],
+      \     'input'       : ['l'],
+      \     'nesting'     : 1,
       \   }
       \ ]
 
