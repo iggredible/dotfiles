@@ -33,7 +33,7 @@ let g:sandwich#recipes += [
       \     'filetype'    : ['ruby'],
       \     'kind'        : ['add', 'replace'],
       \     'action'      : ['add'],
-      \     'input'       : ['l'],
+      \     'input'       : ['s'],
       \     'nesting'     : 1,
       \   },
       \   {
@@ -41,7 +41,7 @@ let g:sandwich#recipes += [
       \     'filetype'    : ['javascript', 'javascriptreact'],
       \     'kind'        : ['add', 'replace'],
       \     'action'      : ['add'],
-      \     'input'       : ['l'],
+      \     'input'       : ['s'],
       \     'nesting'     : 1,
       \   }
       \ ]

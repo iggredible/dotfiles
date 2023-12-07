@@ -37,7 +37,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tomtom/tcomment_vim'
   Plug 'iggredible/argh.vim'
   Plug 'mbbill/undotree'
-  Plug 'terryma/vim-smooth-scroll'
+  Plug 'tommcdo/vim-exchange'
 
   " Registers
   Plug 'junegunn/vim-peekaboo'
@@ -72,4 +72,5 @@ call plug#begin('~/.vim/plugged')
 
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  
 call plug#end()
