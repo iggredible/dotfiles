@@ -38,6 +38,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'iggredible/argh.vim'
   Plug 'mbbill/undotree'
   Plug 'tommcdo/vim-exchange'
+  Plug 'kshenoy/vim-signature'
+  Plug 'dahu/vim-fanfingtastic'
+  Plug 'tpope/vim-repeat'
+  Plug 'romainl/vim-cool'
 
   " Registers
   Plug 'junegunn/vim-peekaboo'
