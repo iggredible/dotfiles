@@ -43,7 +43,24 @@ let g:sandwich#recipes += [
       \     'action'      : ['add'],
       \     'input'       : ['s'],
       \     'nesting'     : 1,
-      \   }
+      \   },
+      \   {
+      \     'buns'        : ['${', '}'],
+      \     'filetype'    : ['javascript', 'javascriptreact'],
+      \     'kind'        : ['add', 'replace'],
+      \     'action'      : ['add'],
+      \     'input'       : ['s'],
+      \     'nesting'     : 1,
+      \   },
+      \   {
+      \     'buns'        : 'SandwichRubyArrayInput()',
+      \     'filetype'    : ['ruby'],
+      \     'kind'        : ['add', 'replace'],
+      \     'action'      : ['add'],
+      \     'input'       : ['a'],
+      \     'listexpr'    : 1,
+      \     'nesting'     : 1,
+      \   },
       \ ]
 
 function! SandwichRubyMethodInput() abort
@@ -55,3 +72,16 @@ function! SandwichRubyMethodInput() abort
   endif
   return [struct, ")\rend"]
 endfunction
+
+" enters w, or i, or whatever
+function! SandwichRubyArrayInput() abort
+  let s:ArrayLast = input('Array type: ')
+  if s:ArrayLast !=# ''
+    let struct = '%' . s:ArrayLast . '('
+  else
+    throw 'OperatorSandwichCancel'
+  endif
+  return [struct, ')']
+endfunction
+
+

@@ -42,6 +42,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'dahu/vim-fanfingtastic'
   Plug 'tpope/vim-repeat'
   Plug 'romainl/vim-cool'
+  Plug 'Konfekt/FastFold'
 
   " Registers
   Plug 'junegunn/vim-peekaboo'
@@ -52,10 +53,10 @@ call plug#begin('~/.vim/plugged')
 
   " Managers
   Plug 'szw/vim-maximizer'
-  Plug 't9md/vim-choosewin'
   Plug 'tpope/vim-obsession'
   Plug 'preservim/nerdtree'
   Plug 'tpope/vim-dotenv'
+  Plug 'simeji/winresizer'
 
   " Debugger
   " Plug 'puremourning/vimspector'
