@@ -35,25 +35,20 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-unimpaired'
   Plug 'markonm/traces.vim'
   Plug 'tomtom/tcomment_vim'
-  Plug 'iggredible/argh.vim'
   Plug 'mbbill/undotree'
   Plug 'tommcdo/vim-exchange'
   Plug 'kshenoy/vim-signature'
   Plug 'dahu/vim-fanfingtastic'
   Plug 'tpope/vim-repeat'
   Plug 'romainl/vim-cool'
-  Plug 'Konfekt/FastFold'
+  Plug 'svermeulen/vim-yoink'
 
   " Registers
   Plug 'junegunn/vim-peekaboo'
   Plug 'inkarkat/vim-ReplaceWithRegister'
 
-  " Plug 'mg979/vim-visual-multi'
-  Plug 'tpope/vim-abolish'
-
   " Managers
   Plug 'szw/vim-maximizer'
-  Plug 'tpope/vim-obsession'
   Plug 'preservim/nerdtree'
   Plug 'tpope/vim-dotenv'
   Plug 'simeji/winresizer'
