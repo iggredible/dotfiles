@@ -1,9 +1,5 @@
 " DEPS: node (13 or up)
 
-" -------------------------
-" Configs
-" -------------------------
-
 " To list the extensions, run :CocList extensions
 
 " NOTE: coc-db requires dadbod plugin
@@ -19,10 +15,6 @@ let g:coc_global_extensions = [
       \]
 
 let g:coc_config_home = expand('<sfile>:p:h')
-
-" -------------------------
-" Keymaps
-" -------------------------
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable

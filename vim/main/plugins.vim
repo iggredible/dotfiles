@@ -6,14 +6,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'mhinz/vim-signify'
 
-  " Themes
-  Plug 'sjl/badwolf'
+  " Interface
   Plug 'NLKNguyen/papercolor-theme'
   Plug 'itchyny/lightline.vim'
   Plug 'ryanoasis/vim-devicons'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plug 'luochen1990/rainbow'
+  Plug 'nathanaelkane/vim-indent-guides'
 
-  " Searches
+  " Searching
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
@@ -26,8 +27,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'lepture/vim-jinja'
 
   " Editing
-  Plug 'luochen1990/rainbow'
-  Plug 'nathanaelkane/vim-indent-guides'
   Plug 'machakann/vim-sandwich'
   Plug 'tpope/vim-endwise'
   Plug 'rstacruz/vim-closer'
@@ -41,23 +40,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-repeat'
   Plug 'romainl/vim-cool'
   Plug 'svermeulen/vim-yoink'
-
-  " Registers
   Plug 'junegunn/vim-peekaboo'
   Plug 'inkarkat/vim-ReplaceWithRegister'
 
   " Managers
   Plug 'szw/vim-maximizer'
   Plug 'preservim/nerdtree'
-  Plug 'tpope/vim-dotenv'
   Plug 'simeji/winresizer'
+  Plug 'tpope/vim-dotenv'
 
-  " Debugger
-  " Plug 'puremourning/vimspector'
-
-  " Snippets
-  Plug 'honza/vim-snippets'
-"
   " Tmux
   Plug 'christoomey/vim-tmux-navigator'
 
@@ -69,8 +60,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-dispatch'
   Plug 'preservim/vimux'
 
-  " Autocompletion
+  " Completion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  
+  Plug 'honza/vim-snippets'
 call plug#end()
-

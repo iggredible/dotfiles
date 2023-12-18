@@ -1,7 +1,3 @@
-" -------------------------
-" Keymaps
-" -------------------------
-
 " Use <C-s> for both expand and jump (make expand higher priority.)
 imap <C-s> <Plug>(coc-snippets-expand-jump)
 

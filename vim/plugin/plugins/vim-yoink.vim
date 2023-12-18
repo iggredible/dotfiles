@@ -1,13 +1,5 @@
-" -------------------------
-" Configs
-" -------------------------
-
 let g:yoinkSwapClampAtEnds = 0
 let g:yoinkSyncNumberedRegisters = 1
-
-" -------------------------
-" Keymaps
-" -------------------------
 
 nmap <c-n> <plug>(YoinkPostPasteSwapBack)
 nmap <c-p> <plug>(YoinkPostPasteSwapForward)

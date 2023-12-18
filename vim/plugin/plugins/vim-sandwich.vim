@@ -1,7 +1,3 @@
-" -------------------------
-" Configs
-" -------------------------
-
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 
 " Add spaces inside brackets when using {, [, or (
@@ -83,5 +79,3 @@ function! SandwichRubyArrayInput() abort
   endif
   return [struct, ')']
 endfunction
-
-

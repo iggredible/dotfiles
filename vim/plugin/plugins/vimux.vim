@@ -1,6 +1,3 @@
-" -------------------------
-" Helpers
-" -------------------------
 " Modified https://github.com/jgdavey/tslime.vim into an operator
 function! VimuxSlimeExe(text = '')
   call VimuxRunCommand(a:text)
@@ -23,10 +20,6 @@ endfunction
 function! ShowVimuxRspec()
   call popup_menu(g:vimux_rspec_commands, {'callback': 'RSpecSelected'})
 endfunction
-
-" -------------------------
-" Keymaps
-" -------------------------
 
 nnoremap <Leader>vp :VimuxPromptCommand<CR>
 

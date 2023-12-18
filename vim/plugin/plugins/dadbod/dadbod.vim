@@ -1,7 +1,3 @@
-" -------------------------
-" Configs
-" -------------------------
-
 " NOTE: Adding SQL connections to dadbod
 " create .env in project root
 " the DB urls keys must start with DB_
@@ -30,10 +26,6 @@ endfunc
 func! DadbodExe(db_script = '')
   execute "DB " . a:db_script
 endfunc
-
-" -------------------------
-" Keymaps
-" -------------------------
 
 " https://habamax.github.io/2019/09/02/use-vim-dadbod-to-query-databases.html
 nnoremap <leader>dd :SelectDB<CR>
