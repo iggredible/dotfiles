@@ -1,1 +1,19 @@
-runtime loader.vim
+let g:mapleader = "\<Space>"
+
+" Load from vim/
+let g:fileList = []
+let g:fileList += ['/main/**vim']
+let g:fileList += ['/plugins/**.vim']
+
+if filereadable(getcwd() . '/.vim/vimrc.local')
+  let g:fileList += [getcwd() . '/.vim/vimrc.local']
+endif
+
+for fpath in g:fileList
+  exe 'runtime!' fpath
+endfor
+
+nnoremap <Leader>ve :vsplit $HOME/.vim/<CR>
+nnoremap <Leader>vs :source $HOME/.vim/vimrc<CR>
+
+" TODO: move everything inside .vim/plugins/ into .vim/plugin/plugins/

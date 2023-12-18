@@ -3,3 +3,5 @@ function! OpenURLUnderCursor()
   silent exec "!open '" . l:uri . "'"
   redraw!
 endfunction
+
+nnoremap gx :call OpenURLUnderCursor()<CR>

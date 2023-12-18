@@ -53,3 +53,4 @@ function! OperatorWrapper(partialFunc = 'test_null_function', context = {}, type
     let a:context.dot_command = v:true
   endtry
 endfunction
+

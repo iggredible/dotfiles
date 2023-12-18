@@ -40,3 +40,6 @@ if filereadable(s:english_dict)
   let &dictionary=s:english_dict
 endif
 
+" Interface
+set termguicolors
+set background=dark

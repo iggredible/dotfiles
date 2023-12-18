@@ -11,3 +11,6 @@ function! RemoveARegister() abort
   call setreg(s:register_to_clear, []) 
   echo 'register ' . s:register_to_clear . ' is cleared!'
 endfunc
+
+nnoremap <Leader>rr :call RemoveARegister()<CR>
+nnoremap <Leader>rR :call RemoveAllRegisters()<CR>

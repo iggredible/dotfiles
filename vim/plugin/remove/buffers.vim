@@ -15,3 +15,6 @@ function! RemoveMatchingBuffers(pattern)
 endfunction
 
 command! -nargs=1 RemoveWhichBuffer call RemoveMatchingBuffers(<f-args>)
+
+nnoremap <Leader>rb :RemoveWhichBuffer<Space>
+nnoremap <Leader>rB :call RemoveAllBuffers()<CR>
