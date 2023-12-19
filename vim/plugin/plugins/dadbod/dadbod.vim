@@ -30,9 +30,9 @@ endfunc
 " https://habamax.github.io/2019/09/02/use-vim-dadbod-to-query-databases.html
 nnoremap <leader>dd :SelectDB<CR>
 
-nnoremap <expr> <Plug>DadbodExe     OperatorWrapper('DadbodExe')
-xnoremap <expr> <Plug>DadbodExe     OperatorWrapper('DadbodExe')
-nnoremap <expr> <Plug>DadbodExeLine OperatorWrapper('DadbodExe') .. '_'
+nnoremap <expr> <Plug>DadbodExe     operator#wrapper('DadbodExe')
+xnoremap <expr> <Plug>DadbodExe     operator#wrapper('DadbodExe')
+nnoremap <expr> <Plug>DadbodExeLine operator#wrapper('DadbodExe') .. '_'
 
 nnoremap gd <Plug>DadbodExe
 xnoremap gd <Plug>DadbodExe

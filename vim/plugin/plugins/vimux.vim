@@ -23,9 +23,9 @@ endfunction
 
 nnoremap <Leader>vp :VimuxPromptCommand<CR>
 
-nnoremap <expr> <Plug>VimuxSlimeExe OperatorWrapper('VimuxSlimeExe')
-xnoremap <expr> <Plug>VimuxSlimeExe OperatorWrapper('VimuxSlimeExe')
-nnoremap <expr> <Plug>VimuxSlimeExeLine OperatorWrapper('VimuxSlimeExe') .. '_'
+nnoremap <expr> <Plug>VimuxSlimeExe operator#wrapper('VimuxSlimeExe')
+xnoremap <expr> <Plug>VimuxSlimeExe operator#wrapper('VimuxSlimeExe')
+nnoremap <expr> <Plug>VimuxSlimeExeLine operator#wrapper('VimuxSlimeExe') .. '_'
 
 nnoremap gs <Plug>VimuxSlimeExe
 xnoremap gs <Plug>VimuxSlimeExe
