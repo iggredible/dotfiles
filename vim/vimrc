@@ -3,8 +3,8 @@ let g:mapleader = "\<Space>"
 " Load from vim/
 let g:fileList = []
 let g:fileList += ['/main/**.vim']
-let g:fileList += ['/plugins/**.vim']
 
+" Local overrides
 if filereadable(getcwd() . '/.vim/vimrc.local')
   let g:fileList += [getcwd() . '/.vim/vimrc.local']
 endif
