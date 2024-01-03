@@ -1,16 +1,14 @@
-if !has('nvim')
-  " unsaved changed buffer is hidden
-  set hidden
+" unsaved changed buffer is hidden
+set hidden
 
-  " easier search
-  set hlsearch
+" easier search
+set hlsearch
 
-  " show how many matches when searching with / or ?
-  set shortmess-=S
+" show how many matches when searching with / or ?
+set shortmess-=S
 
-  " don't give the file info when editing a file
-  set shortmess+=F
-endif
+" don't give the file info when editing a file
+set shortmess+=F
 
 " allow yank and paste without prepending "*
 set clipboard=unnamed

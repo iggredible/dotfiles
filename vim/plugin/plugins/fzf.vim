@@ -56,14 +56,14 @@ command! -bang -nargs=* Rg
 " -------------------------
 " Keymaps
 " -------------------------
-nnoremap <silent> <C-f> :GFiles<CR>
-nnoremap <silent> <C-g> :Rg<CR>
-nnoremap <silent> <C-b> :Buffers<CR>
+nnoremap <C-f> :GFiles<CR>
+nnoremap <C-g> :Rg<CR>
+nnoremap <C-b> :Buffers<CR>
 
-nnoremap <silent> <Leader>f/ :Lines<CR>
-nnoremap <silent> <Leader>fh :Helptags<CR>
-nnoremap <silent> <Leader>fo :History<CR>
-nnoremap <silent> <Leader>fg :GFiles?<CR>
+nnoremap <Leader>f/ :Lines<CR>
+nnoremap <Leader>fh :Helptags<CR>
+nnoremap <Leader>fo :History<CR>
+nnoremap <Leader>fg :GFiles?<CR>
 
 nnoremap git :BCommits<CR>
 
