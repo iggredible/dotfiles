@@ -4,14 +4,10 @@ let g:mapleader = "\<Space>"
 let g:fileList = []
 let g:fileList += ['/main/**.vim']
 
-" Local overrides
-if filereadable(getcwd() . '/.vim/vimrc.local')
-  let g:fileList += [getcwd() . '/.vim/vimrc.local']
-endif
-
 for fpath in g:fileList
-  exe 'runtime!' fpath
+  exe 'runtime! ' . fpath
 endfor
 
 nnoremap <Leader>ve :vsplit $HOME/.vim/<CR>
 nnoremap <Leader>vs :source $HOME/.vim/vimrc<CR>
+
