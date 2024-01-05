@@ -2,7 +2,7 @@
 
 " To list the extensions, run :CocList extensions
 
-" NOTE: coc-db requires dadbod plugin
+" coc-db requires dadbod plugin
 " CoC saves the extensions inside
 " ~/.config/coc/extensions/package.json
 let g:coc_global_extensions = [
@@ -17,9 +17,9 @@ let g:coc_global_extensions = [
 let g:coc_config_home = expand('<sfile>:p:h')
 
 " Use tab for trigger completion with characters ahead and navigate
-" NOTE: There's always complete item selected by default, you may want to enable
+" There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": true` in your configuration file
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :

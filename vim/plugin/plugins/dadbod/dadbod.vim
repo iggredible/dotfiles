@@ -1,4 +1,4 @@
-" NOTE: Adding SQL connections to dadbod
+" NOTE: Need to add SQL connections to dadbod
 " create .env in project root
 " the DB urls keys must start with DB_
 " DEVELOPMENT_DB=mysql://user:passw0rD@127.0.0.1/db1
