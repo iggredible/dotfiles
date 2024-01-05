@@ -1,10 +1,10 @@
 let g:mapleader = "\<Space>"
 
 " Load from vim/
-let g:fileList = []
-let g:fileList += ['/main/**.vim']
+let g:pathList = []
+let g:pathList += ['/main/**.vim']
 
-for fpath in g:fileList
+for fpath in g:pathList
   exe 'runtime! ' . fpath
 endfor
 
