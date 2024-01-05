@@ -1,5 +1,4 @@
 function! operator#wrapper(partialFunc = 'test_null_function', context = {}, type = '') abort
-  echo 'FOO'
   if a:type == ''
     let context = #{
       \ dot_command: v:false,
