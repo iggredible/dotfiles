@@ -31,7 +31,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'inkarkat/vim-ReplaceWithRegister'
   Plug 'szw/vim-maximizer'
   Plug 'preservim/nerdtree'
-    " Plug 'ryanoasis/vim-devicons'
+    Plug 'ryanoasis/vim-devicons'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'simeji/winresizer'
   Plug 'tpope/vim-dotenv'
