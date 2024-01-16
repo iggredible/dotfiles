@@ -10,4 +10,3 @@ endfor
 
 nnoremap <Leader>ve :vsplit $HOME/.vim/<CR>
 nnoremap <Leader>vs :source $HOME/.vim/vimrc<CR>
-
