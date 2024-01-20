@@ -7,7 +7,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'luochen1990/rainbow'
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf.vim', { 'do': { -> deps#install('ripgrep') } }
   Plug 'tpope/vim-rails'
   Plug 'vim-ruby/vim-ruby'
   Plug 'slim-template/vim-slim'

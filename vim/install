@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ $# -lt 1 ]; then
+  echo "Usage: $0 <argument>"
+  exit 1
+fi
+
+echo "Installing $1..."
+
+# Check if Homebrew is installed
+if command -v brew >/dev/null 2>&1; then
+  brew install $1
+else
+  echo "Homebrew is not installed."
+  exit 1
+fi
+
+# Check if the program was installed successfully
+if [ $? -ne 0 ]; then
+  echo "Failed to install $1."
+  exit 1
+fi
+
+# Print a success message
+echo "$1 was installed successfully."
