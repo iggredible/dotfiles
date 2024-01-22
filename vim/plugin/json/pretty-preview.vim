@@ -33,6 +33,7 @@ function! JSONBufferPreview()
     let l:reg_save = getreginfo('"')
     execute 'silent noautocmd keepjumps normal vajy'
     call BufferFactory('json_previewer.json')
+    execute 'normal! ggdG'
     execute 'normal! P'
     execute '%!jq .'
     call setreg('"', l:reg_save)
@@ -42,4 +43,4 @@ function! JSONBufferPreview()
 endfunction
 
 nnoremap <Plug>JSONBufferPreview :call JSONBufferPreview()<CR>
-nmap jq <Plug>JSONBufferPreview
+nmap gjq <Plug>JSONBufferPreview
