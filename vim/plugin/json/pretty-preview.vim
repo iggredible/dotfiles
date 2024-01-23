@@ -5,10 +5,14 @@ function! s:setJsonBuffer()
   setlocal noswapfile
 endfunction
 
-function! s:openBufferWindow(scratch_buffer_name)
-  vsplit
-  execute "buffer " . a:scratch_buffer_name
-  return
+function! s:goToBufferWindow(scratch_buffer_name)
+  if bufwinnr(a:scratch_buffer_name) == -1
+    vsplit
+    execute 'buffer ' . a:scratch_buffer_name
+  else
+    let win_num = bufwinnr(a:scratch_buffer_name)
+    execute win_num . 'wincmd w'
+  endif
 endfunction
 
 function! s:createNewBuffer(scratch_buffer_name)
@@ -19,10 +23,10 @@ function! s:createNewBuffer(scratch_buffer_name)
 endfunction
 
 " Public methods
-function! BufferFactory(scratch_buffer_name = 'json_previewer.json')
+function! CreateOrGoToBuffer(scratch_buffer_name = 'json_previewer.json')
   let l:scratch_buffer_name = a:scratch_buffer_name
-  if bufwinnr(l:scratch_buffer_name) == -1 && bufexists(l:scratch_buffer_name)
-    call s:openBufferWindow(l:scratch_buffer_name)
+  if bufexists(l:scratch_buffer_name)
+    call s:goToBufferWindow(l:scratch_buffer_name)
   else
     call s:createNewBuffer(l:scratch_buffer_name)
   endif
@@ -32,8 +36,8 @@ function! JSONBufferPreview()
   if executable('jq')
     let l:reg_save = getreginfo('"')
     execute 'silent noautocmd keepjumps normal vajy'
-    call BufferFactory('json_previewer.json')
-    execute 'normal! ggdG'
+    call CreateOrGoToBuffer('json_previewer.json')
+    execute 'normal! gg"_dG'
     execute 'normal! P'
     execute '%!jq .'
     call setreg('"', l:reg_save)
