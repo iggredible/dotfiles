@@ -47,4 +47,4 @@ function! JSONBufferPreview()
 endfunction
 
 nnoremap <Plug>JSONBufferPreview :call JSONBufferPreview()<CR>
-nmap gjq <Plug>JSONBufferPreview
+nmap <Leader>jq <Plug>JSONBufferPreview
