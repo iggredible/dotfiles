@@ -1,4 +1,6 @@
-" Source: https://github.com/tpope/vim-jdaddy/
+" Source: tpope/vim-jdaddy https://github.com/tpope/vim-jdaddy/
+" replaced jdaddy with json, only use the necessary methods
+
 function! json#inner_pos(...) abort
   let cnt = a:0 ? a:1 : 1
   let line = getline('.')
@@ -85,4 +87,8 @@ function! json#outer_movement(count) abort
   call setpos("'[", [0, lopen, copen, 0])
   call setpos("']", [0, lclose, cclose, 0])
   return s:movement_string(lopen, copen) . 'o' . s:movement_string(lclose, cclose)
+endfunction
+
+function! s:gsub(str,pat,rep) abort
+  return substitute(a:str,'\v\C'.a:pat,a:rep,'g')
 endfunction
