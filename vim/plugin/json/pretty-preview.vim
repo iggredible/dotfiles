@@ -22,8 +22,7 @@ function! s:createNewBuffer(scratch_buffer_name)
   return
 endfunction
 
-" Public methods
-function! CreateOrGoToBuffer(scratch_buffer_name = 'json_previewer.json')
+function! s:createOrGoToBuffer(scratch_buffer_name = 'json_previewer.json')
   let l:scratch_buffer_name = a:scratch_buffer_name
   if bufexists(l:scratch_buffer_name)
     call s:goToBufferWindow(l:scratch_buffer_name)
@@ -32,19 +31,25 @@ function! CreateOrGoToBuffer(scratch_buffer_name = 'json_previewer.json')
   endif
 endfunction
 
+function! s:jqFilter() abort
+  let l:jq_filter = input("jq filter: ")
+  if l:jq_filter == '' | let l:jq_filter = '.' | endif
+  execute '%!jq ' . "'" . l:jq_filter . "'"
+endfunction
+
 function! JSONBufferPreview()
   if executable('jq')
     let l:reg_save = getreginfo('"')
     execute 'silent noautocmd keepjumps normal vajy'
-    call CreateOrGoToBuffer('json_previewer.json')
+    call s:createOrGoToBuffer('json_previewer.json')
     execute 'normal! gg"_dG'
     execute 'normal! P'
-    execute '%!jq .'
+    call s:jqFilter()
     call setreg('"', l:reg_save)
   else
     throw 'Please install jq.'
   endif
 endfunction
 
-nnoremap <Plug>JSONBufferPreview :call JSONBufferPreview()<CR>
+nnoremap <silent> <Plug>JSONBufferPreview :call JSONBufferPreview()<CR>
 nmap <Leader>jq <Plug>JSONBufferPreview
