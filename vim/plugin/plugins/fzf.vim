@@ -10,6 +10,10 @@
 " :grep -g '*.rb' foo
 " For more: https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
 " Ripgrep also supports regex: https://docs.rs/regex/1.7.1/regex/#syntax
+"
+" To exclude or ignore directories
+" :grep -g '!spec/*' -g '!test/*' FooMailer
+" :grep -g '!{**/node_modules/*,**/.git/*}' FooMailer
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --smart-case
 endif
