@@ -1,3 +1,7 @@
 " quickly yank current file path
-nnoremap <silent> cp :let @* = expand("%:t")<CR>
-nnoremap <silent> cP :let @* = expand("%:p")<CR>
+nnoremap <silent> <leader>cp :let @* = expand("%:t")<CR>
+nnoremap <silent> <leader>cP :let @* = expand("%:~:.")<CR>
+
+" display paths
+nnoremap <silent> <leader>pp :echo expand("%:t")<CR>
+nnoremap <silent> <leader>PP :echo expand("%:~:.")<CR>

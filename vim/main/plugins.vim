@@ -43,4 +43,5 @@ call plug#begin('~/.vim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'honza/vim-snippets'
   Plug 'bfrg/vim-jqplay'
+  Plug 'iggredible/chatty.vim'
 call plug#end()
