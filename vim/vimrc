@@ -1,12 +1,98 @@
 let g:mapleader = "\<Space>"
 
-" Load from vim/
-let g:pathList = []
-let g:pathList += ['/main/**.vim']
+" ----- Plugins -----
+call plug#begin('~/.vim/plugged')
+  Plug 'tpope/vim-sensible'
+  Plug 'tpope/vim-fugitive'
+  Plug 'mhinz/vim-signify'
+  Plug 'NLKNguyen/papercolor-theme'
+  Plug 'itchyny/lightline.vim'
+  Plug 'luochen1990/rainbow'
+  Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim', { 'do': { -> deps#install('ripgrep') } }
+  Plug 'tpope/vim-rails'
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'slim-template/vim-slim'
+  Plug 'pangloss/vim-javascript'
+  Plug 'tpope/vim-bundler'
+  Plug 'lepture/vim-jinja'
+  Plug 'machakann/vim-sandwich'
+  Plug 'tpope/vim-endwise'
+  Plug 'rstacruz/vim-closer'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'markonm/traces.vim'
+  Plug 'tomtom/tcomment_vim'
+  Plug 'mbbill/undotree'
+  Plug 'tommcdo/vim-exchange'
+  Plug 'kshenoy/vim-signature'
+  Plug 'tpope/vim-repeat'
+  Plug 'romainl/vim-cool'
+  Plug 'svermeulen/vim-yoink'
+  Plug 'junegunn/vim-peekaboo'
+  Plug 'inkarkat/vim-ReplaceWithRegister'
+  Plug 'szw/vim-maximizer'
+  Plug 'preservim/nerdtree'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plug 'simeji/winresizer'
+  Plug 'tpope/vim-dotenv'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'tpope/vim-dadbod'
+    Plug 'kristijanhusak/vim-dadbod-ui'
+  Plug 'tpope/vim-dispatch'
+  Plug 'preservim/vimux'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'honza/vim-snippets'
+  Plug 'bfrg/vim-jqplay'
+  Plug 'iggredible/chatty.vim'
+call plug#end()
 
-for fpath in g:pathList
-  exe 'runtime! ' . fpath
-endfor
 
-nnoremap <Leader>ve :vsplit $HOME/.vim/<CR>
+" ----- Settings -----
+" unsaved changed buffer is hidden
+set hidden
+
+" easier search
+set hlsearch
+
+" show how many matches when searching with / or ?
+set shortmess-=S
+
+" don't give the file info when editing a file
+set shortmess+=F
+
+" allow yank and paste without prepending "*
+set clipboard=unnamed
+
+" don't create swapfile
+set noswapfile
+
+" make it easy to target a specific line
+set relativenumber number
+
+" consistent tabs and spacings
+set tabstop=2 shiftwidth=2
+set expandtab
+
+" easier search
+set ignorecase smartcase
+
+" raises dialog
+set confirm
+
+" more natural window placement when splitting
+set splitbelow splitright
+
+let s:english_dict = "/usr/share/dict/words"
+
+if filereadable(s:english_dict)
+  let &dictionary=s:english_dict
+endif
+
+" Interface
+set termguicolors
+set background=dark
+
+" Source vimrc
 nnoremap <Leader>vs :source $HOME/.vim/vimrc<CR>

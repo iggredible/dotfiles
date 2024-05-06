@@ -17,22 +17,3 @@ function! go_to#next_or_previous_indent(inc)
     call setpos('.', currentPos)
   endif
 endfunction
-
-function! go_to#next_or_previous_json_key(inc)
-  let currentPos = getpos('.')
-  " call go_to#next_or_previous_indent(a:inc)
-  " let nextLine
-  " check if the next line is the 'sibling key'
-  " What IS a sibling key?
-
-  
-  " once we're on the next indent, either:
-  " the line below is the sibling key, or
-  " the line beelow is not the silbing key
-  "
-  " if the line below is the silbing key, then
-  " move the cursor to the line
-  "
-  " if the line below is not the sibling key, then
-  " NOOP
-endfunction
