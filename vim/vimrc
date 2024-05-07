@@ -1,5 +1,50 @@
 let g:mapleader = "\<Space>"
 
+" ----- Settings -----
+" unsaved changed buffer is hidden
+set hidden
+
+" easier search
+set hlsearch
+
+" show how many matches when searching with / or ?
+set shortmess-=S
+
+" don't give the file info when editing a file
+set shortmess+=F
+
+" allow yank and paste without prepending "*
+set clipboard=unnamed
+
+" don't create swapfile
+set noswapfile
+
+" make it easy to target a specific line
+set relativenumber number
+
+" consistent tabs and spacings
+set tabstop=2 shiftwidth=2
+set expandtab
+
+" easier search
+set ignorecase smartcase
+
+" raises dialog
+set confirm
+
+" more natural window placement when splitting
+set splitbelow splitright
+
+let s:english_dict = "/usr/share/dict/words"
+
+if filereadable(s:english_dict)
+  let &dictionary=s:english_dict
+endif
+
+" Interface
+set termguicolors
+set background=dark
+
 " Install vim-plug if it doesn't exist yet
 " https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -57,50 +102,8 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 
-" ----- Settings -----
-" unsaved changed buffer is hidden
-set hidden
-
-" easier search
-set hlsearch
-
-" show how many matches when searching with / or ?
-set shortmess-=S
-
-" don't give the file info when editing a file
-set shortmess+=F
-
-" allow yank and paste without prepending "*
-set clipboard=unnamed
-
-" don't create swapfile
-set noswapfile
-
-" make it easy to target a specific line
-set relativenumber number
-
-" consistent tabs and spacings
-set tabstop=2 shiftwidth=2
-set expandtab
-
-" easier search
-set ignorecase smartcase
-
-" raises dialog
-set confirm
-
-" more natural window placement when splitting
-set splitbelow splitright
-
-let s:english_dict = "/usr/share/dict/words"
-
-if filereadable(s:english_dict)
-  let &dictionary=s:english_dict
-endif
-
-" Interface
-set termguicolors
-set background=dark
-
 " Source vimrc
 nnoremap <Leader>vs :source $HOME/.vim/vimrc<CR>
+
+" Esc alternative
+inoremap <silent> jk <Esc>

@@ -1,23 +1,26 @@
 # Dotfiles
 
-## Installation
+## Vimrc
 
-Please run:
-
-```
-sh -c "`curl -fsSL https://raw.githubusercontent.com/iggredible/dotfiles/master/install.sh`"
-```
-
-**WIP, stay tuned! :)**
-
-## Symlink
+First,lone this repository. I like to keep it in `~/projects/`.
 
 ```
-rm ~/.vimrc
-ln -s ~/path/to/dotfiles/vim/ ~/.vim
+git clone https://github.com/iggredible/dotfiles.git
 ```
 
-## Neovim
+### Symlink
+
+While automatic installation is WIP:
+1. Install the dependencies (`git`, `fzf`, `ripgrep`, `node`)
+2. Remove any existing vimrc and symlink a `.vim` directory to `dotfiles/vim/` directory
+
+```
+rm -r ~/.vimrc
+rm -r ~/.vim
+ln -s ~/projects/dotfiles/vim ~/.vim
+```
+
+### Neovim
 
 If using neovim, create `~/.config/init.vim`. Inside, add:
 ```

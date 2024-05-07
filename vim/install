@@ -1,25 +1,39 @@
 #!/bin/bash
+# WIP
 
-if [ $# -lt 1 ]; then
-  echo "Usage: $0 <argument>"
-  exit 1
+# 1. Check if I'm on Mac / Termux / WSL / whatever
+# 2. Get a list of deps (Mac vs Termux: termux needs openssh-tool also
+# 3. Check if I have them installed. If not, install them
+# Check if running on Mac
+if [[ $(uname) == "Darwin" ]]; then
+    echo "You are on a Mac."
+    # to mac stuff
+    # exit
 fi
 
-echo "Installing $1..."
-
-# Check if Homebrew is installed
-if command -v brew >/dev/null 2>&1; then
-  brew install $1
-else
-  echo "Homebrew is not installed."
-  exit 1
+# Check if running on Termux
+if [[ -d "/data/data/com.termux" ]]; then
+    echo "You are on Termux."
+    # do termux stuff
+    # exit
 fi
 
-# Check if the program was installed successfully
-if [ $? -ne 0 ]; then
-  echo "Failed to install $1."
-  exit 1
-fi
+# Create an associative array
+# pgrs=("fzf" "ripgrep" "git")
+# cmds=("fzf" "rg" "git")
+# Need to install openssh-tool on termux
 
-# Print a success message
-echo "$1 was installed successfully."
+# Iterate through the keys array
+# for ((i=0; i<${#pgrs[@]}; i++))
+# do
+#     pgr=${pgrs[i]}
+#     cmd=${cmds[i]}
+#     if ! command -v "$cmd" &> /dev/null
+#     then
+#         echo "$cmd command not found, installing..."
+#         # Install the command using brew
+#         brew install "$pgr"
+#     else
+#         echo "$cmd command already exists"
+#     fi
+# done
