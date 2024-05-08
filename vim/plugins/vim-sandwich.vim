@@ -1,4 +1,8 @@
-let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+if exists('g:sandwich#default_recipes')
+  let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+else
+  let g:sandwich#recipes = []
+endif
 
 " Add spaces inside brackets when using {, [, or (
 " Source: https://github.com/machakann/vim-sandwich/wiki/Bracket-with-spaces
