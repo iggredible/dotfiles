@@ -1,14 +1,17 @@
 # Dotfiles
 
+## Tmux
+TODO
+
 ## Vimrc
 
-First,lone this repository. I like to keep it in `~/projects/`.
+### Install
+
+First, clone this repository. I like to keep it in `~/projects/`.
 
 ```
 git clone https://github.com/iggredible/dotfiles.git
 ```
-
-### Symlink
 
 While automatic installation is WIP:
 1. Install the dependencies (`git`, `fzf`, `ripgrep`, `node`)
@@ -28,3 +31,9 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vim/vimrc
 ```
+
+### `lite` Mode
+
+Some plugins are rarely used and can be omitted. On terminal, run `VIM_MODE=lite vim`.
+
+If you've already installed the non-lite plugins, you can uninstall them with `:PlugClean!`.

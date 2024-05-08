@@ -1,0 +1,66 @@
+" Install vim-plug if it doesn't exist yet
+" https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" List of plugins
+call plug#begin('~/.vim/plugged')
+  Plug 'tpope/vim-sensible'
+  Plug 'tpope/vim-fugitive'
+  Plug 'mhinz/vim-signify'
+  Plug 'NLKNguyen/papercolor-theme'
+  Plug 'itchyny/lightline.vim'
+  Plug 'luochen1990/rainbow'
+  Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim', { 'do': { -> deps#install('ripgrep') } }
+  Plug 'tpope/vim-rails'
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'slim-template/vim-slim'
+  Plug 'pangloss/vim-javascript'
+  Plug 'tpope/vim-bundler'
+  Plug 'lepture/vim-jinja'
+  Plug 'machakann/vim-sandwich'
+  Plug 'tpope/vim-endwise'
+  Plug 'rstacruz/vim-closer'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'markonm/traces.vim'
+  Plug 'tomtom/tcomment_vim'
+  Plug 'mbbill/undotree'
+  Plug 'tommcdo/vim-exchange'
+  Plug 'kshenoy/vim-signature'
+  Plug 'tpope/vim-repeat'
+  Plug 'romainl/vim-cool'
+  Plug 'svermeulen/vim-yoink'
+  Plug 'junegunn/vim-peekaboo'
+  Plug 'inkarkat/vim-ReplaceWithRegister'
+  Plug 'szw/vim-maximizer'
+  Plug 'preservim/nerdtree'
+
+  if g:vim_mode != 'lite'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'tpope/vim-dadbod'
+    Plug 'kristijanhusak/vim-dadbod-ui'
+    Plug 'bfrg/vim-jqplay'
+    Plug 'iggredible/chatty.vim'
+  endif
+
+  Plug 'simeji/winresizer'
+  Plug 'tpope/vim-dotenv'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'tpope/vim-dispatch'
+  Plug 'preservim/vimux'
+  Plug 'honza/vim-snippets'
+call plug#end()
+
+" Only source used plugins
+let s:plugin_names = keys(g:plugs)
+for plugin_name in s:plugin_names
+  exe 'runtime! /plugins/' . plugin_name . '.vim'
+endfor
+" exe 'runtime! ' . '/plugins/**.vim'
