@@ -20,7 +20,7 @@ While automatic installation is WIP:
 ```
 rm -r ~/.vimrc
 rm -r ~/.vim
-ln -s ~/projects/dotfiles/vim ~/.vim
+ln -s ~/projects/dotfiles/.vim ~/.vim
 ```
 
 ### Neovim
@@ -36,4 +36,16 @@ source ~/.vim/vimrc
 
 Some plugins are rarely used and can be omitted. On terminal, run `VIM_MODE=lite vim`.
 
+You can also add an alias in `.bashrc` / `.zshrc`:
+```
+alias vimlite='VIM_MODE=lite vim'
+```
+
 If you've already installed the non-lite plugins, you can uninstall them with `:PlugClean!`.
+
+# Tmux
+
+```
+rm .tmux.conf
+ln -s ~/projects/dotfiles/.tmux.conf ~/.tmux.conf
+```
