@@ -1,8 +1,5 @@
-vim/plugged/
-vim/.netrwhist
-
+.vim/plugged/
+.vim/.netrwhist
 tags
-
-.DS_Store
-
 .env
+.DS_Store
