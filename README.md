@@ -22,6 +22,7 @@ rm -r ~/.vimrc
 rm -r ~/.vim
 ln -s ~/projects/dotfiles/.vim ~/.vim
 ```
+Note: when using `vim-devicons`, use `brew list font-hack-nerd-font`, then on iTerm, open Preferences -> Profiles -> Text -> Change Font -> Select `Hack Nerd Font`.
 
 ### Neovim
 
