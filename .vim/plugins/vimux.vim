@@ -31,5 +31,5 @@ nnoremap gs <Plug>VimuxSlimeExe
 xnoremap gs <Plug>VimuxSlimeExe
 nnoremap gss <Plug>VimuxSlimeExeLine
 
-" Conditional keymap for spec files only
+" Conditional keymap for _spec.rb files only
 au! BufRead **/*_spec.rb nnoremap <buffer><expr> <Leader>tt ShowVimuxRspec()
