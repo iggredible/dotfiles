@@ -1,11 +1,11 @@
-function! operator#wrapper(partialFunc = 'test_null_function', context = {}, type = '') abort
+function! operator#wrapper(f = 'test_null_function', context = {}, type = '') abort
   if a:type == ''
     let context = #{
       \ dot_command: v:false,
       \ extend_block: '',
       \ virtualedit: [&l:virtualedit, &g:virtualedit],
       \ }
-    let &operatorfunc = function('operator#wrapper', [a:partialFunc, context])
+    let &operatorfunc = function('operator#wrapper', [a:f, context])
     set virtualedit=block
     return 'g@'
   endif
@@ -17,6 +17,8 @@ function! operator#wrapper(partialFunc = 'test_null_function', context = {}, typ
     \ register: getreginfo('"'),
     \ visual_marks: [getpos("'<"), getpos("'>")],
     \ }
+  
+  let orig_pos = getpos('.')
 
   try
     set clipboard= selection=inclusive virtualedit=
@@ -37,11 +39,17 @@ function! operator#wrapper(partialFunc = 'test_null_function', context = {}, typ
     if a:context.extend_block != ''
       let commands ..= 'oO' .. a:context.extend_block
     endif
+
     let commands ..= 'y'
+    
     execute 'silent noautocmd keepjumps normal! ' .. commands
 
     let regText = getreg('"')
-    execute 'call function(a:partialFunc)(regText)'
+    execute 'call function(a:f)(regText)'
+
+    if a:type ==# 'line'
+      call setpos('.', orig_pos)
+    endif
 
   finally
     call setreg('"', save.register)
