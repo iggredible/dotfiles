@@ -1,11 +1,11 @@
-function! operator#wrapper(f = 'test_null_function', context = {}, type = '') abort
+function! operatorify#wrapper(f = 'test_null_function', context = {}, type = '') abort
   if a:type == ''
     let context = #{
       \ dot_command: v:false,
       \ extend_block: '',
       \ virtualedit: [&l:virtualedit, &g:virtualedit],
       \ }
-    let &operatorfunc = function('operator#wrapper', [a:f, context])
+    let &operatorfunc = function('operatorify#wrapper', [a:f, context])
     set virtualedit=block
     return 'g@'
   endif
@@ -60,4 +60,18 @@ function! operator#wrapper(f = 'test_null_function', context = {}, type = '') ab
     let [&l:virtualedit, &g:virtualedit] = get(a:context.dot_command ? save : a:context, 'virtualedit')
     let a:context.dot_command = v:true
   endtry
+endfunction
+
+function! operatorify#mapper(key, funcname, wrapper = 'operatorify#wrapper') abort
+    let l:plug = '<Plug>' . a:funcname
+    let l:expr = a:wrapper . '("' . a:funcname . '")'
+    let l:last_char = a:key[strlen(a:key)-1]
+
+    execute 'nnoremap <expr> ' . l:plug . ' ' . l:expr
+    execute 'xnoremap <expr> ' . l:plug . ' ' . l:expr
+    execute 'nnoremap <expr> ' . l:plug . 'Line ' . l:expr . ' .. "_"'
+
+    execute 'nnoremap ' . a:key . ' ' . l:plug
+    execute 'xnoremap ' . a:key . ' ' . l:plug
+    execute 'nnoremap ' . a:key . l:last_char . ' ' . l:plug . 'Line'
 endfunction

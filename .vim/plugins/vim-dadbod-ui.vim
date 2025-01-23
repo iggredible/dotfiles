@@ -1,5 +1,3 @@
-" DEPS: nerd fonts
-
 " NOTE: Inside .vim/vimrc.local in your project, change the save location:
 " let g:db_ui_save_location = getcwd() . '/path/to/db/'
 let g:db_ui_save_location = getcwd()

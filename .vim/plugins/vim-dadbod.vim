@@ -1,44 +1,35 @@
-" NOTE: Need to add SQL connections to dadbod
-" create .env in project root
-" the DB urls keys must start with DB_
-" DEVELOPMENT_DB=mysql://user:passw0rD@127.0.0.1/db1
-" PRODUCTION_DB=mysql://prod_user:prodpassw0rD@some_prod_host.com/db2
+" NOTE: Need to add SQL connections to dadbod and connect to it
+" 1. create .env in project root
+" 2. the DB urls keys must start with DB_
+"   DB_DEVELOPMENT=mysql://user:password@127.0.0.1/db
+"   DB_PRODUCTION=mysql://user:password@host.com/db
+" 3. Connect to the query: <leader>dd
 
-function! s:loadDatabases()
+function! LoadDB()
   if exists('*DotenvRead')
     return DotenvRead()->keys()->filter('v:val =~# "DB_"')
   endif
 endfunction
 
-func! SelectDBSource(_id, result)
+function! SelectDBSource(_id, result)
 	if a:result != -1
-    let l:dbs = s:loadDatabases()
+    let l:dbs = LoadDB()
     let l:selection = l:dbs[a:result-1]
 		let g:db = DotenvGet(l:selection)
 		echomsg 'DB ' . l:selection . ' is selected.'
 	endif
-endfunc
-
-func! DadbodExe(db_script = '')
-  execute "DB " . a:db_script
-endfunc
-
-function! SaySomething(something1)
-  echo a:something1
 endfunction
 
-command! -nargs=1 SaySomething :call SaySomething(<f-args>)
-command! SelectDB :call popup_menu(s:loadDatabases(), {
-			\'callback': 'SelectDBSource'
-			\})
-
+" Load Dadbod Database
 " https://habamax.github.io/2019/09/02/use-vim-dadbod-to-query-databases.html
-nnoremap <leader>dd :SelectDB<CR>
+nnoremap <leader>dd :call popup_menu(LoadDB(), { 'callback': 'SelectDBSource' })<CR>
 
-nnoremap <expr> <Plug>DadbodExe     operator#wrapper('DadbodExe')
-xnoremap <expr> <Plug>DadbodExe     operator#wrapper('DadbodExe')
-nnoremap <expr> <Plug>DadbodExeLine operator#wrapper('DadbodExe') .. '_'
+" Create a mapping to execute DB queries
+" Given (where cursor is on S in SELECT):
+"   [S]ELECT * FROM USERS LIMIT 5;
+" Running gdd will execute the query line
+function! DadbodExe(db_script = '')
+  execute "DB " . a:db_script
+endfunction
 
-nnoremap gd <Plug>DadbodExe
-xnoremap gd <Plug>DadbodExe
-nnoremap gdd <Plug>DadbodExeLine
+call operatorify#mapper('gd', 'DadbodExe')
