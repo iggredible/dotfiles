@@ -6,6 +6,12 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" vim-plug usages (https://github.com/junegunn/vim-plug?tab=readme-ov-file#usage)
+" :PlugInstall to install the plugins
+" :PlugUpdate to install or update the plugins
+" :PlugDiff to review the changes from the last update
+" :PlugClean to remove plugins no longer in the list
+
 " List of plugins
 call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-sensible'
@@ -18,7 +24,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'romainl/vim-cool'
   Plug 'tpope/vim-unimpaired'
   Plug 'markonm/traces.vim'
+  Plug 'iggredible/vim-operatorify'
 
+  " export VIM_MODE=lite; vim
   if g:vim_mode != 'lite'
     Plug 'tomtom/tcomment_vim'
     Plug 'tpope/vim-repeat'
@@ -55,12 +63,4 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/vimux'
     Plug 'tpope/vim-dotenv'
   endif
-
 call plug#end()
-
-" Only source used plugins
-let s:plugin_names = keys(g:plugs)
-for plugin_name in s:plugin_names
-  exe 'runtime! /plugins/' . plugin_name . '.vim'
-endfor
-" exe 'runtime! ' . '/plugins/**.vim'

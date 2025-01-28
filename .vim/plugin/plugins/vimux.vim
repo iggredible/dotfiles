@@ -23,7 +23,5 @@ endfunction
 
 nnoremap <Leader>vp :VimuxPromptCommand<CR>
 
-call operatorify#mapper('gs', 'VimuxSlimeExe')
-
 " Conditional keymap for _spec.rb files only
 au! BufRead **/*_spec.rb nnoremap <buffer><expr> <Leader>tt ShowVimuxRspec()

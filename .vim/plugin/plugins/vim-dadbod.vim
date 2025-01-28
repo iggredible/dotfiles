@@ -5,6 +5,8 @@
 "   DB_PRODUCTION=mysql://user:password@host.com/db
 " 3. Connect to the query: <leader>dd
 
+" TODO: add a friendly error message in case <Leader> + dd is pressed 
+" and no DB is found
 function! LoadDB()
   if exists('*DotenvRead')
     return DotenvRead()->keys()->filter('v:val =~# "DB_"')
@@ -32,4 +34,3 @@ function! DadbodExe(db_script = '')
   execute "DB " . a:db_script
 endfunction
 
-call operatorify#mapper('gd', 'DadbodExe')
