@@ -64,3 +64,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-dotenv'
   endif
 call plug#end()
+
+let s:plugin_names = keys(g:plugs)
+for plugin_name in s:plugin_names
+  exe 'runtime! /plugins/' . plugin_name . '.vim'
+endfor
