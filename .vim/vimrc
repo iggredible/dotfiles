@@ -55,5 +55,3 @@ inoremap <silent> jk <Esc>
 
 " ----- Plugins -----
 exe 'runtime! ' . 'vimrc.plugins'
-
-exe 'runtime! ' . 'vimrc.test'

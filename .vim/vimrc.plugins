@@ -15,16 +15,22 @@ endif
 " List of plugins
 call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-sensible'
+  Plug 'romainl/vim-cool'
   Plug 'tpope/vim-fugitive'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim', { 'do': { -> deps#install('ripgrep') } }
   Plug 'machakann/vim-sandwich'
   Plug 'preservim/nerdtree'
   Plug 'simeji/winresizer'
-  Plug 'romainl/vim-cool'
   Plug 'tpope/vim-unimpaired'
   Plug 'markonm/traces.vim'
   Plug 'iggredible/vim-operatorify'
+  " Plug 'iggredible/chatty.vim'
+
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'prabirshrestha/async.vim'
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
   " export VIM_MODE=lite; vim
   if g:vim_mode != 'lite'
@@ -52,11 +58,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-signify'
     Plug 'ryanoasis/vim-devicons'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'tpope/vim-dadbod'
     Plug 'kristijanhusak/vim-dadbod-ui'
     Plug 'bfrg/vim-jqplay'
-    Plug 'iggredible/chatty.vim'
     Plug 'tpope/vim-dispatch'
     Plug 'honza/vim-snippets'
     Plug 'christoomey/vim-tmux-navigator'
@@ -69,3 +73,4 @@ let s:plugin_names = keys(g:plugs)
 for plugin_name in s:plugin_names
   exe 'runtime! /plugins/' . plugin_name . '.vim'
 endfor
+
