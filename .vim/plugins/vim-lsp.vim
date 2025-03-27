@@ -12,6 +12,14 @@ if executable('solargraph')
         \ })
 endif
 
+if executable('rubocop')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'rubocop',
+    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'rubocop --lsp']},
+    \ 'allowlist': ['ruby'],
+    \ })
+endif
+
 " LSP key mappings
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
