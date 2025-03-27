@@ -3,19 +3,14 @@
 " https://github.com/prabirshrestha/asyncomplete.vim
 
 if executable('solargraph')
-    " Register solargraph as a language server
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'solargraph',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
-        \ 'initialization_options': {"diagnostics": "true"},
-        \ 'whitelist': ['ruby'],
-        \ })
-endif
-
-if executable('rubocop')
   au User lsp_setup call lsp#register_server({
-    \ 'name': 'rubocop',
-    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'rubocop --lsp']},
+    \ 'name': 'solargraph',
+    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
+    \ 'initialization_options': {
+    \   "diagnostics": "true",
+    \   "formatting": "true",
+    \   "completion": "true",
+    \ },
     \ 'allowlist': ['ruby'],
     \ })
 endif
@@ -60,9 +55,10 @@ let g:asyncomplete_popup_delay = 50
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Show diagnostic signs
-let g:lsp_signs_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_enabled = 0
+" let g:lsp_signs_enabled = 1
+" let g:lsp_diagnostics_echo_cursor = 1
+" let g:lsp_diagnostics_float_cursor = 1
 
 " Highlighting references
 let g:lsp_highlight_references_enabled = 1
