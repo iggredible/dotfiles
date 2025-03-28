@@ -21,7 +21,8 @@ function! s:on_lsp_buffer_enabled() abort
     setlocal signcolumn=yes
 
     " Navigation
-    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> <C-]> <plug>(lsp-definition)
+    nmap <buffer> gd <plug>(lsp-peek-definition)
     nmap <buffer> gr <plug>(lsp-references)
     nmap <buffer> gi <plug>(lsp-implementation)
     nmap <buffer> gt <plug>(lsp-type-definition)
@@ -63,6 +64,6 @@ let g:lsp_diagnostics_enabled = 0
 " Highlighting references
 let g:lsp_highlight_references_enabled = 1
 
-" Format on save (optional)
-autocmd BufWritePre *.rb call execute('LspDocumentFormatSync')
+" Format on save (optional; we already have <leader>f
+" autocmd BufWritePre *.rb call execute('LspDocumentFormatSync')
 
