@@ -1,6 +1,21 @@
 " Settings for
 " https://github.com/prabirshrestha/vim-lsp
 " https://github.com/prabirshrestha/asyncomplete.vim
+if executable('typescript-language-server')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': {server_info->[
+        \   'typescript-language-server',
+        \   '--stdio'
+        \ ]},
+        \ 'root_uri': {server_info->lsp#utils#path_to_uri(
+        \   lsp#utils#find_nearest_parent_file_directory(
+        \     lsp#utils#get_buffer_path(),
+        \     ['package.json', 'tsconfig.json', 'jsconfig.json']
+        \   ))},
+        \ 'whitelist': ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx'],
+        \ })
+endif
 
 if executable('solargraph')
   au User lsp_setup call lsp#register_server({
@@ -21,11 +36,15 @@ function! s:on_lsp_buffer_enabled() abort
     setlocal signcolumn=yes
 
     " Navigation
-    nmap <buffer> <C-]> <plug>(lsp-definition)
-    nmap <buffer> gd <plug>(lsp-peek-definition)
     nmap <buffer> gr <plug>(lsp-references)
     nmap <buffer> gi <plug>(lsp-implementation)
     nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <C-]> <plug>(lsp-definition)
+    nmap <buffer> gd <plug>(lsp-peek-definition)
+
+    " Scroll the preview window
+    nnoremap <buffer> <expr>]s lsp#scroll(+5)
+    nnoremap <buffer> <expr>[s lsp#scroll(-5)
 
     " Actions
     nmap <buffer> <leader>rn <plug>(lsp-rename)
@@ -66,4 +85,3 @@ let g:lsp_highlight_references_enabled = 1
 
 " Format on save (optional; we already have <leader>f
 " autocmd BufWritePre *.rb call execute('LspDocumentFormatSync')
-
