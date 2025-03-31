@@ -39,8 +39,5 @@ augroup SQLMappings
 " Load Dadbod Database
 " https://habamax.github.io/2019/09/02/use-vim-dadbod-to-query-databases.html
   autocmd FileType sql nnoremap <leader>dd :call popup_menu(LoadDB(), { 'callback': 'SelectDBSource' })<CR>
-
-  if exists('*Operatorify#Mapper')
-    autocmd FileType sql call Operatorify#Mapper('gd', 'DadbodExe')
-  endif
+  autocmd FileType sql call Operatorify#Mapper('gd', 'DadbodExe')
 augroup END
