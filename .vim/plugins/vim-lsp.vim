@@ -17,6 +17,7 @@ if executable('typescript-language-server')
         \ })
 endif
 
+" NOTE: Don't forget to add solargraph-rails in `.solargraph.yml
 if executable('solargraph')
   au User lsp_setup call lsp#register_server({
     \ 'name': 'solargraph',
@@ -25,6 +26,10 @@ if executable('solargraph')
     \   "diagnostics": "true",
     \   "formatting": "true",
     \   "completion": "true",
+    \   "definitions": "true",
+    \   "hover": "true",
+    \   "references": "true",
+    \   "symbols": "true"
     \ },
     \ 'allowlist': ['ruby'],
     \ })
@@ -75,13 +80,21 @@ let g:asyncomplete_popup_delay = 50
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Show diagnostic signs
-let g:lsp_diagnostics_enabled = 0
-" let g:lsp_signs_enabled = 1
-" let g:lsp_diagnostics_echo_cursor = 1
-" let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+
+" NOTE: Enable auto hover after the cursor stays on a position for X milliseconds
+" let g:lsp_hover_delay = 500
+" let g:lsp_auto_hover = 1
+" let g:lsp_hover_conceal = 1
 
 " Highlighting references
 let g:lsp_highlight_references_enabled = 1
 
-" Format on save (optional; we already have <leader>f
+" NOTE: Format on save (optional; we already have <leader>f
 " autocmd BufWritePre *.rb call execute('LspDocumentFormatSync')
+
+" NOTE: for debugging
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
