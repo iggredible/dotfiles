@@ -1,0 +1,1 @@
+vim -c "set nocompatible hidden clipboard=unnamed number relativenumber ignorecase smartcase hlsearch incsearch expandtab shiftwidth=2 tabstop=2 autoindent smartindent wildmenu loadplugins"
