@@ -80,7 +80,7 @@ let g:asyncomplete_popup_delay = 50
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Show diagnostic signs
-let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_enabled = 0
 let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 
