@@ -25,15 +25,24 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-unimpaired'
   Plug 'markonm/traces.vim'
   Plug 'iggredible/vim-operatorify'
-  " Plug 'iggredible/chatty.vim'
 
-  Plug 'prabirshrestha/vim-lsp'
-  Plug 'prabirshrestha/async.vim'
-  Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
   " export VIM_MODE=lite; vim
   if g:vim_mode != 'lite'
+
+    " LSP
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'prabirshrestha/async.vim'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+    " Snippets
+    Plug 'SirVer/ultisnips'
+    Plug 'thomasfaingnaert/vim-lsp-snippets'
+    Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+    Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+    Plug 'honza/vim-snippets'
+
     Plug 'tomtom/tcomment_vim'
     Plug 'tpope/vim-repeat'
     Plug 'vim-ruby/vim-ruby'
@@ -62,7 +71,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'kristijanhusak/vim-dadbod-ui'
     Plug 'bfrg/vim-jqplay'
     Plug 'tpope/vim-dispatch'
-    Plug 'honza/vim-snippets'
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'preservim/vimux'
     Plug 'tpope/vim-dotenv'
@@ -73,4 +81,3 @@ let s:plugin_names = keys(g:plugs)
 for plugin_name in s:plugin_names
   exe 'runtime! /plugins/' . plugin_name . '.vim'
 endfor
-

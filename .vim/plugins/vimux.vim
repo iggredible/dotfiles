@@ -30,9 +30,7 @@ function! VimuxSelectPane() abort
   endif
 endfunction
 
-" Get and parse pane information
 function! s:GetAvailablePanes() abort
-  " Get current pane ID to exclude it
   let current_pane = system("tmux display-message -p '#{pane_id}'")
   let current_pane = substitute(current_pane, '\n', '', '')
   
@@ -41,7 +39,6 @@ function! s:GetAvailablePanes() abort
   let panes_output = system("tmux list-panes -F '#{pane_id}|#{pane_index}|#{pane_current_command}|#{pane_width}x#{pane_height}|#{pane_title}'")
   let panes = split(panes_output, '\n')
   
-  " Parse pane information
   let available_panes = []
   
   for pane_info in panes
@@ -53,7 +50,7 @@ function! s:GetAvailablePanes() abort
       if pane_id == current_pane
         continue
       endif
-      
+
       let pane_data = {
             \ 'id': pane_id,
             \ 'index': parts[1],
@@ -61,7 +58,7 @@ function! s:GetAvailablePanes() abort
             \ 'size': parts[3],
             \ 'title': len(parts) >= 5 && parts[4] != '' ? parts[4] : 'untitled'
             \ }
-      
+
       call add(available_panes, pane_data)
     endif
   endfor
@@ -81,8 +78,6 @@ endfunction
 " Basic version for when fzf is not available
 function! s:VimuxSelectPaneBasic() abort
   let available_panes = s:GetAvailablePanes()
-  
-  " Check if there are any other panes
   if empty(available_panes)
     echo "No other panes available in current window"
     return
@@ -97,7 +92,6 @@ function! s:VimuxSelectPaneBasic() abort
     call add(pane_ids, pane.id)
   endfor
   
-  " For Vim 8+ with popup support
   if has('popupwin')
     " Create popup menu
     let selection = popup_menu(menu_items, #{
