@@ -64,6 +64,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'NLKNguyen/papercolor-theme'
     Plug 'itchyny/lightline.vim'
     Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'ntpeters/vim-better-whitespace'
     Plug 'mhinz/vim-signify'
     Plug 'ryanoasis/vim-devicons'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
