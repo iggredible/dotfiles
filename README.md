@@ -7,7 +7,7 @@
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/dotfiles.git ~/Projects/dotfiles
+git clone https://github.com/iggredible/dotfiles.git ~/Projects/dotfiles
 ```
 
 ### 2. Create the .zsh Directory in Your Home Directory (if it doesn't exist)
@@ -45,7 +45,7 @@ source ~/.zshrc
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/dotfiles.git ~/Projects/dotfiles
+git clone https://github.com/iggredible/dotfiles.git ~/Projects/dotfiles
 ```
 
 #### 2. Create a Symlink to the macOS Configuration File

@@ -28,12 +28,6 @@ setopt EXTENDED_HISTORY
 # Colorize grep matches
 export GREP_OPTIONS="--color=auto"
 
-# Make less more friendly for non-text input files
-export LESS="-R --ignore-case --status-column --LONG-PROMPT"
-
-# Set default options for less pager (case-insensitive search, display line numbers)
-export LESS="-i -N"
-
 # Nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
