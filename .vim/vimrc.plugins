@@ -26,7 +26,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'markonm/traces.vim'
   Plug 'iggredible/vim-operatorify'
 
-
   " export VIM_MODE=lite; vim
   if g:vim_mode != 'lite'
 
@@ -53,7 +52,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'mbbill/undotree'
     Plug 'tpope/vim-endwise'
     Plug 'luochen1990/rainbow'
-    Plug 'svermeulen/vim-yoink'
     Plug 'inkarkat/vim-ReplaceWithRegister'
     Plug 'tommcdo/vim-exchange'
     Plug 'kshenoy/vim-signature'

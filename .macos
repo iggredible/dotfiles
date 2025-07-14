@@ -1,0 +1,169 @@
+#!/usr/bin/env bash
+
+# Sources:
+# https://github.com/kevinSuttle/macOS-Defaults
+# https://mths.be/macos
+
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+### List of macos settings ###
+
+
+## UI/UX
+
+# No transparency
+defaults write com.apple.universalaccess reduceTransparency -bool true
+
+# Change highlight colors
+# Color references:
+#    Red            "1.000000 0.733333 0.721569"
+#    Orange         "1.000000 0.874510 0.701961"
+#    Yellow         "1.000000 0.937255 0.690196"
+#    Green          "0.752941 0.964706 0.678431"
+#    Purple         "0.968627 0.831373 1.000000"
+#    Pink           "1.000000 0.749020 0.823529"
+#    Graphite       "0.847059 0.847059 0.862745"
+
+# Set highlight color to green
+defaults write NSGlobalDomain AppleHighlightColor -string "0.752941 0.964706 0.678431"
+
+# Set scrollbar
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+
+# Disable animations
+defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+
+# Enable font smoothing
+defaults write NSGlobalDomain AppleFontSmoothing -int 1
+
+# Enable secret HiDPI display modes
+sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
+
+
+## Text
+
+# Disable auto capitalization
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+# Disable conversion of -- into an em dash
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+# Disable auto period after typing spacebar 2x
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# Disable converting ' and " into curly/smart quotes
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# Disable auto spell correction
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+
+## Keyboard Input
+
+# Set fast keyboard repeat rate
+# 1 = very fast; 6 = default
+defaults write NSGlobalDomain KeyRepeat -int 2
+
+# 10 = very short; 25-30 = default
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
+# Enable full keyboard access
+# Use tab key to navigate buttons, checkboxes, radio buttons, etc.
+# default = only text fields and lists
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+# Remap Caps Lock to Escape
+hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000029}]}'
+
+
+## Energy and Sleep
+
+# Wake up macbook from sleep when lid is opened
+sudo pmset -a lidwake 1
+
+# Restart automatically on power loss or freeze
+sudo pmset -a autorestart 1
+sudo systemsetup -setrestartfreeze on
+
+# Display sleeps after 15 minutes (all power modes)
+sudo pmset -a displaysleep 15
+
+# Disable computer sleep when on AC power
+sudo pmset -c sleep 30
+
+# Sleep after 15 minutes when on battery
+sudo pmset -b sleep 15
+
+# Wait 12 hours before entering deeper standby mode
+sudo pmset -a standbydelay 43200
+
+## Screenshots
+
+# Make sure screenshots directory is available
+mkdir -p "${HOME}/Desktop/screenshots"
+
+# Configure screenshot settings
+defaults write com.apple.screencapture location -string "${HOME}/Desktop/screenshots"
+defaults write com.apple.screencapture type -string "png"
+defaults write com.apple.screencapture disable-shadow -bool true
+
+
+## Finder
+
+# Can quit Finder
+defaults write com.apple.finder QuitMenuItem -bool true
+
+# Show external and internal icons on desktop
+# Makes icons for external hard drives (like USB drives, external SSDs, etc.) appear on your Desktop when connected.
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+
+# Makes icons for internal hard drives (like your main "Macintosh HD") appear on your Desktop.
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+
+# Set list view as default
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+# Show Library folder
+chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+
+
+## File paths
+
+# Show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Show status and path bars
+defaults write com.apple.finder ShowStatusBar -bool true
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Display full path in title
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+# Keep folders on top when sorting
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
+
+
+## Dock
+
+# Auto-hide Dock
+defaults write com.apple.dock autohide -bool true
+
+
+# Minimize dock effect
+defaults write com.apple.dock mineffect -string "scale"
+
+# Speed up Mission Control animations
+defaults write com.apple.dock expose-animation-duration -float 0.1
+
+# Remove Dock delay and animation
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -float 0
