@@ -16,7 +16,7 @@ function! deps#install(prg)
   if s:is_win && !has('win32unix')
     throw 'No windows support yet'
   else
-    let script = s:base_dir . '/install'
+    let script = s:base_dir . '/install.sh'
     if !executable(script)
       throw script.' not found'
     endif

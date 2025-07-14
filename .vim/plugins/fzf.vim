@@ -54,7 +54,7 @@ endfunction
 " :Rgg *.vim
 " Now it will search only files ended in *vim
 command! -bang -nargs=* Rgg call RgSet(<f-args>)
-command! -bang -nargs=* Rg 
+command! -bang -nargs=* Rg
   \ call fzf#vim#grep(RgRunner().shellescape(<q-args>), 1, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
 " -------------------------
