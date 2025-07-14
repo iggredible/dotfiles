@@ -1,24 +1,30 @@
 # Dotfiles
 
-## Zsh
+## Installs
 
-### Install
-
-#### 1. Clone the Repository
+First, clone the repo (i.e.: `~/Projects/dotfiles`)
 
 ```bash
 git clone https://github.com/iggredible/dotfiles.git ~/Projects/dotfiles
 ```
 
-### 2. Create the .zsh Directory in Your Home Directory (if it doesn't exist)
+### Git
+
+```
+ln -sf ~/Projects/dotfiles/.gitconfig ~/.gitconfig
+```
+
+### Zsh
+
+#### Create the .zsh Directory in Your Home Directory (if it doesn't exist)
 
 ```bash
 mkdir -p ~/.zsh
 ```
 
-#### 3. Create Symlinks
+#### Create Symlinks
 
-You need to create symlinks from your home directory to the files in this repository:
+Create symlinks from your home directory to the files in this repository:
 
 ```bash
 # Link .zshrc
@@ -32,35 +38,28 @@ ln -sf ~/Projects/dotfiles/.zsh/exports.zsh ~/.zsh/exports.zsh
 ln -sf ~/Projects/dotfiles/.zsh/funcs.zsh ~/.zsh/funcs.zsh
 ```
 
-#### 4. Restart Your Shell or Source the New Configuration
+#### Restart Your Shell or Source the New Configuration
 
 ```bash
 source ~/.zshrc
 ```
 
-## MacOS
+### MacOS
 
-### Install
 
-#### 1. Clone the Repository
-
-```bash
-git clone https://github.com/iggredible/dotfiles.git ~/Projects/dotfiles
-```
-
-#### 2. Create a Symlink to the macOS Configuration File
+#### Create a Symlink to the macOS Configuration File
 
 ```bash
 ln -sf ~/Projects/dotfiles/.macos ~/.macos
 ```
 
-#### 3. Make the Script Executable
+#### Make the Script Executable
 
 ```bash
 chmod +x ~/.macos
 ```
 
-#### 4. Run the Script
+#### Run the Script
 
 ```bash
 ~/.macos
@@ -68,11 +67,11 @@ chmod +x ~/.macos
 
 **Note**: The script will ask for administrator privileges since some settings require `sudo` access. You'll be prompted for your password.
 
-## Tmux
+### Tmux
 
 TODO
 
-## Vimrc
+### Vimrc
 
 TODO
 
@@ -115,8 +114,9 @@ alias vimlite='VIM_MODE=lite vim'
 
 If you've already installed the non-lite plugins, you can uninstall them with `:PlugClean!`.
 
-# Tmux
+## Tmux
 
+TODO
 ```
 rm .tmux.conf
 ln -s ~/projects/dotfiles/.tmux.conf ~/.tmux.conf

@@ -1,0 +1,54 @@
+# This is Git's per-user configuration file.
+[user]
+	name = change me
+	email = change.me@pls.com
+
+[merge]
+  tool = vimdiff
+
+[mergetool]
+	keepBackup = false
+
+[pretty]
+	csv = \"%d\", \"%C(yellow)%h%Creset\", \"%C(red)%C(bold)%an%Creset\", \"%C(cyan)%C(bold)%ci%Creset\", \"%C(yellow)%cn%Creset\", \"%s\"
+
+[alias]
+  list-aliases = "!git config -l | grep alias | cut -c 7-"
+
+  # make my local branch exactly match what's on the server
+  sync-remote = !git fetch origin && git reset --hard origin/$(git symbolic-ref --short HEAD)
+
+  uncommit = reset --soft HEAD^
+  unstage = reset HEAD --
+
+  cma = commit --amend
+  cmm = commit --message
+
+  co = checkout
+
+  rs1 = reset HEAD^
+  rs2 = reset HEAD^^
+  # dynamic reset
+  # git rs5 to run git reset HEAD~5
+  rs = "!f() { CMD=${0##*-}; NUM=${CMD##*rs}; if [ -z \"$NUM\" ]; then NUM=1; fi; git reset HEAD~$NUM; }; f"
+  rs-hard = reset HEAD --hard
+
+  rb1 = rebase -i HEAD~1
+  rb2 = rebase -i HEAD~2
+  # dynamic rebase
+  # git rb 5 to run rebase -i HEAD~5
+  rb = "!f() { git rebase -i HEAD~${1:-1}; }; f"
+
+  prettylog = "log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+  # git log --pretty=oneline | grep 'TICKET-12345'
+  prettygrep = "!f() { git log --pretty=oneline | grep \"$1\"; }; f"
+  prettycsv = log --pretty=csv
+
+  rootpath = rev-parse --show-toplevel
+
+  # git follow /path/to/file.rb. Tracks file renaming
+  follow = log --follow --
+[color]
+	ui = always
+	diff = always
