@@ -15,12 +15,12 @@ endif
 " List of plugins
 call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-sensible'
+  Plug 'tpope/vim-fugitive', { 'do': { -> deps#install('git') } }
   Plug 'romainl/vim-cool'
-  Plug 'tpope/vim-fugitive'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim', { 'do': { -> deps#install('ripgrep') } }
   Plug 'machakann/vim-sandwich'
-  Plug 'preservim/nerdtree'
+  Plug 'preservim/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
   Plug 'simeji/winresizer'
   Plug 'tpope/vim-unimpaired'
   Plug 'markonm/traces.vim'
@@ -28,7 +28,6 @@ call plug#begin('~/.vim/plugged')
 
   " export VIM_MODE=lite; vim
   if g:vim_mode != 'lite'
-
     " LSP
     Plug 'prabirshrestha/vim-lsp'
     Plug 'prabirshrestha/async.vim'
@@ -37,14 +36,14 @@ call plug#begin('~/.vim/plugged')
 
     " Snippets
     Plug 'SirVer/ultisnips'
-    Plug 'thomasfaingnaert/vim-lsp-snippets'
+    Plug 'thomasfaingnaert/vim-lsp-snippets' " if vim-lsp is available
     Plug 'thomasfaingnaert/vim-lsp-ultisnips'
     Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
     Plug 'honza/vim-snippets'
 
     Plug 'tomtom/tcomment_vim'
     Plug 'tpope/vim-repeat'
-    Plug 'vim-ruby/vim-ruby'
+    Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
     Plug 'pangloss/vim-javascript'
     Plug 'junegunn/vim-peekaboo'
     Plug 'rstacruz/vim-closer'
@@ -58,7 +57,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-rails'
     Plug 'slim-template/vim-slim'
     Plug 'tpope/vim-bundler'
-    Plug 'lepture/vim-jinja'
+    " Plug 'lepture/vim-jinja'
     Plug 'NLKNguyen/papercolor-theme'
     Plug 'itchyny/lightline.vim'
     Plug 'nathanaelkane/vim-indent-guides'
@@ -68,7 +67,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'tpope/vim-dadbod'
     Plug 'kristijanhusak/vim-dadbod-ui'
-    Plug 'bfrg/vim-jqplay'
+    Plug 'bfrg/vim-jqplay', { 'do': { -> deps#install('jq') } }
     Plug 'tpope/vim-dispatch'
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'preservim/vimux'

@@ -63,3 +63,9 @@ EOF
   endif
   return ''
 endfunction
+
+" Detect if we're in a Rails project
+" Rails project almost always will have config/routes.rb
+function! plug_helper#is_rails() abort
+  return filereadable(finddir("config", ".;") . "/routes.rb")
+endfunction

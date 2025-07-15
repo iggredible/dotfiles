@@ -43,7 +43,7 @@ function! remove#which_register() abort
   if s:register_to_clear == ''
     echo 'Register is not cleared'
   else
-    call setreg(s:register_to_clear, []) 
+    call setreg(s:register_to_clear, [])
     echo "\nRegister " . s:register_to_clear . ' is cleared!'
   endif
 endfunc
