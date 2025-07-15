@@ -69,3 +69,17 @@ endfunction
 function! plug_helper#is_rails() abort
   return filereadable(finddir("config", ".;") . "/routes.rb")
 endfunction
+
+" Check if Hack Nerd Font is installed via Homebrew
+function! plug_helper#has_nerd_font() abort
+  let g:has_nerd_font = system('brew list homebrew/cask/font-hack-nerd-font >/dev/null 2>&1') == 0
+  " brew install font-hack-nerd-font --cask
+
+  if !g:has_nerd_font
+    echohl WarningMsg
+    echomsg "No nerd font is found. Please install it with: brew install font-hack-nerd-font --cask"
+    echohl None
+  endif
+
+  return g:has_nerd_font
+endfunction

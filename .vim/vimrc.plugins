@@ -54,7 +54,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'inkarkat/vim-ReplaceWithRegister'
     Plug 'tommcdo/vim-exchange'
     Plug 'kshenoy/vim-signature'
-    Plug 'tpope/vim-rails'
+    Plug 'tpope/vim-rails', { 'if': 'plug_helper#is_rails()' }
     Plug 'slim-template/vim-slim'
     Plug 'tpope/vim-bundler'
     " Plug 'lepture/vim-jinja'
@@ -63,7 +63,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'nathanaelkane/vim-indent-guides'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'mhinz/vim-signify'
-    Plug 'ryanoasis/vim-devicons'
+    Plug 'ryanoasis/vim-devicons', { 'if': 'plug_helper#has_nerd_font()' }
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'tpope/vim-dadbod'
     Plug 'kristijanhusak/vim-dadbod-ui'
