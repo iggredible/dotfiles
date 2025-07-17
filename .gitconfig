@@ -53,6 +53,3 @@
 
   # git follow /path/to/file.rb. Tracks file renaming
   follow = log --follow --
-[color]
-	ui = always
-	diff = always
