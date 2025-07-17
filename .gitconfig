@@ -1,7 +1,11 @@
 # This is Git's per-user configuration file.
-[user]
-	name = change me
-	email = change.me@pls.com
+[include]
+	path = ~/.gitconfig.d/self
+
+# Inside ~/.gitconfig.d/self, create the following
+# [user]
+# 	name = Your Name
+# 	email = your.name@pls.com
 
 [merge]
   tool = vimdiff
