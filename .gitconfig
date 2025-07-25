@@ -29,6 +29,7 @@
   cmm = commit --message
 
   co = checkout
+  cof = !git checkout $(git branch | fzf)
 
   rs1 = reset HEAD^
   rs2 = reset HEAD^^
