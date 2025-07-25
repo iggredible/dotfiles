@@ -43,6 +43,11 @@
   # git rb 5 to run rebase -i HEAD~5
   rb = "!f() { git rebase -i HEAD~${1:-1}; }; f"
 
+  w = worktree
+  wa = worktree add
+  wr = worktree remove
+  wl = worktree list
+
   prettylog = "log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
   # git log --pretty=oneline | grep 'TICKET-12345'
