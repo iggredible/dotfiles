@@ -5,9 +5,6 @@
 # tap "homebrew/cask"
 # tap "homebrew/core"
 
-# For fonts
-tap "homebrew/cask-fonts"
-
 # --- CLI Tools ---
 brew "git"               # Version control system
 brew "fzf"               # Fuzzy finder
