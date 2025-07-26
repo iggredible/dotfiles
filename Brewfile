@@ -7,13 +7,14 @@
 
 # --- CLI Tools ---
 brew "git"               # Version control system
-brew "fzf"               # Fuzzy finder
-brew "ripgrep"           # Fast text search tool
-brew "findutils"         # GNU find, locate, xargs
+brew "vim"               # Editor
+brew "tmux"              # Tmux
+brew "fzf"               # Fuzzy Finder
+brew "ripgrep"           # Search tool
 brew "jq"                # JSON processor
-brew "vim"               # Text editor
-brew "tmux"              # Terminal multiplexer
+brew "findutils"         # GNU find, locate, xargs
 brew "rbenv"             # Ruby version manager
+brew "nvm"               # Node version manager
 
 # --- Shell Tools ---
 brew "zsh"               # Z shell
