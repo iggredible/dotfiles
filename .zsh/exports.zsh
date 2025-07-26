@@ -28,24 +28,13 @@ setopt EXTENDED_HISTORY
 # Colorize grep matches
 export GREP_OPTIONS="--color=auto"
 
-# Nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# # Nvm
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Homebrew
 export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
 
-# Searchkick
-export SEARCHKICK_ENV=''
-export OPENSEARCH_URL=http://127.0.0.1:9200
-
-# GoLang
-# add go https://stackoverflow.com/questions/34708207/command-not-found-go-on-mac-after-installing-go
-export PATH=$PATH:/usr/local/go/bin
-
-# localhost crashing fix
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-# Yarn
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# zsh-syntax-highlighting
+export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/highlighters

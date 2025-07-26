@@ -13,15 +13,19 @@ brew "fzf"               # Fuzzy Finder
 brew "ripgrep"           # Search tool
 brew "jq"                # JSON processor
 brew "findutils"         # GNU find, locate, xargs
-brew "rbenv"             # Ruby version manager
-brew "nvm"               # Node version manager
 
 # --- Shell Tools ---
 brew "zsh"               # Z shell
+brew "pure"              # Pure theme
 brew "zsh-completions"   # Additional completions for zsh
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
 
 # --- Development Tools ---
-brew "node"              # JavaScript runtime
+brew "node"              # NodeJS
+brew "nvm"               # Node version manager
+brew "ruby"              # Ruby
+brew "rbenv"             # Ruby version manager
 
 # --- GUI Applications ---
 cask "alfred"            # Productivity application
