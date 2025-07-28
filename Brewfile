@@ -19,6 +19,7 @@ brew "zsh"               # Z shell
 brew "pure"              # Pure theme
 brew "zsh-completions"   # Additional completions for zsh
 brew "zsh-autosuggestions"
+brew "zsh-autocomplete"
 brew "zsh-syntax-highlighting"
 
 # --- Development Tools ---

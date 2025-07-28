@@ -1,8 +1,7 @@
-if type brew &>/dev/null; then
-  # zsh-completions
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+# zsh-autocomplete
+source $HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
-  autoload -Uz compinit; compinit
-  autoload -U promptinit; promptinit
-  prompt pure # pure
-fi
+# pure theme
+autoload -U promptinit; promptinit
+prompt pure # pure
+
