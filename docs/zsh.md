@@ -1,7 +1,17 @@
 # Zsh
 
-Create the .zsh Directory in Your Home Directory (if it doesn't exist)
+❗️Ensure that dependencies are installed
+```
+brew bundle
+```
 
+Clean up `~/.zshrc` and `~/.zsh/`.
+```
+rm ~/.zshrc
+rm -r ~/.zsh/`
+```
+
+Create the .zsh Directory in home directory:
 ```bash
 mkdir -p ~/.zsh
 ```
@@ -9,19 +19,19 @@ mkdir -p ~/.zsh
 Create symlinks from your home directory to the files in this repository:
 
 ```bash
-# Link .zshrc
+# Link .zshrc and .zsh/
 ln -sf ~/Projects/dotfiles/.zshrc ~/.zshrc
-
-# Link all .zsh files
-ln -sf ~/Projects/dotfiles/.zsh/first.zsh ~/.zsh/first.zsh
-ln -sf ~/Projects/dotfiles/.zsh/aliases.zsh ~/.zsh/aliases.zsh
-ln -sf ~/Projects/dotfiles/.zsh/etc.zsh ~/.zsh/etc.zsh
-ln -sf ~/Projects/dotfiles/.zsh/exports.zsh ~/.zsh/exports.zsh
-ln -sf ~/Projects/dotfiles/.zsh/funcs.zsh ~/.zsh/funcs.zsh
+ln -sf ~/Projects/dotfiles/.zsh .
 ```
 
-Restart Your Shell or Source the New Configuration
+Verify that the zsh files are symlinked:
+```
+ls -la ~/.zshrc
+ls -la ~/Projects/dotfiles/.zsh
+ls -la ~/.zsh/
+```
 
+Source the new configuration (you can also restart your terminal):
 ```bash
 source ~/.zshrc
 ```
