@@ -90,21 +90,3 @@ hist() {
     fi
   fi
 }
-
-tmux-switch() {
-    if ! tmux info &> /dev/null; then
-        echo "No tmux server running"
-        return 1
-    fi
-
-    local session=$(tmux ls | \
-        fzf --height=40% \
-            --reverse \
-            --preview 'tmux list-windows -t {1}' \
-            --preview-window=right:50% | \
-        cut -d: -f1)
-
-    if [[ -n $session ]]; then
-        tmux switch -t "$session"
-    fi
-}
