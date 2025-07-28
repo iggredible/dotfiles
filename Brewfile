@@ -12,7 +12,6 @@ brew "tmux"              # Tmux
 brew "fzf"               # Fuzzy Finder
 brew "ripgrep"           # Search tool
 brew "jq"                # JSON processor
-brew "findutils"         # GNU find, locate, xargs
 
 # --- Shell Tools ---
 brew "zsh"               # Z shell
