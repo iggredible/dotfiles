@@ -25,6 +25,6 @@ See the following docs:
 
 - Git: [docs/git.md](docs/git.md)
 - Zsh: [docs/zsh.md](docs/zsh.md)
-- MacOS: [docs/macos.md](docs/macos.md)
 - Tmux: [docs/tmux.md](docs/tmux.md)
+- MacOS: [docs/macos.md](docs/macos.md)
 - Vim: [docs/vim.md](docs/vim.md) / Neovim: [docs/neovim.md](docs/neovim.md)

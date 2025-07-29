@@ -1,17 +1,12 @@
 # Zsh
 
-❗️Ensure that dependencies are installed
-```
-brew bundle
-```
-
 Clean up `~/.zshrc` and `~/.zsh/`.
 ```
 rm ~/.zshrc
 rm -r ~/.zsh/`
 ```
 
-Create the .zsh Directory in home directory:
+Create a `.zsh` directory in home directory:
 ```bash
 mkdir -p ~/.zsh
 ```
