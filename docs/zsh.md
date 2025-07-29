@@ -6,17 +6,12 @@ rm ~/.zshrc
 rm -r ~/.zsh/`
 ```
 
-Create a `.zsh` directory in home directory:
-```bash
-mkdir -p ~/.zsh
-```
-
 Create symlinks from your home directory to the files in this repository:
 
 ```bash
 # Link .zshrc and .zsh/
 ln -sf ~/Projects/dotfiles/.zshrc ~/.zshrc
-ln -sf ~/Projects/dotfiles/.zsh .
+ln -sf ~/Projects/dotfiles/.zsh ~
 ```
 
 Verify that the zsh files are symlinked:

@@ -5,11 +5,6 @@ rm -r ~/.tmux
 rm ~/.tmux.conf
 ```
 
-Create a `.tmux` directory:
-```
-mkdir -p ~/.tmux
-```
-
 Symlink the tmux files:
 ```
 ln -sf ~/Projects/dotfiles/.tmux.conf ~/.tmux.conf
