@@ -1,6 +1,6 @@
 # This is Git's per-user configuration file.
 [include]
-	path = ~/.gitconfig.d/self
+  path = ~/.gitconfig.d/self
 
 # Inside ~/.gitconfig.d/self, create the following
 # [user]
