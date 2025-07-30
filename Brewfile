@@ -12,6 +12,7 @@ brew "tmux"              # Tmux
 brew "fzf"               # Fuzzy Finder
 brew "ripgrep"           # Search tool
 brew "jq"                # JSON processor
+brew "bottom" 		 # Monitor
 
 # --- Shell Tools ---
 brew "zsh"               # Z shell
