@@ -19,8 +19,7 @@
 [alias]
   list-aliases = "!git config -l | grep alias | cut -c 7-"
 
-  # make my local branch exactly match what's on the server
-  sync-remote = !git fetch origin && git reset --hard origin/$(git symbolic-ref --short HEAD)
+  force-pull =  "!git fetch origin && git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)"
 
   uncommit = reset --soft HEAD^
   unstage = reset HEAD --
