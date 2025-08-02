@@ -28,6 +28,7 @@ brew "node"                     # NodeJS
 brew "nvm"                      # Node version manager
 brew "ruby"                     # Ruby
 brew "rbenv"                    # Ruby version manager
+brew "uv"                       # Python version manager
 
 # --- GUI Applications ---
 cask "alfred"                   # Productivity application
