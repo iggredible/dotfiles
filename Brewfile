@@ -14,6 +14,7 @@ brew "ripgrep"                  # Search tool
 brew "jq"                       # JSON processor
 brew "bottom"                   # Monitor
 brew "bat"                      # Syntax Highlighting
+brew "tree"                     # Directory viewer
 
 # --- Shell Tools ---
 brew "zsh"                      # Z shell
