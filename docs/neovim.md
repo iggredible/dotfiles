@@ -6,3 +6,5 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vim/vimrc
 ```
+
+Note: I've never tried this. Theoretically it should work, though.

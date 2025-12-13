@@ -91,24 +91,24 @@ let g:UltiSnipsEditSplit = "vertical"
 let g:lsp_settings = {'_': {'snippet_engine': 'ultisnips'}}
 
 " Register completion sources
-call asyncomplete#register_source({
-    \ 'name': 'lsp',
-    \ 'allowlist': ['*'],
-    \ 'completor': function('lsp#complete')
-    \ })
+" call asyncomplete#register_source({
+"     \ 'name': 'lsp',
+"     \ 'allowlist': ['*'],
+"     \ 'completor': function('lsp#complete')
+"     \ })
 
-call asyncomplete#register_source({
-    \ 'name': 'ultisnips',
-    \ 'allowlist': ['*'],
-    \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
-    \ 'refresh_pattern': '\(\k\+$\|\s\{2,\}$\)'
-    \ })
+" call asyncomplete#register_source({
+"     \ 'name': 'ultisnips',
+"     \ 'allowlist': ['*'],
+"     \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+"     \ 'refresh_pattern': '\(\k\+$\|\s\{2,\}$\)'
+"     \ })
 
 " Prioritize completion sources
-let g:asyncomplete_source_priority = {
-    \ 'ultisnips': 1000,
-    \ 'lsp': 700,
-    \ 'buffer': 500,
-    \ 'file': 400,
-    \ 'around': 300
-    \ }
+" let g:asyncomplete_source_priority = {
+"     \ 'ultisnips': 1000,
+"     \ 'lsp': 700,
+"     \ 'buffer': 500,
+"     \ 'file': 400,
+"     \ 'around': 300
+"     \ }

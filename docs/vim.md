@@ -8,7 +8,9 @@ rm -rf ~/.vim
 ln -sf ~/Projects/dotfiles/.vim ~/.vim
 ```
 
-Note: When using `vim-devicons`, use `brew install font-hack-nerd-font --cask`, then in iTerm, open Preferences → Profiles → Text → Change Font → Select `Hack Nerd Font`.
+Notes:
+- When using `vim-devicons`, use `brew install font-hack-nerd-font --cask`, then in iTerm, open Preferences → Profiles → Text → Change Font → Select `Hack Nerd Font`.
+- You have to install [vim-plug](https://github.com/junegunn/vim-plug#installation) too.
 
 ## `lite` Mode
 
