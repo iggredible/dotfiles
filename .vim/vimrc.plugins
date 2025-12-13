@@ -14,17 +14,68 @@ endif
 
 " List of plugins
 call plug#begin('~/.vim/plugged')
+  """ Base
   Plug 'tpope/vim-sensible'
-  Plug 'tpope/vim-fugitive', { 'do': { -> deps#install('git') } }
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-unimpaired'
   Plug 'romainl/vim-cool'
+
+  """ UI
+  Plug 'NLKNguyen/papercolor-theme'
+  Plug 'itchyny/lightline.vim'
+  Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'luochen1990/rainbow'
+  Plug 'markonm/traces.vim'
+  Plug 'junegunn/vim-peekaboo'
+
+  """ File management
+  Plug 'preservim/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+  Plug 'ryanoasis/vim-devicons', { 'if': 'plug_helper#has_nerd_font()' }
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+  """ Window Management
+  Plug 'simeji/winresizer'
+  Plug 'szw/vim-maximizer'
+
+  """ Search
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim', { 'do': { -> deps#install('ripgrep') } }
+
+  """ Editing - Text objects, operators, motions
+  Plug 'inkarkat/vim-ReplaceWithRegister'
+  Plug 'tommcdo/vim-exchange'
   Plug 'machakann/vim-sandwich'
-  Plug 'preservim/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-  Plug 'simeji/winresizer'
-  Plug 'tpope/vim-unimpaired'
-  Plug 'markonm/traces.vim'
+  Plug 'tomtom/tcomment_vim'
   Plug 'iggredible/vim-operatorify'
+  Plug 'tpope/vim-endwise'
+  Plug 'rstacruz/vim-closer'
+  Plug 'ntpeters/vim-better-whitespace'
+
+  """ History & State
+  Plug 'mbbill/undotree'
+  Plug 'kshenoy/vim-signature'
+
+  """ Git
+  Plug 'tpope/vim-fugitive', { 'do': { -> deps#install('git') } }
+  Plug 'mhinz/vim-signify'
+
+  """ Language Support
+  Plug 'pangloss/vim-javascript'
+  Plug 'slim-template/vim-slim'
+  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+
+  """ Ruby/Rails
+  Plug 'tpope/vim-rails', { 'if': 'plug_helper#is_rails()' }
+  Plug 'tpope/vim-bundler'
+  Plug 'tpope/vim-dispatch'
+
+  """ External Tool Integration
+  Plug 'tpope/vim-dotenv'
+  Plug 'bfrg/vim-jqplay', { 'do': { -> deps#install('jq') } }
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'preservim/vimux'
+  Plug 'tpope/vim-dadbod'
+  Plug 'kristijanhusak/vim-dadbod-ui'
 
   " export VIM_MODE=lite; vim
   if g:vim_mode != 'lite'
@@ -41,37 +92,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
     Plug 'honza/vim-snippets'
 
-    Plug 'tomtom/tcomment_vim'
-    Plug 'tpope/vim-repeat'
-    Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-    Plug 'pangloss/vim-javascript'
-    Plug 'junegunn/vim-peekaboo'
-    Plug 'rstacruz/vim-closer'
-    Plug 'szw/vim-maximizer'
-    Plug 'mbbill/undotree'
-    Plug 'tpope/vim-endwise'
-    Plug 'luochen1990/rainbow'
-    Plug 'inkarkat/vim-ReplaceWithRegister'
-    Plug 'tommcdo/vim-exchange'
-    Plug 'kshenoy/vim-signature'
-    Plug 'tpope/vim-rails', { 'if': 'plug_helper#is_rails()' }
-    Plug 'slim-template/vim-slim'
-    Plug 'tpope/vim-bundler'
-    " Plug 'lepture/vim-jinja'
-    Plug 'NLKNguyen/papercolor-theme'
-    Plug 'itchyny/lightline.vim'
-    Plug 'nathanaelkane/vim-indent-guides'
-    Plug 'ntpeters/vim-better-whitespace'
-    Plug 'mhinz/vim-signify'
-    Plug 'ryanoasis/vim-devicons', { 'if': 'plug_helper#has_nerd_font()' }
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    Plug 'tpope/vim-dadbod'
-    Plug 'kristijanhusak/vim-dadbod-ui'
-    Plug 'bfrg/vim-jqplay', { 'do': { -> deps#install('jq') } }
-    Plug 'tpope/vim-dispatch'
-    Plug 'christoomey/vim-tmux-navigator'
-    Plug 'preservim/vimux'
-    Plug 'tpope/vim-dotenv'
   endif
 call plug#end()
 
