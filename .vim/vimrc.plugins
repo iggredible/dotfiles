@@ -14,6 +14,17 @@ endif
 
 " List of plugins
 call plug#begin('~/.vim/plugged')
+  " Parse requested plugin features from environment variable
+  " Default to only core plugins
+  " core plugins are everything else NOT in the if block
+  let s:plugins = split(get(environ(), 'VIM_PLUGINS', ''), ',')
+
+  " Helper function: check if a feature should be loaded
+  " Usage: VIM_PLUGINS=db vim # loads db features
+  function! s:load(feature)
+    return index(s:plugins, a:feature) >= 0
+  endfunction
+
   """ Base
   Plug 'tpope/vim-sensible'
   Plug 'tpope/vim-repeat'
@@ -28,34 +39,29 @@ call plug#begin('~/.vim/plugged')
   Plug 'markonm/traces.vim'
   Plug 'junegunn/vim-peekaboo'
 
-  """ File management
-  Plug 'preservim/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-  Plug 'ryanoasis/vim-devicons', { 'if': 'plug_helper#has_nerd_font()' }
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  """ Search
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim', { 'do': { -> deps#install('ripgrep') } }
+
+  """ Editing
+  Plug 'inkarkat/vim-ReplaceWithRegister'
+  Plug 'tommcdo/vim-exchange'
+  Plug 'machakann/vim-sandwich'
+  Plug 'tomtom/tcomment_vim'
+  Plug 'tpope/vim-endwise'
+  Plug 'rstacruz/vim-closer'
+  Plug 'ntpeters/vim-better-whitespace'
+  Plug 'iggredible/vim-operatorify'
 
   """ Window Management
   Plug 'simeji/winresizer'
   Plug 'szw/vim-maximizer'
 
-  """ Search
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim', { 'do': { -> deps#install('ripgrep') } }
-
-  """ Editing - Text objects, operators, motions
-  Plug 'inkarkat/vim-ReplaceWithRegister'
-  Plug 'tommcdo/vim-exchange'
-  Plug 'machakann/vim-sandwich'
-  Plug 'tomtom/tcomment_vim'
-  Plug 'iggredible/vim-operatorify'
-  Plug 'tpope/vim-endwise'
-  Plug 'rstacruz/vim-closer'
-  Plug 'ntpeters/vim-better-whitespace'
-
   """ History & State
   Plug 'mbbill/undotree'
   Plug 'kshenoy/vim-signature'
 
-  """ Git
+  """ Git Integration
   Plug 'tpope/vim-fugitive', { 'do': { -> deps#install('git') } }
   Plug 'mhinz/vim-signify'
 
@@ -71,28 +77,39 @@ call plug#begin('~/.vim/plugged')
 
   """ External Tool Integration
   Plug 'tpope/vim-dotenv'
-  Plug 'bfrg/vim-jqplay', { 'do': { -> deps#install('jq') } }
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'preservim/vimux'
-  Plug 'tpope/vim-dadbod'
-  Plug 'kristijanhusak/vim-dadbod-ui'
+  Plug 'bfrg/vim-jqplay', { 'do': { -> deps#install('jq') } }
 
-  " export VIM_MODE=lite; vim
-  if g:vim_mode != 'lite'
-    " LSP
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'prabirshrestha/async.vim'
-    Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
-    " Snippets
-    Plug 'SirVer/ultisnips'
-    Plug 'thomasfaingnaert/vim-lsp-snippets' " if vim-lsp is available
-    Plug 'thomasfaingnaert/vim-lsp-ultisnips'
-    Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-    Plug 'honza/vim-snippets'
-
+  """ File manager
+  if s:load('nerd')
+    Plug 'preservim/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+    Plug 'ryanoasis/vim-devicons', { 'if': 'plug_helper#has_nerd_font()' }
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   endif
+
+  """ DB
+  if s:load('db')
+    Plug 'tpope/vim-dadbod'
+    Plug 'kristijanhusak/vim-dadbod-ui'
+  endif
+
+  " " export VIM_MODE=lite; vim
+  " if g:vim_mode != 'lite'
+  "   " LSP
+  "   Plug 'prabirshrestha/vim-lsp'
+  "   Plug 'prabirshrestha/async.vim'
+  "   Plug 'prabirshrestha/asyncomplete.vim'
+  "   Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  "
+  "   " Snippets
+  "   Plug 'SirVer/ultisnips'
+  "   Plug 'thomasfaingnaert/vim-lsp-snippets' " if vim-lsp is available
+  "   Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+  "   Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+  "   Plug 'honza/vim-snippets'
+  "
+  " endif
 call plug#end()
 
 let s:plugin_names = keys(g:plugs)
