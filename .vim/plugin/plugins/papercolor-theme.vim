@@ -1,3 +1,5 @@
+if !has_key(g:plugs, expand('<sfile>:t:r')) | finish | endif
+
 " https://stackoverflow.com/questions/5698284/in-my-vimrc-how-can-i-check-for-the-existence-of-a-color-scheme
 try
   colorscheme PaperColor

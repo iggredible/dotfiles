@@ -1,3 +1,5 @@
+if !has_key(g:plugs, expand('<sfile>:t:r')) | finish | endif
+
 " LSP Server Registration
 if executable('typescript-language-server')
   au User lsp_setup call lsp#register_server({

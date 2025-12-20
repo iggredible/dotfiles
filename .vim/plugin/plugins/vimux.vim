@@ -1,3 +1,6 @@
+if !has_key(g:plugs, expand('<sfile>:t:r')) | finish | endif
+if !executable('tmux') | finish | endif
+
 " Modified https://github.com/jgdavey/tslime.vim into an operator
 function! VimuxSlimeExe(text = '')
   call VimuxRunCommand(a:text)
@@ -33,19 +36,19 @@ endfunction
 function! s:GetAvailablePanes() abort
   let current_pane = system("tmux display-message -p '#{pane_id}'")
   let current_pane = substitute(current_pane, '\n', '', '')
-  
+
   " Get all panes in current window with useful info
   " tmux pane IDs are in format %[number] (e.g., %105, %99)
   let panes_output = system("tmux list-panes -F '#{pane_id}|#{pane_index}|#{pane_current_command}|#{pane_width}x#{pane_height}|#{pane_title}'")
   let panes = split(panes_output, '\n')
-  
+
   let available_panes = []
-  
+
   for pane_info in panes
     let parts = split(pane_info, '|')
     if len(parts) >= 5
       let pane_id = parts[0]
-      
+
       " Skip current pane
       if pane_id == current_pane
         continue
@@ -62,14 +65,14 @@ function! s:GetAvailablePanes() abort
       call add(available_panes, pane_data)
     endif
   endfor
-  
+
   return available_panes
 endfunction
 
 " Format pane info for display
 function! s:FormatPaneInfo(pane) abort
-  return printf("Pane %s: %s [%s] (%s)", 
-        \ a:pane.index, 
+  return printf("Pane %s: %s [%s] (%s)",
+        \ a:pane.index,
         \ a:pane.command,
         \ a:pane.size,
         \ a:pane.title)
@@ -82,16 +85,16 @@ function! s:VimuxSelectPaneBasic() abort
     echo "No other panes available in current window"
     return
   endif
-  
+
   " Build menu items
   let menu_items = []
   let pane_ids = []
-  
+
   for pane in available_panes
     call add(menu_items, s:FormatPaneInfo(pane))
     call add(pane_ids, pane.id)
   endfor
-  
+
   if has('popupwin')
     " Create popup menu
     let selection = popup_menu(menu_items, #{
@@ -110,7 +113,7 @@ function! s:VimuxSelectPaneBasic() abort
       let i += 1
     endfor
     let choice = input("Enter number (empty to cancel): ")
-    
+
     if choice != '' && choice > 0 && choice <= len(pane_ids)
       call s:SetVimuxRunner(pane_ids[choice - 1])
     endif
@@ -120,25 +123,25 @@ endfunction
 " FZF version for better UX when available
 function! s:VimuxSelectPaneWithFzf() abort
   let available_panes = s:GetAvailablePanes()
-  
+
   if empty(available_panes)
     echo "No other panes available"
     return
   endif
-  
+
   " Build fzf input with hidden IDs
   let fzf_input = []
   for pane in available_panes
-    let display = printf("%-8s %-15s %-10s %s", 
+    let display = printf("%-8s %-15s %-10s %s",
           \ "Pane " . pane.index,
           \ pane.command,
           \ pane.size,
           \ pane.title)
-    
+
     " Store pane ID at the end after a delimiter that won't be shown
     call add(fzf_input, display . "\t" . pane.id)
   endfor
-  
+
   " Use fzf to select
   let selection = fzf#run({
         \ 'source': fzf_input,
@@ -174,7 +177,7 @@ function! s:SetVimuxRunnerFromFzf(selection) abort
   endif
 endfunction
 
-" Select which pane to run VimuxSlimeExe on 
+" Select which pane to run VimuxSlimeExe on
 nnoremap <leader>vss :call VimuxSelectPane()<CR>
 
 " Conditional keymap for _spec.rb files only

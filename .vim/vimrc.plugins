@@ -17,10 +17,10 @@ call plug#begin('~/.vim/plugged')
   " Parse requested plugin features from environment variable
   " Default to only core plugins
   " core plugins are everything else NOT in the if block
-  let s:plugins = split(get(environ(), 'VIM_PLUGINS', ''), ',')
+  let s:plugins = split(get(environ(), 'VIM_FEATURES', ''), ',')
 
   " Helper function: check if a feature should be loaded
-  " Usage: VIM_PLUGINS=db vim # loads db features
+  " Usage: VIM_FEATURES=db vim # loads db features
   function! s:load(feature)
     return index(s:plugins, a:feature) >= 0
   endfunction
@@ -111,8 +111,3 @@ call plug#begin('~/.vim/plugged')
   "
   " endif
 call plug#end()
-
-let s:plugin_names = keys(g:plugs)
-for plugin_name in s:plugin_names
-  exe 'runtime! /plugins/' . plugin_name . '.vim'
-endfor

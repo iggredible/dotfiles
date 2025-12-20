@@ -1,3 +1,5 @@
+if !has_key(g:plugs, expand('<sfile>:t:r')) | finish | endif
+
 " NOTE: Need to add SQL connections to dadbod and connect to it
 " 1. create .env in project root
 " 2. the DB urls keys must start with DB_
@@ -5,7 +7,7 @@
 "   DB_PRODUCTION=mysql://user:password@host.com/db
 " 3. Connect to the query: <leader>dd
 
-" TODO: add a friendly error message in case <Leader> + dd is pressed 
+" TODO: add a friendly error message in case <Leader> + dd is pressed
 " and no DB is found
 function! LoadDB()
   if exists('*DotenvRead')

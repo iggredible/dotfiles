@@ -1,3 +1,5 @@
+if !has_key(g:plugs, expand('<sfile>:t:r')) | finish | endif
+
 if exists('g:sandwich#default_recipes')
   let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 else

@@ -1,3 +1,5 @@
+if !has_key(g:plugs, expand('<sfile>:t:r')) | finish | endif
+
 " https://github.com/junegunn/vim-plug/wiki/extra
 augroup PlugHelper
   if has('ruby')

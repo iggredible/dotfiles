@@ -1,3 +1,5 @@
+if !has_key(g:plugs, expand('<sfile>:t:r')) | finish | endif
+
 let g:yoinkSwapClampAtEnds = 0
 let g:yoinkSyncNumberedRegisters = 1
 
@@ -13,4 +15,3 @@ nmap gP <plug>(YoinkPaste_gP)
 
 nmap [y <plug>(YoinkRotateBack)
 nmap ]y <plug>(YoinkRotateForward)
-
