@@ -90,3 +90,27 @@ hist() {
     fi
   fi
 }
+
+# Vim wrapper function to handle --features /-f flag
+# longhand:  vim --features=db,nerd somefile.txt
+# shorthand: vim -f=db,nerd somefile.txt
+vim() {
+    local features=""
+    local args=()
+
+    for arg in "$@"; do
+        if [[ "$arg" =~ ^--features= ]]; then
+            features="${arg#--features=}"
+        elif [[ "$arg" =~ ^-f= ]]; then
+            features="${arg#-f=}"
+        else
+            args+=("$arg")
+        fi
+    done
+
+    if [[ -n "$features" ]]; then
+        VIM_FEATURES="$features" command vim "${args[@]}"
+    else
+        command vim "${args[@]}"
+    fi
+}
