@@ -1,4 +1,4 @@
-# Load ~/.zshrc
+# Load zsh files
 
 # Load first.zsh first
 [ -f ~/.zsh/first.zsh ] && source ~/.zsh/first.zsh
