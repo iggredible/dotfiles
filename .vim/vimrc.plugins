@@ -65,21 +65,23 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive', { 'do': { -> deps#install('git') } }
   Plug 'mhinz/vim-signify'
 
+  """ External Tool Integration
+  Plug 'tpope/vim-dotenv'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'preservim/vimux'
+  Plug 'bfrg/vim-jqplay', { 'do': { -> deps#install('jq') } }
+
   """ Language Support
   Plug 'pangloss/vim-javascript'
   Plug 'slim-template/vim-slim'
   Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
   """ Ruby/Rails
-  Plug 'tpope/vim-rails', { 'if': 'plug_helper#is_rails()' }
-  Plug 'tpope/vim-bundler'
-  Plug 'tpope/vim-dispatch'
-
-  """ External Tool Integration
-  Plug 'tpope/vim-dotenv'
-  Plug 'christoomey/vim-tmux-navigator'
-  Plug 'preservim/vimux'
-  Plug 'bfrg/vim-jqplay', { 'do': { -> deps#install('jq') } }
+  if s:load('rails')
+    Plug 'tpope/vim-rails', { 'if': 'plug_helper#is_rails()' }
+    Plug 'tpope/vim-bundler'
+    Plug 'tpope/vim-dispatch'
+  endif
 
   """ File manager
   if s:load('nerd')
@@ -92,6 +94,13 @@ call plug#begin('~/.vim/plugged')
   if s:load('db')
     Plug 'tpope/vim-dadbod'
     Plug 'kristijanhusak/vim-dadbod-ui'
+  endif
+
+  if s:load('lsp')
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
   endif
 
   " " export VIM_MODE=lite; vim
