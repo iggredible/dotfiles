@@ -96,27 +96,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'kristijanhusak/vim-dadbod-ui'
   endif
 
+  """ LSP
   if s:load('lsp')
     Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
+
+    " Autocompletions
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
   endif
 
-  " " export VIM_MODE=lite; vim
-  " if g:vim_mode != 'lite'
-  "   " LSP
-  "   Plug 'prabirshrestha/vim-lsp'
-  "   Plug 'prabirshrestha/async.vim'
-  "   Plug 'prabirshrestha/asyncomplete.vim'
-  "   Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  "
-  "   " Snippets
-  "   Plug 'SirVer/ultisnips'
-  "   Plug 'thomasfaingnaert/vim-lsp-snippets' " if vim-lsp is available
-  "   Plug 'thomasfaingnaert/vim-lsp-ultisnips'
-  "   Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-  "   Plug 'honza/vim-snippets'
-  "
-  " endif
 call plug#end()
