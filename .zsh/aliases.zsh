@@ -14,6 +14,3 @@ alias please="sudo"
 
 # Get week number
 alias week='date +%V'
-
-# Lite Vim
-alias vimlite='VIM_MODE=lite vim'
