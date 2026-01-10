@@ -99,11 +99,12 @@ call plug#begin('~/.vim/plugged')
   """ LSP
   if s:load('lsp')
     Plug 'prabirshrestha/vim-lsp'
-    Plug 'mattn/vim-lsp-settings'
 
-    " Autocompletions
+    " Autocompletions (must load before vim-lsp-settings)
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+    Plug 'mattn/vim-lsp-settings'
   endif
 
 call plug#end()
