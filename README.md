@@ -19,12 +19,13 @@ Dependencies are listed in `Brewfile`. Install with:
 brew bundle
 ```
 
-### Install Dotfiles
+### Setup Docs
 
 See the following docs:
 
+- Claude: [docs/claude.md](docs/claude.md)
 - Git: [docs/git.md](docs/git.md)
 - Zsh: [docs/zsh.md](docs/zsh.md)
 - Tmux: [docs/tmux.md](docs/tmux.md)
 - MacOS: [docs/macos.md](docs/macos.md)
-- Vim: [docs/vim.md](docs/vim.md) / Neovim: [docs/neovim.md](docs/neovim.md)
+- Vim: [docs/vim.md](docs/vim.md)

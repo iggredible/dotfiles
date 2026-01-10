@@ -10,5 +10,12 @@
     "deny": [],
     "ask": []
   },
-  "includeCoAuthoredBy": false
+  "includeCoAuthoredBy": false,
+  "hooks": {
+    "beforeEdit": [],
+    "afterEdit": [],
+    "beforeAcceptEdit": [],
+    "onSessionStart": [],
+    "afterToolUse": []
+  }
 }
