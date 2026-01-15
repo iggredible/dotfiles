@@ -11,14 +11,3 @@ ln -sf ~/Projects/dotfiles/.vim ~/.vim
 Notes:
 - When using `vim-devicons`, use `brew install font-hack-nerd-font --cask`, then in iTerm, open Preferences → Profiles → Text → Change Font → Select `Hack Nerd Font`.
 - You have to install [vim-plug](https://github.com/junegunn/vim-plug#installation) too.
-
-## `lite` Mode
-
-Some plugins are rarely used and can be omitted. In the terminal, run `VIM_MODE=lite vim`.
-
-You can also add an alias in `.bashrc` / `.zshrc`:
-```
-alias vimlite='VIM_MODE=lite vim'
-```
-
-If you've already installed the non-lite plugins, you can uninstall them with `:PlugClean!`.

@@ -1,0 +1,61 @@
+" ----- Core Settings -----
+" unsaved changed buffer is hidden
+set hidden
+
+" intuitive search
+set hlsearch
+set ignorecase smartcase
+
+" show how many matches when searching with / or ?
+set shortmess-=S
+
+" don't give the file info when editing a file
+set shortmess+=F
+
+" allow yank and paste without prepending "*
+set clipboard=unnamedplus
+
+" me no like swapfiles
+set noswapfile
+
+" make it easy to target a specific line
+set relativenumber number
+
+" consistent tabs and spacings
+set tabstop=2 shiftwidth=2
+set expandtab
+
+" raises dialog
+set confirm
+
+" indent
+set autoindent smartindent
+set smarttab expandtab
+set shiftwidth=2 softtabstop=2
+
+" Cursor
+set cursorline
+
+" Display
+set scrolloff=8
+set signcolumn=yes
+
+" Completion
+set completeopt=menuone,noinsert,noselect,preview
+
+" more natural window placement when splitting
+set splitbelow splitright
+
+" No writebackup
+set nowritebackup
+
+" ----- Colors -----
+set termguicolors
+set background=dark
+
+" ----- Keymaps -----
+" Source vimrc
+nnoremap <Leader>vs :source $HOME/.vim/vimrc<CR>
+
+" ESC alternative
+inoremap <silent> jk <Esc>
