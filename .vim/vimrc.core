@@ -1,4 +1,6 @@
 " ----- Core Settings -----
+set nocompatible
+
 " unsaved changed buffer is hidden
 set hidden
 
@@ -13,7 +15,8 @@ set shortmess-=S
 set shortmess+=F
 
 " allow yank and paste without prepending "*
-set clipboard=unnamedplus
+" macOS uses 'unnamed' (*), Linux uses 'unnamedplus' (+)
+set clipboard=unnamed
 
 " me no like swapfiles
 set noswapfile

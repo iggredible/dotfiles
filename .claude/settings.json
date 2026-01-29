@@ -11,11 +11,5 @@
     "ask": []
   },
   "includeCoAuthoredBy": false,
-  "hooks": {
-    "beforeEdit": [],
-    "afterEdit": [],
-    "beforeAcceptEdit": [],
-    "onSessionStart": [],
-    "afterToolUse": []
-  }
+  "hooks": {}
 }

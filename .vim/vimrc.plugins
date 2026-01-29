@@ -78,17 +78,15 @@ call plug#begin('~/.vim/plugged')
 
   """ Ruby/Rails
   if s:load('rails')
-    Plug 'tpope/vim-rails', { 'if': 'plug_helper#is_rails()' }
+    Plug 'tpope/vim-rails'
     Plug 'tpope/vim-bundler'
     Plug 'tpope/vim-dispatch'
   endif
 
   """ File manager
-  if s:load('nerd')
-    Plug 'preservim/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-    Plug 'ryanoasis/vim-devicons', { 'if': 'plug_helper#has_nerd_font()' }
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-  endif
+  Plug 'preservim/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
   """ DB
   if s:load('db')

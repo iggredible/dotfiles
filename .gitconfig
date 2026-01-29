@@ -58,3 +58,5 @@
 
   # git follow /path/to/file.rb. Tracks file renaming
   follow = log --follow --
+[url "git@github.com:"]
+	insteadOf = https://github.com/
