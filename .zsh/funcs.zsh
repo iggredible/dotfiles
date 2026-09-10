@@ -1,6 +1,6 @@
 # runs rails console -- --nomultiline
 # Other args will get passed to the `rails` command
-rails() {
+railsc() {
   if [ "$1" = "console" ] || [ "$1" = "c" ]; then
     shift
     bin/rails console -- --nomultiline "$@"

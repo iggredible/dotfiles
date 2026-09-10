@@ -1,5 +1,14 @@
+.last-cleanup
+.last-update-result.json
 backups/
 cache/
+chats/
 chrome/
+file-history/
 history.jsonl
+paste-cache/
 projects/
+session-env/
+sessions/
+shell-snapshots/
+telemetry/

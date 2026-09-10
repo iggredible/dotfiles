@@ -11,6 +11,9 @@
     "deny": [],
     "ask": []
   },
+  "skillOverrides": {
+    "extract": "off"
+  },
   "hooks": {
     "SessionEnd": [
       {
@@ -23,5 +26,6 @@
       }
     ]
   },
+  "editorMode": "vim",
   "agentPushNotifEnabled": true
 }

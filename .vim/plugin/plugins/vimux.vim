@@ -178,7 +178,7 @@ function! s:SetVimuxRunnerFromFzf(selection) abort
 endfunction
 
 " Select which pane to run VimuxSlimeExe on
-nnoremap <leader>vss :call VimuxSelectPane()<CR>
+nnoremap <leader>gs :call VimuxSelectPane()<CR>
 
 " Conditional keymap for _spec.rb files only
 au! BufRead **/*_spec.rb nnoremap <buffer><expr> <Leader>tt ShowVimuxRspec()

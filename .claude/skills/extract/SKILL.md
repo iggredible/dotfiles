@@ -7,7 +7,7 @@ disable-model-invocation: true
 metadata:
   # Where transcripts are written. Relative to the project, or absolute / ~ path.
   # Also used by the SessionEnd hook. Filename is YYYY_MM_DD-<slug>.md
-  output-dir: chatz
+  output-dir: .claude/chats
 ---
 
 !`python3 ~/.claude/skills/extract/extract.py --latest --out "$ARGUMENTS"`
