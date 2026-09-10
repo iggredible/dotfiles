@@ -182,3 +182,8 @@ nnoremap <leader>gs :call VimuxSelectPane()<CR>
 
 " Conditional keymap for _spec.rb files only
 au! BufRead **/*_spec.rb nnoremap <buffer><expr> <Leader>tt ShowVimuxRspec()
+
+" gs{motion} sends the operated text to the tmux runner, gss for a line
+if has_key(g:plugs, 'vim-operatorify')
+  call Operatorify#Mapper('gs', 'VimuxSlimeExe')
+endif
