@@ -65,7 +65,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive', { 'do': { -> deps#install('git') } }
   Plug 'mhinz/vim-signify'
 
-  """ External Tool Integration
+  """ External Tool Integrations
   Plug 'tpope/vim-dotenv'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'preservim/vimux'
